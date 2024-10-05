@@ -19,6 +19,9 @@ namespace BTL
             try
             {
                 dataGridView1.DataSource = DBConnection.Instance.SelectDB("tblKhachHang").CreateDataView();
+                comboBox1.DataSource = DBConnection.Instance.SelectDB("tblMang").CreateDataView();
+                comboBox1.DisplayMember = "sTenMang";
+                comboBox1.ValueMember = "iMaMang";
             }
             catch (Exception ex)
             {
@@ -36,30 +39,11 @@ namespace BTL
             {
                 //Nên viết thứ tự parameter theo tứ tự trong DataBase
                 DBConnection.Instance.InsertDB("tblKhachHang", "sp_ThemKhachHang",
-                new DBParameter
-                {
-                    IsIdentity = true,//Thuộc tính Identity trong DataBase
-                },
-                new DBParameter
-                {
-                    SqlParameter = new SqlParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen"),
-                    Value = "test"
-                },
-                new DBParameter
-                {
-                    SqlParameter = new SqlParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai"),
-                    Value = "test"
-                },
-                new DBParameter
-                {
-                    SqlParameter = new SqlParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi"),
-                    Value = "test"
-                },
-                new DBParameter
-                {
-                    SqlParameter = new SqlParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail"),
-                    Value = "test"
-                });
+                new SqlParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen") { Value = "test2" },
+                new SqlParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai") { Value = "test2" },
+                new SqlParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi") { Value = "test2" }, 
+                new SqlParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail") { Value = "test2" });
+                DBConnection.Instance.SelectDB("tblKhachHang");
             }
             catch (Exception ex)
             {
@@ -73,32 +57,12 @@ namespace BTL
             try
             {
                 //Nên viết thứ tự parameter theo tứ tự trong DataBase
-                DBConnection.Instance.UpdateDB("tblKhachHang", 
-                new DBParameter // đây là điều kiện update
-                {
-                    SqlParameter = new SqlParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang"),
-                    Value = 1
-                },
-                new DBParameter // dưới cái này là các dữ liệu cần update
-                {
-                    SqlParameter = new SqlParameter("@sHoTen", SqlDbType.Bit, 0, "sHoTen"),
-                    Value = "test434"
-                },
-                new DBParameter
-                {
-                    SqlParameter = new SqlParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai"),
-                    Value = "test2"
-                },
-                new DBParameter
-                {
-                    SqlParameter = new SqlParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi"),
-                    Value = "test2"
-                },
-                new DBParameter
-                {
-                    SqlParameter = new SqlParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail"),
-                    Value = "test3"
-                });
+                DBConnection.Instance.UpdateDB("tblKhachHang",
+                new SqlParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang") { Value = dataGridView1.CurrentRow.Cells[0].Value },
+                new SqlParameter("@sHoTen", SqlDbType.Bit, 0, "sHoTen") { Value = "test434" },
+                new SqlParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai") { Value = "test2" },
+                new SqlParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi") { Value = "test2" },
+                new SqlParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail") { Value = "test2" });
             }
             catch (Exception ex)
             {
@@ -112,7 +76,7 @@ namespace BTL
             try
             {
                 DataView dataView = dataGridView1.DataSource as DataView;
-                dataView.AddRowFilter($"sHoTen LIKE '{textBox1.Text}%'");
+                dataView.AddRowFilter($"sHoTen LIKE '%{textBox1.Text}%'");
             }
             catch (Exception ex)
             {
@@ -128,21 +92,20 @@ namespace BTL
             {
                 //Nên viết thứ tự parameter theo tứ tự trong DataBase
                 DBConnection.Instance.UpdateDB("tblKhachHang",
-                new DBParameter // đây là điều kiện update
-                {
-                    SqlParameter = new SqlParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang"),
-                    Value = dataGridView1.CurrentRow.Cells[0].Value
-                },
-                new DBParameter // dưới cái này là các dữ liệu cần update
-                {
-                    SqlParameter = new SqlParameter("@bDeleted", SqlDbType.Bit, 0, "bDeleted"),
-                    Value = true
-                });
+                new SqlParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang") { Value = dataGridView1.CurrentRow.Cells[0].Value },
+                new SqlParameter("@bDeleted", SqlDbType.Bit, 0, "bDeleted") { Value = true });
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+
+            MessageBox.Show(comboBox.SelectedValue.ToString());
         }
     }
 }

@@ -32,63 +32,50 @@ namespace BTL
 
         public DataTable SelectDB(string table)
         {
-            string sqlSelect = $"SELECT * FROM {table}";
             using (SqlConnection cnn = CreateConnection())
             {
                 using (SqlDataAdapter da = new SqlDataAdapter())
                 {
-                    try
+                    using (SqlCommand cmd = cnn.BuildSelectCommand(table))
                     {
-                        da.SelectCommand = cnn.BuildSelectCommand(table);
-                        _dataSet.Tables[table]?.Clear();
-                        cnn.Open();
-                        da.Fill(_dataSet, table);
-                        cnn.Close();
+                        try
+                        {
+                            da.SelectCommand = cmd;
+                            _dataSet.Tables[table]?.Clear();
+                            cnn.Open();
+                            da.Fill(_dataSet, table);
+                            cnn.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Lỗi select DataBase : " + ex.Message);
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        throw new Exception("Lỗi select DataBase : " + ex.Message);
-                    }
-
                 }
             }
             return _dataSet.Tables[table];
         }
 
-        public bool InsertDB(string table, string nameProc,params DBParameter[] sqlParameters)
+        public bool InsertDB(string table, params SqlParameter[] sqlParameters)
         {
-            DataTable dt = _dataSet.Tables[table];
-            if (_dataSet.Tables[table] == null)
-            {
-                dt = SelectDB(table);
-            }
-
             using (SqlConnection cnn = CreateConnection())
             {
                 using (SqlDataAdapter da = new SqlDataAdapter())
                 {
-                    using (SqlCommand cmd = cnn.BuildInsertProc(nameProc, sqlParameters))
+                    using (SqlCommand cmd = cnn.BuildInsertCommand(table, sqlParameters))
                     {
                         try
                         {
                             da.InsertCommand = cmd;
-                            DataRow newRow = dt.NewRow();
-                            for (int j = 0; j < sqlParameters.Length; j++)
+                            DataRow newRow = _dataSet.Tables[table].NewRow();
+                            foreach (var p in sqlParameters)
                             {
-                                DBParameter p = sqlParameters[j];
-                                if (p.IsIdentity)
-                                {
-                                    newRow[j] = dt.Rows.Count + 1;
-                                    continue;
-                                }
-                                newRow[p.SqlParameter.SourceColumn] = p.Value;
+                                newRow[p.SourceColumn] = p.Value;
                             }
-                            newRow["bDeleted"] = false;
-                            dt.Rows.Add(newRow);
+                            _dataSet.Tables[table].Rows.Add(newRow);
                             cnn.Open();
                             int i = da.Update(_dataSet, table);
                             cnn.Close();
-                            _dataSet.Tables[table].AcceptChanges();
                             return i > 0;
                         }
                         catch (Exception ex)
@@ -101,7 +88,54 @@ namespace BTL
             }
         }
 
-        public bool UpdateDB(string table, DBParameter condition, params DBParameter[] sqlParameters)
+        public bool InsertDB(string table, string nameProc,params SqlParameter[] sqlParameters)
+        {
+            if (_dataSet.Tables[table] == null) SelectDB(table);
+
+            using (SqlConnection cnn = CreateConnection())
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter())
+                {
+                    using (SqlCommand cmd = cnn.BuildInsertProc(nameProc, sqlParameters))
+                    {
+                        try
+                        {
+                            da.InsertCommand = cmd;
+                            DataRow newRow = _dataSet.Tables[table].NewRow();
+                            foreach (var p in sqlParameters)
+                            {
+                                newRow[p.SourceColumn] = p.Value;
+                            }
+                            _dataSet.Tables[table].Rows.Add(newRow);
+                            cnn.Open();
+                            int i = da.Update(_dataSet, table);
+                            cnn.Close();
+                            return i > 0;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Lỗi insert DataBase : " + ex.Message);
+                        }
+                    }
+
+                }
+            }
+        }
+
+        public DataRow GetRow(string table, SqlParameter parameter)
+        {
+            if (_dataSet.Tables[table] == null) SelectDB(table);
+
+            foreach (DataRow row in _dataSet.Tables[table].Rows)
+            {
+                if (row[parameter.SourceColumn].Equals(parameter.Value))
+                    return row;
+            }
+            return null;
+        }
+
+
+        public bool UpdateDB(string table, SqlParameter condition, params SqlParameter[] sqlParameters)
         {
             DataTable dt = _dataSet.Tables[table];
             if (_dataSet.Tables[table] == null)
@@ -118,19 +152,16 @@ namespace BTL
                         try
                         {
                             da.UpdateCommand = cmd;
-                            cnn.Open(); 
-                            for (int j = 0; j < sqlParameters.Length; j++)
+                            cnn.Open();
+
+                            var row = GetRow(table, condition);
+
+                            foreach (var p in sqlParameters)
                             {
-                                DBParameter p = sqlParameters[j];
-                                if (p.IsIdentity)
-                                {
-                                    continue;
-                                }
-                                dt.Rows[(int)condition.Value - 1][p.SqlParameter.SourceColumn] = p.Value;
+                                row[p.SourceColumn] = p.Value;
                             }
                             int i = da.Update(_dataSet, table);
                             cnn.Close();
-                            _dataSet.Tables[table].AcceptChanges();
                             return i > 0;
                         }
                         catch (Exception ex)

@@ -17,24 +17,50 @@ namespace BTL
 
         public static SqlCommand BuildSelectCommand(this SqlConnection conn, string table) 
         {
-            return new SqlCommand($"SELECT * FROM {table}", conn);
+            return new SqlCommand($"SELECT * FROM {table} WHERE bDeleted=0 ", conn);
         }
 
-        public static SqlCommand BuildInsertProc(this SqlConnection conn, string nameProc, params DBParameter[] sqlParameters)
+        public static SqlCommand BuildInsertProc(this SqlConnection conn, string nameProc, params SqlParameter[] sqlParameters)
         {
             var cmd = new SqlCommand(nameProc, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             foreach (var param in sqlParameters)
             {
-                if (param.IsIdentity) continue;
-                cmd.Parameters.Add(param.SqlParameter);
+                cmd.Parameters.Add(param);
             }
 
             return cmd;
         }
+        public static SqlCommand BuildInsertCommand(this SqlConnection conn, string table, params SqlParameter[] sqlParameters)
+        {
+            string sqlInsert = $"INSERT INTO {table}(";
+            string value = " VALUES (";
+            for (int i = 0; i < sqlParameters.Length; i++)
+            {
+                var param = sqlParameters[i];
 
-        public static SqlCommand BuildUpdateCommand(this SqlConnection conn, string table, DBParameter condition, params DBParameter[] sqlParameters)
+                if (i == sqlParameters.Length - 1)
+                {
+                    sqlInsert += $"{param.SourceColumn})";
+                    value += $"{param.ParameterName})";
+                }
+                else
+                {
+                    sqlInsert += $"{param.SourceColumn},";
+                    value += $"{param.ParameterName},";
+                }
+            }
+            sqlInsert += value;
+            var cmd = new SqlCommand(sqlInsert, conn);
+            foreach (var param in sqlParameters)
+            {
+                cmd.Parameters.AddWithValue(param.ParameterName, param.Value);
+            }
+            return cmd;
+        }
+
+        public static SqlCommand BuildUpdateCommand(this SqlConnection conn, string table, SqlParameter condition, params SqlParameter[] sqlParameters)
         {
             string sqlUpdate = $"UPDATE {table} SET ";
 
@@ -42,22 +68,19 @@ namespace BTL
             {
                 var param = sqlParameters[i];
 
-                if (param.IsIdentity) continue;
-
-                sqlUpdate += $"{param.SqlParameter.SourceColumn}={param.SqlParameter.ParameterName}";
+                sqlUpdate += $"{param.SourceColumn}={param.ParameterName}";
 
                 if (i < sqlParameters.Length - 1) sqlUpdate += ", ";
             }
 
-            sqlUpdate += $" WHERE {condition.SqlParameter.SourceColumn}={condition.SqlParameter.ParameterName}";
+            sqlUpdate += $" WHERE {condition.SourceColumn}={condition.ParameterName}";
 
             var cmd = new SqlCommand(sqlUpdate, conn);
             foreach (var param in sqlParameters)
             {
-                if (param.IsIdentity) continue;
-                cmd.Parameters.AddWithValue(param.SqlParameter.ParameterName, param.Value);
+                cmd.Parameters.AddWithValue(param.ParameterName, param.Value);
             }
-            cmd.Parameters.AddWithValue(condition.SqlParameter.ParameterName, condition.Value);
+            cmd.Parameters.AddWithValue(condition.ParameterName, condition.Value);
             return cmd;
         }
     }
