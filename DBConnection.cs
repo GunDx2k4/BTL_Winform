@@ -2,19 +2,9 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace BTL
 {
-    public class DBParameter
-    {
-        public SqlParameter SqlParameter { get; set; }
-
-        public object Value { get; set; }
-
-        public bool IsIdentity { get; set; }
-    }
-
     public class DBConnection
     {
         public DataSet DataSet => _dataSet;
