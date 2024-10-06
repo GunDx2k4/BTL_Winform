@@ -20,13 +20,13 @@ namespace BTL
             return new SqlConnection(constr);
         }
 
-        public DataTable SelectDB(string table)
+        public DataTable SelectDB(string table, string query = "")
         {
             using (SqlConnection cnn = CreateConnection())
             {
                 using (SqlDataAdapter da = new SqlDataAdapter())
                 {
-                    using (SqlCommand cmd = cnn.BuildSelectCommand(table))
+                    using (SqlCommand cmd = cnn.BuildSelectCommand(table, query))
                     {
                         try
                         {

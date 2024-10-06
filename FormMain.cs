@@ -18,10 +18,8 @@ namespace BTL
             //Bắt buộc để try catch để kiểm tra lỗi khi sử lý với DataBase
             try
             {
-                dataGridView1.DataSource = DBConnection.Instance.SelectDB("tblKhachHang").CreateDataView();
-                comboBox1.DataSource = DBConnection.Instance.SelectDB("tblMang").CreateDataView();
-                comboBox1.DisplayMember = "sTenMang";
-                comboBox1.ValueMember = "iMaMang";
+                dataGridView1.LoadDataSource("tblKhachHang");
+                comboBox1.LoadDataSource("tblMang", "sTenMang", "sMoTa");
             }
             catch (Exception ex)
             {

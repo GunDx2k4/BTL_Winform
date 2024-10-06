@@ -1,10 +1,23 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace BTL
 {
     public static class Extension
     {
+        public static void LoadDataSource(this ComboBox cbo, string table, string displayMember, string valueMember, string query = "")
+        {
+            cbo.DataSource = DBConnection.Instance.SelectDB(table).CreateDataView();
+            cbo.DisplayMember = displayMember;
+            cbo.ValueMember = valueMember;
+        }
+
+        public static void LoadDataSource(this DataGridView grv, string table, string query = "")
+        {
+            grv.DataSource = DBConnection.Instance.SelectDB(table, query).CreateDataView();
+        }
+
         public static void AddRowFilter(this DataView dataView, string filter)
         {
             dataView.RowFilter = $"bDeleted=0 AND {filter}";
@@ -15,9 +28,9 @@ namespace BTL
             return new DataView(table) { RowFilter = "bDeleted=0" };
         }
 
-        public static SqlCommand BuildSelectCommand(this SqlConnection conn, string table) 
+        public static SqlCommand BuildSelectCommand(this SqlConnection conn, string table, string query = "") 
         {
-            return new SqlCommand($"SELECT * FROM {table} WHERE bDeleted=0 ", conn);
+            return new SqlCommand($"SELECT * FROM {table} WHERE bDeleted=0 {query}", conn);
         }
 
         public static SqlCommand BuildInsertProc(this SqlConnection conn, string nameProc, params SqlParameter[] sqlParameters)
