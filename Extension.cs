@@ -16,6 +16,7 @@ namespace BTL
         public static void LoadDataSource(this DataGridView grv, string table, string query = "")
         {
             grv.DataSource = DBConnection.Instance.SelectDB(table, query).CreateDataView();
+            grv.Columns["bDeleted"].Visible = false;
         }
 
         public static void AddRowFilter(this DataView dataView, string filter)
