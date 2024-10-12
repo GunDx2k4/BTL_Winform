@@ -16,22 +16,26 @@ namespace BTL
         public static void LoadDataSource(this DataGridView grv, string table, string query = "")
         {
             grv.DataSource = DBConnection.Instance.SelectDB(table, query).CreateDataView();
-            grv.Columns["bDeleted"].Visible = false;
+            if (grv.Columns["bDeleted"] != null)
+                grv.Columns["bDeleted"].Visible = false;
         }
 
         public static void AddRowFilter(this DataView dataView, string filter)
         {
-            dataView.RowFilter = $"bDeleted=0 AND {filter}";
+            dataView.RowFilter = $"{filter}";
         }
 
         public static DataView CreateDataView(this DataTable table)
         {
+            if (table.Columns["bDeleted"] == null)
+                return new DataView(table);
             return new DataView(table) { RowFilter = "bDeleted=0" };
         }
 
         public static SqlCommand BuildSelectCommand(this SqlConnection conn, string table, string query = "") 
         {
-            return new SqlCommand($"SELECT * FROM {table} WHERE bDeleted=0 {query}", conn);
+            string sqlSelect = $"SELECT * FROM {table} " + (string.IsNullOrEmpty(query) ? "" : $"WHERE {query}");
+            return new SqlCommand(sqlSelect, conn);
         }
 
         public static SqlCommand BuildInsertProc(this SqlConnection conn, string nameProc, params SqlParameter[] sqlParameters)
