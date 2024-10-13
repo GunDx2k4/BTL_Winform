@@ -17,10 +17,11 @@ namespace BTL
             try
             {
                 DBConnection.Instance.InsertDB("tblKhachHang", "sp_ThemKhachHang",
-                new SqlParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen") { Value = "133" },
-                new SqlParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai") { Value = "123" },
-                new SqlParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi") { Value = "123" },
-                new SqlParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail") { Value = "123" });
+                DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", "123"),
+                DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", "123"),
+                DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", "123"),
+                DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", "123"));
+
                 DBConnection.Instance.SelectDB("tblKhachHang");
             }
             catch (Exception ex)
@@ -37,11 +38,11 @@ namespace BTL
             {
                 //Nên viết thứ tự parameter theo tứ tự trong DataBase
                 DBConnection.Instance.UpdateDB("tblKhachHang",
-                new SqlParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang") { Value = 123 },
-                new SqlParameter("@sHoTen", SqlDbType.Bit, 0, "sHoTen") { Value = "test434" },
-                new SqlParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai") { Value = "test2" },
-                new SqlParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi") { Value = "test2" },
-                new SqlParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail") { Value = "test2" });
+                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", 123),
+                DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", "123"),
+                DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", "123"),
+                DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", "123"),
+                DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", "123"));
             }
             catch (Exception ex)
             {
@@ -56,8 +57,8 @@ namespace BTL
             {
                 //Nên viết thứ tự parameter theo tứ tự trong DataBase
                 DBConnection.Instance.UpdateDB("tblKhachHang",
-                new SqlParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang") { Value = 123 },
-                new SqlParameter("@bDeleted", SqlDbType.Bit, 0, "bDeleted") { Value = true });
+                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", 123),
+                DBConnection.Instance.BuildParameter("@bDeleted", SqlDbType.Bit, 0, "bDeleted", true));
             }
             catch (Exception ex)
             {
