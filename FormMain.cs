@@ -88,26 +88,26 @@ namespace BTL
                 dtThongTinMang.Columns[2].Width = 190;
                 dtThongTinMang.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                cboMaNV.LoadDataSource("tblNhanVien", "sHoTen", "iMaNhanVien");
+                txbHDMaNV.LoadDataSource("tblNhanVien", "sHoTen", "iMaNhanVien");
 
-                cboMaNV.Format += (s, e) =>
+                txbHDMaNV.Format += (s, e) =>
                 {
                     DataRowView row = (DataRowView)e.ListItem;
                     e.Value = $"{row["sHoTen"]} [{row["iMaNhanVien"]}]";
                 };
 
-                cboMaKH.LoadDataSource("tblKhachHang", "sHoTen", "iMaKhachHang");
-                cboMaKH.Format += (s, e) =>
+                txbHDMaKH.LoadDataSource("tblKhachHang", "sHoTen", "iMaKhachHang");
+                txbHDMaKH.Format += (s, e) =>
                 {
                     DataRowView row = (DataRowView)e.ListItem;
                     e.Value = $"{row["sHoTen"]} [{row["iMaKhachHang"]}]";
                 };
 
 
-                cboMaHD.LoadDataSource("tblHoaDon", "iMaHoaDon", "iMaHoaDon");
+                txbCTHDMaHD.LoadDataSource("tblHoaDon", "iMaHoaDon", "iMaHoaDon");
 
-                cboMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
-                cboMaMang.Format += (s, e) =>
+                txbCTHDMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
+                txbCTHDMaMang.Format += (s, e) =>
                 {
                     DataRowView row = (DataRowView)e.ListItem;
                     e.Value = $"{row["sTenMang"]} [{row["iMaMang"]}]";
@@ -125,10 +125,10 @@ namespace BTL
             try
             {
                 DBConnection.Instance.InsertDB("tblKhachHang", "sp_ThemKhachHang",
-                DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", textBoxHoTen.Text),
-                DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", textBoxSDT.Text),
-                DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", textBoxDiaChi.Text),
-                DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", textBoxEmail.Text));
+                DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", txbKHHoTen.Text),
+                DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", txbKHSDT.Text),
+                DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", txbKHDiaChi.Text),
+                DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", txbKHEmail.Text));
 
                 DBConnection.Instance.SelectDB("tblKhachHang", "bDeleted=0");
             }
@@ -171,6 +171,26 @@ namespace BTL
         private void btnHDThem_Click(object sender, EventArgs e)
         {
             new FormHoaDon().ShowDialog();
+        }
+
+        private void tpNhanVien_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNvDiaChi_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxTim_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnHDThoat_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

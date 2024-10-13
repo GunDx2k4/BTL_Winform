@@ -16,5 +16,10 @@ namespace BTL
         {
             InitializeComponent();
         }
+
+        private void DangKy_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
