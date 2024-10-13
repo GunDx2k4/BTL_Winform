@@ -133,11 +133,12 @@ namespace BTL
             try
             {
                 DBConnection.Instance.InsertDB("tblKhachHang", "sp_ThemKhachHang",
-                new SqlParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen") { Value = textBoxHoTen.Text },
-                new SqlParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai") { Value = textBoxSDT.Text },
-                new SqlParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi") { Value = textBoxDiaChi.Text },
-                new SqlParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail") { Value = textBoxEmail.Text });
-                DBConnection.Instance.SelectDB("tblKhachHang");
+                DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", textBoxHoTen.Text),
+                DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", textBoxSDT.Text),
+                DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", textBoxDiaChi.Text),
+                DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", textBoxEmail.Text));
+
+                DBConnection.Instance.SelectDB("tblKhachHang", "bDeleted=0");
             }
             catch (Exception ex)
             {

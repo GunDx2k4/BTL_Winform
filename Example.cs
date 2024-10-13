@@ -71,7 +71,7 @@ namespace BTL
             try
             {
                 DataView dataView = /*dtThongTinCTHoaDon.DataSource bỏ sender đi thay bằng datagridview cần tìm*/sender as DataView;
-                dataView.AddRowFilter($"bDeleted=0 AND  sHoTen LIKE '%abcxyz%'");
+                dataView.AddRowFilter($"sHoTen LIKE '%abcxyz%'");
             }
             catch (Exception ex)
             {
