@@ -120,14 +120,6 @@ namespace BTL
 
         }
 
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox comboBox = sender as ComboBox;
-
-            MessageBox.Show(comboBox.SelectedValue.ToString());
-        }
-
         private void buttonNvInsert_Click(object sender, EventArgs e)
         {
             try
