@@ -12,9 +12,63 @@ namespace BTL
 {
     public partial class FormHoaDon : Form
     {
-        public FormHoaDon()
+        private DataRow _dataHoaDon;
+        public FormHoaDon(DataRow row)
         {
             InitializeComponent();
+            _dataHoaDon = row;
+        }
+
+        private void FormHoaDon_Load(object sender, EventArgs e)
+        {
+            grThongTinHoaDon.Text += $" {_dataHoaDon.Field<int>("iMaHoaDon")}";
+            var dataKH = DBConnection.Instance.GetRow("tblKhachHang", "iMaKhachHang", _dataHoaDon.Field<int>("iMaKhachHang"));
+            txtKhachHang.Text = $"{dataKH["sHoTen"]} [{dataKH["iMaKhachHang"]}]";
+
+            var dataNV = DBConnection.Instance.GetRow("tblNhanVien", "iMaNhanVien", _dataHoaDon.Field<int>("iMaNhanVien"));
+            txtNhanVien.Text = $"{dataNV["sHoTen"]} [{dataNV["iMaNhanVien"]}]";
+
+            dtpHDNgayTao.Value = _dataHoaDon.Field<DateTime>("dNgayTao");
+
+
+            cboMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
+            cboMaMang.Format += (s, e) =>
+            {
+                DataRowView row = (DataRowView)e.ListItem;
+                e.Value = $"{row["sTenMang"]} [{row["iMaMang"]}]";
+            };
+
+
+            dtThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon", $"iMaHoaDon={_dataHoaDon.Field<int>("iMaHoaDon")}");
+            dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
+            dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
+            dtThongTinCTHoaDon.Columns[2].HeaderText = "Mã Mạng";
+            dtThongTinCTHoaDon.Columns[3].HeaderText = "Đơn giá";
+            dtThongTinCTHoaDon.Columns[4].HeaderText = "Số tháng đăng ký";
+
+            dtThongTinCTHoaDon.Columns[0].Visible = false;
+            dtThongTinCTHoaDon.Columns[1].Width = 190;
+            dtThongTinCTHoaDon.Columns[2].Width = 150;
+            dtThongTinCTHoaDon.Columns[3].Width = 150;
+            dtThongTinCTHoaDon.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSoThangDK_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

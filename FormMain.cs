@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace BTL
@@ -160,18 +161,50 @@ namespace BTL
 
         }
 
+        #region Hóa Đơn [Dũng]
         private void dtThongTinHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dtThongTinHoaDon.Columns["btnCTHoaDon"].Index && e.RowIndex >= 0)
+            var dgv = sender as DataGridView;
+            if (e.ColumnIndex == dgv.Columns["btnCTHoaDon"].Index && e.RowIndex >= 0)
             {
-                new FormHoaDon().ShowDialog();
+                var table = dgv.DataSource as DataView;
+                new FormHoaDon(table.Table.Rows[e.RowIndex]).ShowDialog();
             }
         }
 
         private void btnHDThem_Click(object sender, EventArgs e)
         {
-            new FormHoaDon().ShowDialog();
+            try
+            {
+                DBConnection.Instance.InsertDB("tblHoaDon", "sp_ThemHoaDon",
+                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", txbHDMaKH.SelectedValue),
+                DBConnection.Instance.BuildParameter("@iMaNhanVien", SqlDbType.Int, 0, "iMaNhanVien", txbHDMaNV.SelectedValue),
+                DBConnection.Instance.BuildParameter("@dNgayTao", SqlDbType.Date, 255, "dNgayTao", txbHDNgayTao.Value));
+
+                var table = DBConnection.Instance.SelectDB("tblHoaDon", "bDeleted=0");
+
+                new FormHoaDon(table.Rows[table.Rows.Count - 1]).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+        private void dtThongTinHoaDon_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            var table = (dgv.DataSource as DataView).Table;
+            if (dgv.CurrentRow != null && dgv.CurrentRow.Index >= 0)
+            {
+                var row = table.Rows[dgv.CurrentRow.Index];
+                txbHDMaKH.SelectedValue = row.Field<int>("iMaKhachHang");
+                txbHDMaNV.SelectedValue = row.Field<int>("iMaNhanVien");
+                txbHDNgayTao.Value = row.Field<DateTime>("dNgayTao");
+            }
+        }
+
+        #endregion
 
         private void tpNhanVien_Click(object sender, EventArgs e)
         {
@@ -191,6 +224,11 @@ namespace BTL
         private void btnHDThoat_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

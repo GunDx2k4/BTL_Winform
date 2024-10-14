@@ -184,15 +184,16 @@ namespace BTL
         /// Hàm lấy dữ liệu của 1 bản ghi bất khì nào trong bảng
         /// </summary>
         /// <param name="table">Tên bảng</param>
-        /// <param name="parameter">Thuộc tính để kiểm tra lấy ra bản ghi (Nên sử dụng ID)</param>
-        /// <returns><c><see cref="DataRow"/></c>Nếu thì thấy bản ghi phù hợp với <paramref name="parameter"/>, ngược lại <see cref="null"/></returns>
-        public DataRow GetRow(string table, SqlParameter parameter)
+        /// <param name="sourceColumn">Tên cột để kiểm tra lấy ra bản ghi (Nên sử dụng ID)</param>
+        /// <param name="value">Giá trị của cột để kiểm tra lấy ra bản ghi (Nên sử dụng ID)</param>
+        /// <returns><c><see cref="DataRow"/></c>Nếu thì thấy bản ghi phù hợp với <paramref name="value"/>, ngược lại <see cref="null"/></returns>
+        public DataRow GetRow(string table, string sourceColumn, object value)
         {
             if (_dataSet.Tables[table] == null) SelectDB(table);
 
             foreach (DataRow row in _dataSet.Tables[table].Rows)
             {
-                if (row[parameter.SourceColumn].Equals(parameter.Value))
+                if (row[sourceColumn].Equals(value))
                     return row;
             }
             return null;
@@ -227,7 +228,7 @@ namespace BTL
                             da.UpdateCommand = cmd;
                             cnn.Open();
 
-                            var row = GetRow(table, condition);
+                            var row = GetRow(table, condition.SourceColumn, condition.Value);
 
                             foreach (var p in sqlParameters)
                             {
