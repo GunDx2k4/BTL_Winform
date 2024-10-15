@@ -198,6 +198,11 @@ namespace BTL
             return null;
         }
 
+        internal SqlConnection GetConnection()
+        {
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// Hàm cập nhật dữ liệu bằng Command vào DataBase

@@ -84,6 +84,7 @@ namespace BTL
             this.txbNVHoTen = new System.Windows.Forms.TextBox();
             this.dtThongTinNhanVien = new System.Windows.Forms.DataGridView();
             this.tpKhachHang = new System.Windows.Forms.TabPage();
+            this.btnKHSuaLuu = new System.Windows.Forms.Button();
             this.dtThongTinKhachHang = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -137,7 +138,7 @@ namespace BTL
             // 
             this.txbCTHDTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCTHDTim.Location = new System.Drawing.Point(685, 302);
-            this.txbCTHDTim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbCTHDTim.Margin = new System.Windows.Forms.Padding(4);
             this.txbCTHDTim.Multiline = true;
             this.txbCTHDTim.Name = "txbCTHDTim";
             this.txbCTHDTim.Size = new System.Drawing.Size(167, 43);
@@ -208,7 +209,7 @@ namespace BTL
             this.btnCTHDThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnCTHDThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCTHDThoat.Location = new System.Drawing.Point(933, 313);
-            this.btnCTHDThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCTHDThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnCTHDThoat.Name = "btnCTHDThoat";
             this.btnCTHDThoat.Size = new System.Drawing.Size(120, 34);
             this.btnCTHDThoat.TabIndex = 27;
@@ -220,7 +221,7 @@ namespace BTL
             this.button9.BackColor = System.Drawing.Color.DarkGray;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.Location = new System.Drawing.Point(548, 310);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(120, 34);
             this.button9.TabIndex = 26;
@@ -232,7 +233,7 @@ namespace BTL
             this.btnCTHDXoa.BackColor = System.Drawing.Color.DarkGray;
             this.btnCTHDXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCTHDXoa.Location = new System.Drawing.Point(331, 313);
-            this.btnCTHDXoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCTHDXoa.Margin = new System.Windows.Forms.Padding(4);
             this.btnCTHDXoa.Name = "btnCTHDXoa";
             this.btnCTHDXoa.Size = new System.Drawing.Size(120, 34);
             this.btnCTHDXoa.TabIndex = 25;
@@ -244,7 +245,7 @@ namespace BTL
             this.btnCTHDSua.BackColor = System.Drawing.Color.DarkGray;
             this.btnCTHDSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCTHDSua.Location = new System.Drawing.Point(203, 313);
-            this.btnCTHDSua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCTHDSua.Margin = new System.Windows.Forms.Padding(4);
             this.btnCTHDSua.Name = "btnCTHDSua";
             this.btnCTHDSua.Size = new System.Drawing.Size(120, 34);
             this.btnCTHDSua.TabIndex = 24;
@@ -256,7 +257,7 @@ namespace BTL
             this.btnCTHDThem.BackColor = System.Drawing.Color.DarkGray;
             this.btnCTHDThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCTHDThem.Location = new System.Drawing.Point(75, 313);
-            this.btnCTHDThem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCTHDThem.Margin = new System.Windows.Forms.Padding(4);
             this.btnCTHDThem.Name = "btnCTHDThem";
             this.btnCTHDThem.Size = new System.Drawing.Size(120, 34);
             this.btnCTHDThem.TabIndex = 23;
@@ -303,7 +304,7 @@ namespace BTL
             this.txbCTHDMaMang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txbCTHDMaMang.FormattingEnabled = true;
             this.txbCTHDMaMang.Location = new System.Drawing.Point(200, 196);
-            this.txbCTHDMaMang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbCTHDMaMang.Margin = new System.Windows.Forms.Padding(4);
             this.txbCTHDMaMang.Name = "txbCTHDMaMang";
             this.txbCTHDMaMang.Size = new System.Drawing.Size(272, 33);
             this.txbCTHDMaMang.TabIndex = 36;
@@ -313,7 +314,7 @@ namespace BTL
             this.txbCTHDMaHD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txbCTHDMaHD.FormattingEnabled = true;
             this.txbCTHDMaHD.Location = new System.Drawing.Point(203, 87);
-            this.txbCTHDMaHD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbCTHDMaHD.Margin = new System.Windows.Forms.Padding(4);
             this.txbCTHDMaHD.Name = "txbCTHDMaHD";
             this.txbCTHDMaHD.Size = new System.Drawing.Size(272, 33);
             this.txbCTHDMaHD.TabIndex = 35;
@@ -327,7 +328,7 @@ namespace BTL
             this.dtThongTinCTHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dtThongTinCTHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinCTHoaDon.Location = new System.Drawing.Point(0, 399);
-            this.dtThongTinCTHoaDon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtThongTinCTHoaDon.Margin = new System.Windows.Forms.Padding(4);
             this.dtThongTinCTHoaDon.Name = "dtThongTinCTHoaDon";
             this.dtThongTinCTHoaDon.RowHeadersVisible = false;
             this.dtThongTinCTHoaDon.RowHeadersWidth = 51;
@@ -348,7 +349,7 @@ namespace BTL
             // 
             this.txbHDTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbHDTim.Location = new System.Drawing.Point(656, 294);
-            this.txbHDTim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbHDTim.Margin = new System.Windows.Forms.Padding(4);
             this.txbHDTim.Multiline = true;
             this.txbHDTim.Name = "txbHDTim";
             this.txbHDTim.Size = new System.Drawing.Size(167, 35);
@@ -358,7 +359,7 @@ namespace BTL
             // 
             this.txbMtim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbMtim.Location = new System.Drawing.Point(731, 315);
-            this.txbMtim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbMtim.Margin = new System.Windows.Forms.Padding(4);
             this.txbMtim.Multiline = true;
             this.txbMtim.Name = "txbMtim";
             this.txbMtim.Size = new System.Drawing.Size(167, 40);
@@ -399,7 +400,7 @@ namespace BTL
             this.btnMThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnMThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMThoat.Location = new System.Drawing.Point(936, 315);
-            this.btnMThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnMThoat.Name = "btnMThoat";
             this.btnMThoat.Size = new System.Drawing.Size(120, 34);
             this.btnMThoat.TabIndex = 29;
@@ -411,7 +412,7 @@ namespace BTL
             this.btnMTim.BackColor = System.Drawing.Color.DarkGray;
             this.btnMTim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMTim.Location = new System.Drawing.Point(592, 315);
-            this.btnMTim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMTim.Margin = new System.Windows.Forms.Padding(4);
             this.btnMTim.Name = "btnMTim";
             this.btnMTim.Size = new System.Drawing.Size(120, 34);
             this.btnMTim.TabIndex = 28;
@@ -423,7 +424,7 @@ namespace BTL
             this.btnMXoa.BackColor = System.Drawing.Color.DarkGray;
             this.btnMXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMXoa.Location = new System.Drawing.Point(413, 315);
-            this.btnMXoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMXoa.Margin = new System.Windows.Forms.Padding(4);
             this.btnMXoa.Name = "btnMXoa";
             this.btnMXoa.Size = new System.Drawing.Size(120, 34);
             this.btnMXoa.TabIndex = 27;
@@ -435,7 +436,7 @@ namespace BTL
             this.btnMSua.BackColor = System.Drawing.Color.DarkGray;
             this.btnMSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMSua.Location = new System.Drawing.Point(227, 315);
-            this.btnMSua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMSua.Margin = new System.Windows.Forms.Padding(4);
             this.btnMSua.Name = "btnMSua";
             this.btnMSua.Size = new System.Drawing.Size(120, 34);
             this.btnMSua.TabIndex = 26;
@@ -447,7 +448,7 @@ namespace BTL
             this.btnMThem.BackColor = System.Drawing.Color.DarkGray;
             this.btnMThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMThem.Location = new System.Drawing.Point(53, 315);
-            this.btnMThem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMThem.Margin = new System.Windows.Forms.Padding(4);
             this.btnMThem.Name = "btnMThem";
             this.btnMThem.Size = new System.Drawing.Size(120, 34);
             this.btnMThem.TabIndex = 25;
@@ -518,7 +519,7 @@ namespace BTL
             this.dtThongTinMang.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dtThongTinMang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinMang.Location = new System.Drawing.Point(0, 405);
-            this.dtThongTinMang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtThongTinMang.Margin = new System.Windows.Forms.Padding(4);
             this.dtThongTinMang.Name = "dtThongTinMang";
             this.dtThongTinMang.RowHeadersVisible = false;
             this.dtThongTinMang.RowHeadersWidth = 51;
@@ -540,7 +541,7 @@ namespace BTL
             this.btnNVMo.BackColor = System.Drawing.Color.DarkGray;
             this.btnNVMo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVMo.Location = new System.Drawing.Point(57, 245);
-            this.btnNVMo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNVMo.Margin = new System.Windows.Forms.Padding(4);
             this.btnNVMo.Name = "btnNVMo";
             this.btnNVMo.Size = new System.Drawing.Size(120, 34);
             this.btnNVMo.TabIndex = 23;
@@ -561,10 +562,11 @@ namespace BTL
             // 
             this.txbNVTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbNVTim.Location = new System.Drawing.Point(757, 293);
-            this.txbNVTim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbNVTim.Margin = new System.Windows.Forms.Padding(4);
             this.txbNVTim.Name = "txbNVTim";
             this.txbNVTim.Size = new System.Drawing.Size(167, 30);
             this.txbNVTim.TabIndex = 21;
+            this.txbNVTim.TextChanged += new System.EventHandler(this.txbNVTim_TextChanged);
             // 
             // label10
             // 
@@ -611,7 +613,7 @@ namespace BTL
             this.btnNVThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnNVThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVThoat.Location = new System.Drawing.Point(972, 290);
-            this.btnNVThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNVThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnNVThoat.Name = "btnNVThoat";
             this.btnNVThoat.Size = new System.Drawing.Size(120, 34);
             this.btnNVThoat.TabIndex = 16;
@@ -623,38 +625,37 @@ namespace BTL
             this.btnNVXoa.BackColor = System.Drawing.Color.DarkGray;
             this.btnNVXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVXoa.Location = new System.Drawing.Point(313, 288);
-            this.btnNVXoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNVXoa.Margin = new System.Windows.Forms.Padding(4);
             this.btnNVXoa.Name = "btnNVXoa";
             this.btnNVXoa.Size = new System.Drawing.Size(120, 34);
             this.btnNVXoa.TabIndex = 14;
             this.btnNVXoa.Text = "Xóa";
             this.btnNVXoa.UseVisualStyleBackColor = false;
+            this.btnNVXoa.Click += new System.EventHandler(this.btnNVXoa_Click);
             // 
             // btnNVSua
             // 
             this.btnNVSua.BackColor = System.Drawing.Color.DarkGray;
             this.btnNVSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVSua.Location = new System.Drawing.Point(185, 288);
-            this.btnNVSua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNVSua.Margin = new System.Windows.Forms.Padding(4);
             this.btnNVSua.Name = "btnNVSua";
             this.btnNVSua.Size = new System.Drawing.Size(120, 34);
             this.btnNVSua.TabIndex = 13;
             this.btnNVSua.Text = "Sửa";
             this.btnNVSua.UseVisualStyleBackColor = false;
-            this.btnNVSua.Click += new System.EventHandler(this.buttonNvUpdate_Click);
             // 
             // btnNVThem
             // 
             this.btnNVThem.BackColor = System.Drawing.Color.DarkGray;
             this.btnNVThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVThem.Location = new System.Drawing.Point(57, 288);
-            this.btnNVThem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNVThem.Margin = new System.Windows.Forms.Padding(4);
             this.btnNVThem.Name = "btnNVThem";
             this.btnNVThem.Size = new System.Drawing.Size(120, 34);
             this.btnNVThem.TabIndex = 12;
             this.btnNVThem.Text = "Thêm";
             this.btnNVThem.UseVisualStyleBackColor = false;
-            this.btnNVThem.Click += new System.EventHandler(this.buttonNvInsert_Click);
             // 
             // txbNVDiaChi
             // 
@@ -666,7 +667,6 @@ namespace BTL
             this.txbNVDiaChi.Name = "txbNVDiaChi";
             this.txbNVDiaChi.Size = new System.Drawing.Size(193, 35);
             this.txbNVDiaChi.TabIndex = 11;
-            this.txbNVDiaChi.TextChanged += new System.EventHandler(this.textBoxNvDiaChi_TextChanged);
             // 
             // txbNVSDT
             // 
@@ -719,7 +719,6 @@ namespace BTL
             this.tpNhanVien.Size = new System.Drawing.Size(1137, 719);
             this.tpNhanVien.TabIndex = 0;
             this.tpNhanVien.Text = "Nhân Viên";
-            this.tpNhanVien.Click += new System.EventHandler(this.tpNhanVien_Click);
             // 
             // txbNVHoTen
             // 
@@ -741,16 +740,16 @@ namespace BTL
             this.dtThongTinNhanVien.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dtThongTinNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinNhanVien.Location = new System.Drawing.Point(0, 398);
-            this.dtThongTinNhanVien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtThongTinNhanVien.Margin = new System.Windows.Forms.Padding(4);
             this.dtThongTinNhanVien.Name = "dtThongTinNhanVien";
             this.dtThongTinNhanVien.RowHeadersVisible = false;
             this.dtThongTinNhanVien.RowHeadersWidth = 51;
             this.dtThongTinNhanVien.Size = new System.Drawing.Size(1135, 319);
             this.dtThongTinNhanVien.TabIndex = 2;
-            this.dtThongTinNhanVien.CurrentCellChanged += new System.EventHandler(this.dtThongTinNhanVien_CurrentCellChanged);
             // 
             // tpKhachHang
             // 
+            this.tpKhachHang.Controls.Add(this.btnKHSuaLuu);
             this.tpKhachHang.Controls.Add(this.dtThongTinKhachHang);
             this.tpKhachHang.Controls.Add(this.label6);
             this.tpKhachHang.Controls.Add(this.label5);
@@ -777,6 +776,19 @@ namespace BTL
             this.tpKhachHang.Text = "Khách Hàng";
             this.tpKhachHang.UseVisualStyleBackColor = true;
             // 
+            // btnKHSuaLuu
+            // 
+            this.btnKHSuaLuu.BackColor = System.Drawing.Color.DarkGray;
+            this.btnKHSuaLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKHSuaLuu.Location = new System.Drawing.Point(492, 150);
+            this.btnKHSuaLuu.Margin = new System.Windows.Forms.Padding(4);
+            this.btnKHSuaLuu.Name = "btnKHSuaLuu";
+            this.btnKHSuaLuu.Size = new System.Drawing.Size(119, 34);
+            this.btnKHSuaLuu.TabIndex = 18;
+            this.btnKHSuaLuu.Text = "Luu";
+            this.btnKHSuaLuu.UseVisualStyleBackColor = false;
+            this.btnKHSuaLuu.Click += new System.EventHandler(this.btnKHSuaLuu_Click);
+            // 
             // dtThongTinKhachHang
             // 
             this.dtThongTinKhachHang.AllowUserToAddRows = false;
@@ -786,12 +798,14 @@ namespace BTL
             this.dtThongTinKhachHang.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dtThongTinKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinKhachHang.Location = new System.Drawing.Point(0, 404);
-            this.dtThongTinKhachHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtThongTinKhachHang.Margin = new System.Windows.Forms.Padding(4);
             this.dtThongTinKhachHang.Name = "dtThongTinKhachHang";
             this.dtThongTinKhachHang.RowHeadersVisible = false;
             this.dtThongTinKhachHang.RowHeadersWidth = 51;
             this.dtThongTinKhachHang.Size = new System.Drawing.Size(1135, 313);
             this.dtThongTinKhachHang.TabIndex = 17;
+            this.dtThongTinKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinKhachHang_CellClick);
+            this.dtThongTinKhachHang.SelectionChanged += new System.EventHandler(this.dtThongTinKhachHang_SelectionChanged_1);
             // 
             // label6
             // 
@@ -901,28 +915,28 @@ namespace BTL
             this.btnKHThem.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKHThem.Location = new System.Drawing.Point(51, 286);
-            this.btnKHThem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKHThem.Margin = new System.Windows.Forms.Padding(4);
             this.btnKHThem.Name = "btnKHThem";
             this.btnKHThem.Size = new System.Drawing.Size(120, 34);
             this.btnKHThem.TabIndex = 2;
             this.btnKHThem.Text = "Thêm";
             this.btnKHThem.UseVisualStyleBackColor = false;
+            this.btnKHThem.Click += new System.EventHandler(this.btnKHThem_Click);
             // 
             // txbKHTim
             // 
             this.txbKHTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbKHTim.Location = new System.Drawing.Point(720, 284);
-            this.txbKHTim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbKHTim.Margin = new System.Windows.Forms.Padding(4);
             this.txbKHTim.Multiline = true;
             this.txbKHTim.Name = "txbKHTim";
             this.txbKHTim.Size = new System.Drawing.Size(167, 36);
             this.txbKHTim.TabIndex = 4;
-            this.txbKHTim.TextChanged += new System.EventHandler(this.textBoxTim_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(588, 297);
+            this.label1.Location = new System.Drawing.Point(593, 295);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 25);
@@ -934,24 +948,26 @@ namespace BTL
             this.btnKHXoa.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKHXoa.Location = new System.Drawing.Point(307, 284);
-            this.btnKHXoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKHXoa.Margin = new System.Windows.Forms.Padding(4);
             this.btnKHXoa.Name = "btnKHXoa";
             this.btnKHXoa.Size = new System.Drawing.Size(119, 34);
             this.btnKHXoa.TabIndex = 6;
             this.btnKHXoa.Text = "Xóa";
             this.btnKHXoa.UseVisualStyleBackColor = false;
+            this.btnKHXoa.Click += new System.EventHandler(this.btnKHXoa_Click);
             // 
             // btnKHSua
             // 
             this.btnKHSua.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKHSua.Location = new System.Drawing.Point(179, 283);
-            this.btnKHSua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKHSua.Margin = new System.Windows.Forms.Padding(4);
             this.btnKHSua.Name = "btnKHSua";
             this.btnKHSua.Size = new System.Drawing.Size(120, 37);
             this.btnKHSua.TabIndex = 3;
             this.btnKHSua.Text = "Sửa";
             this.btnKHSua.UseVisualStyleBackColor = false;
+            this.btnKHSua.Click += new System.EventHandler(this.btnKHSua_Click);
             // 
             // tpHoaDon
             // 
@@ -983,7 +999,7 @@ namespace BTL
             this.txbHDMaKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txbHDMaKH.FormattingEnabled = true;
             this.txbHDMaKH.Location = new System.Drawing.Point(177, 96);
-            this.txbHDMaKH.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbHDMaKH.Margin = new System.Windows.Forms.Padding(4);
             this.txbHDMaKH.Name = "txbHDMaKH";
             this.txbHDMaKH.Size = new System.Drawing.Size(272, 33);
             this.txbHDMaKH.TabIndex = 34;
@@ -993,7 +1009,7 @@ namespace BTL
             this.txbHDMaNV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txbHDMaNV.FormattingEnabled = true;
             this.txbHDMaNV.Location = new System.Drawing.Point(177, 196);
-            this.txbHDMaNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbHDMaNV.Margin = new System.Windows.Forms.Padding(4);
             this.txbHDMaNV.Name = "txbHDMaNV";
             this.txbHDMaNV.Size = new System.Drawing.Size(272, 33);
             this.txbHDMaNV.TabIndex = 33;
@@ -1007,7 +1023,7 @@ namespace BTL
             this.dtThongTinHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dtThongTinHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinHoaDon.Location = new System.Drawing.Point(0, 405);
-            this.dtThongTinHoaDon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtThongTinHoaDon.Margin = new System.Windows.Forms.Padding(4);
             this.dtThongTinHoaDon.Name = "dtThongTinHoaDon";
             this.dtThongTinHoaDon.RowHeadersVisible = false;
             this.dtThongTinHoaDon.RowHeadersWidth = 51;
@@ -1020,20 +1036,19 @@ namespace BTL
             this.btnHDThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnHDThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHDThoat.Location = new System.Drawing.Point(949, 297);
-            this.btnHDThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHDThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnHDThoat.Name = "btnHDThoat";
             this.btnHDThoat.Size = new System.Drawing.Size(120, 34);
             this.btnHDThoat.TabIndex = 26;
             this.btnHDThoat.Text = "Thoát";
             this.btnHDThoat.UseVisualStyleBackColor = false;
-            this.btnHDThoat.Click += new System.EventHandler(this.btnHDThoat_Click);
             // 
             // btnHDIn
             // 
             this.btnHDIn.BackColor = System.Drawing.Color.DarkGray;
             this.btnHDIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHDIn.Location = new System.Drawing.Point(504, 297);
-            this.btnHDIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHDIn.Margin = new System.Windows.Forms.Padding(4);
             this.btnHDIn.Name = "btnHDIn";
             this.btnHDIn.Size = new System.Drawing.Size(120, 34);
             this.btnHDIn.TabIndex = 25;
@@ -1046,7 +1061,7 @@ namespace BTL
             this.btnHDXoa.BackColor = System.Drawing.Color.DarkGray;
             this.btnHDXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHDXoa.Location = new System.Drawing.Point(331, 297);
-            this.btnHDXoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHDXoa.Margin = new System.Windows.Forms.Padding(4);
             this.btnHDXoa.Name = "btnHDXoa";
             this.btnHDXoa.Size = new System.Drawing.Size(120, 34);
             this.btnHDXoa.TabIndex = 24;
@@ -1058,7 +1073,7 @@ namespace BTL
             this.btnHDSua.BackColor = System.Drawing.Color.DarkGray;
             this.btnHDSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHDSua.Location = new System.Drawing.Point(203, 297);
-            this.btnHDSua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHDSua.Margin = new System.Windows.Forms.Padding(4);
             this.btnHDSua.Name = "btnHDSua";
             this.btnHDSua.Size = new System.Drawing.Size(120, 34);
             this.btnHDSua.TabIndex = 23;
@@ -1070,13 +1085,12 @@ namespace BTL
             this.btnHDThem.BackColor = System.Drawing.Color.DarkGray;
             this.btnHDThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHDThem.Location = new System.Drawing.Point(75, 297);
-            this.btnHDThem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHDThem.Margin = new System.Windows.Forms.Padding(4);
             this.btnHDThem.Name = "btnHDThem";
             this.btnHDThem.Size = new System.Drawing.Size(120, 34);
             this.btnHDThem.TabIndex = 22;
             this.btnHDThem.Text = "Thêm";
             this.btnHDThem.UseVisualStyleBackColor = false;
-            this.btnHDThem.Click += new System.EventHandler(this.btnHDThem_Click);
             // 
             // label12
             // 
@@ -1095,7 +1109,7 @@ namespace BTL
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1175, 775);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "Quản lý thu tiền mạng";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -1201,6 +1215,7 @@ namespace BTL
         private DataGridView dtThongTinMang;
         private ComboBox txbCTHDMaMang;
         private ComboBox txbCTHDMaHD;
+        private Button btnKHSuaLuu;
     }
 }
 

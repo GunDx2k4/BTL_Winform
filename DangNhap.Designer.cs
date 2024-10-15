@@ -44,7 +44,7 @@
             this.btnDNDangKy.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDNDangKy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDNDangKy.Location = new System.Drawing.Point(548, 350);
-            this.btnDNDangKy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDNDangKy.Margin = new System.Windows.Forms.Padding(4);
             this.btnDNDangKy.Name = "btnDNDangKy";
             this.btnDNDangKy.Size = new System.Drawing.Size(120, 34);
             this.btnDNDangKy.TabIndex = 28;
@@ -78,7 +78,7 @@
             this.btnDNThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnDNThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDNThoat.Location = new System.Drawing.Point(375, 265);
-            this.btnDNThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDNThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnDNThoat.Name = "btnDNThoat";
             this.btnDNThoat.Size = new System.Drawing.Size(136, 34);
             this.btnDNThoat.TabIndex = 25;
@@ -113,7 +113,7 @@
             this.btnDNDangNhap.BackColor = System.Drawing.Color.DarkGray;
             this.btnDNDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDNDangNhap.Location = new System.Drawing.Point(165, 265);
-            this.btnDNDangNhap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDNDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnDNDangNhap.Name = "btnDNDangNhap";
             this.btnDNDangNhap.Size = new System.Drawing.Size(136, 34);
             this.btnDNDangNhap.TabIndex = 22;
@@ -146,6 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnDNDangKy);
             this.Controls.Add(this.label3);
@@ -156,7 +157,7 @@
             this.Controls.Add(this.btnDNDangNhap);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbDNTaiKhoan);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DangNhap";
             this.Text = "DangNhap";
             this.Load += new System.EventHandler(this.DangNhap_Load);

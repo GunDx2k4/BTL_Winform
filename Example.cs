@@ -12,8 +12,9 @@ namespace BTL
     public class Example
     {
         //thêm
-        private void buttonInsert_Click(object sender, EventArgs e)
+        private void btnNVThem_Click(object sender, EventArgs e)
         {
+            int dem = 0;
             try
             {
                 DBConnection.Instance.InsertDB("tblKhachHang", "sp_ThemKhachHang",
@@ -21,18 +22,25 @@ namespace BTL
                 DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", "123"),
                 DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", "123"),
                 DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", "123"));
-
                 DBConnection.Instance.SelectDB("tblKhachHang");
+                dem++;
+                if (dem > 0)
+                {
+                    MessageBox.Show("oke");
+                }
             }
+           
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+
         }
 
 
         //sửa
-        private void buttonEdit_Click(object sender, EventArgs e)
+        private void btnNVSua_Click(object sender, EventArgs e)
         {
             try
             {
@@ -51,7 +59,7 @@ namespace BTL
         }
 
         //xóa
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void btnNVXoa_Click(object sender, EventArgs e)
         {
             try
             {
@@ -66,19 +74,7 @@ namespace BTL
             }
         }
 
-        //tìm
-        private void textBoxSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DataView dataView = /*dtThongTinCTHoaDon.DataSource bỏ sender đi thay bằng datagridview cần tìm*/sender as DataView;
-                dataView.AddRowFilter($"sHoTen LIKE '%abcxyz%'");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
+        //tìm 
+ 
     }
 }
