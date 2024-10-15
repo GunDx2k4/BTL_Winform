@@ -44,13 +44,13 @@ namespace BTL
                 dtThongTinNhanVien.Columns[2].Width = 150;
                 dtThongTinNhanVien.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                dtThongTinHoaDon.LoadDataSource("tblHoaDon", "bDeleted=0");
+                dtThongTinHoaDon.LoadDataSource("vHoaDon");
                 dtThongTinHoaDon.Columns[0].HeaderText = "Mã HĐ";
                 dtThongTinHoaDon.Columns[1].HeaderText = "Mã KH";
                 dtThongTinHoaDon.Columns[2].HeaderText = "Mã NV";
                 dtThongTinHoaDon.Columns[3].HeaderText = "Ngày Tạo";
                 dtThongTinHoaDon.Columns[4].HeaderText = "Tổng tiền";
-                
+
                 DataGridViewButtonColumn btnColumn = new DataGridViewButtonColumn();
                 btnColumn.Name = "btnCTHoaDon";
                 btnColumn.HeaderText = "CT Hóa Đơn";
@@ -64,10 +64,10 @@ namespace BTL
                 dtThongTinHoaDon.Columns[3].Width = 150;
                 dtThongTinHoaDon.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                dtThongTinCTHoaDon.LoadDataSource("tblChiTietHoaDon");
-                dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã CT Hóa Đơn";
-                dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã Hóa Đơn";
-                dtThongTinCTHoaDon.Columns[2].HeaderText = "Mã Mạng";
+                dtThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon");
+                dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
+                dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
+                dtThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
                 dtThongTinCTHoaDon.Columns[3].HeaderText = "Đơn giá";
                 dtThongTinCTHoaDon.Columns[4].HeaderText = "Số tháng đăng ký";
 

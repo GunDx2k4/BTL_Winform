@@ -42,7 +42,7 @@ namespace BTL
             dtThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon", $"iMaHoaDon={_dataHoaDon.Field<int>("iMaHoaDon")}");
             dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
             dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
-            dtThongTinCTHoaDon.Columns[2].HeaderText = "Mã Mạng";
+            dtThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
             dtThongTinCTHoaDon.Columns[3].HeaderText = "Đơn giá";
             dtThongTinCTHoaDon.Columns[4].HeaderText = "Số tháng đăng ký";
 
@@ -60,7 +60,20 @@ namespace BTL
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            var table = (dtThongTinCTHoaDon.DataSource as DataView).Table;
+            try
+            {
+                DBConnection.Instance.InsertDB("tblChiTietHoaDon", "sp_ThemChiTietHoaDon",
+                DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", _dataHoaDon.Field<int>("iMaHoaDon")),
+                DBConnection.Instance.BuildParameter("@iMaMang", SqlDbType.Int, 0, "iMaMang", cboMaMang.SelectedValue),
+                DBConnection.Instance.BuildParameter("@iSoThangDangKy", SqlDbType.Int, 0, "iSoThangDangKy", int.Parse(txtSoThangDK.Text)));
 
+                DBConnection.Instance.SelectDB("vChiTietHoaDon");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txtSoThangDK_KeyPress(object sender, KeyPressEventArgs e)
@@ -69,6 +82,11 @@ namespace BTL
             {
                 e.Handled = true;
             }
+        }
+
+        private void FormHoaDon_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DBConnection.Instance.SelectDB("vHoaDon");
         }
     }
 }

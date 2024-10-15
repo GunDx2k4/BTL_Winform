@@ -69,6 +69,41 @@ create table tblChiTietHoaDon (
     foreign key (iMaMang) references tblMang(iMaMang)
 )
 
+ALTER TABLE tblHoaDon ADD bDeleted BIT DEFAULT 0
+ALTER TABLE tblHoaDon DROP iTongTien
+
+ALTER TABLE tblChiTietHoaDon DROP iDonGia
+
+------------------------------ VIEW -------------------------------
+GO
+CREATE OR ALTER VIEW vChiTietHoaDon AS
+SELECT iMaHoaDon, iMaChiTietHD, sTenMang, tblChiTietHoaDon.iMaMang, iDonGia, iSoThangDangKy
+FROM tblChiTietHoaDon INNER JOIN tblMang  ON tblChiTietHoaDon.iMaMang = tblMang.iMaMang
+
+GO
+CREATE OR ALTER VIEW vHoaDon AS
+SELECT tblHoaDon.iMaHoaDon, iMaKhachHang, iMaNhanVien, dNgayTao, (CASE WHEN SUM(iDonGia * iSoThangDangKy) > 0 THEN SUM(iDonGia * iSoThangDangKy) ELSE 0 END) AS 'iTongTien'
+FROM tblHoaDon LEFT JOIN vChiTietHoaDon  ON vChiTietHoaDon.iMaHoaDon = tblHoaDon.iMaHoaDon WHERE bDeleted = 0 GROUP BY tblHoaDon.iMaHoaDon , iMaKhachHang, iMaNhanVien, dNgayTao
+
+----------------------------- TRIGGER -----------------------------
+GO
+CREATE OR ALTER TRIGGER trg_CheckMangDK ON tblChiTietHoaDon
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @iMaHoaDon int
+	DECLARE @iMaMang int
+    DECLARE @iSoThangDangKy int
+    DECLARE @iMaChiTietHD int
+	SELECT @iMaHoaDon = iMaHoaDon, @iMaMang = iMaMang, @iSoThangDangKy = iSoThangDangKy FROM INSERTED 
+    SELECT @iMaChiTietHD = iMaChiTietHD  FROM tblChiTietHoaDon WHERE iMaHoaDon = @iMaHoaDon AND iMaMang = @iMaMang
+    IF @iMaChiTietHD != NULL
+	BEGIN
+        UPDATE tblChiTietHoaDon SET iSoThangDangKy = @iSoThangDangKy WHERE iMaChiTietHD = @iMaChiTietHD
+        ROLLBACK TRAN
+	END
+END
+
 ------------------------- THAO TÁC INSERT -------------------------
 GO
 create procedure sp_ThemKhachHang
@@ -138,24 +173,14 @@ Cập nhật tổng tiền tại bảng hóa đơn
 */
 
 GO
-create procedure sp_ThemChiTietHoaDon
+create OR ALTER procedure sp_ThemChiTietHoaDon
     @iMaHoaDon int,
     @iMaMang int,
     @iSoThangDangKy int
 as
 begin
-    declare @iDonGia int;
-    select @iDonGia = iDonGia from tblMang where iMaMang = @iMaMang;
-
-    insert into tblChiTietHoaDon (iMaHoaDon, iMaMang, iDonGia, iSoThangDangKy)
-    values (@iMaHoaDon, @iMaMang, @iDonGia, @iSoThangDangKy);
-
-    declare @iTongTienMoi int;
-    set @iTongTienMoi = @iDonGia * @iSoThangDangKy;
-
-    update tblHoaDon
-    set iTongTien = iTongTien + @iTongTienMoi
-    where iMaHoaDon = @iMaHoaDon;
+    insert into tblChiTietHoaDon (iMaHoaDon, iMaMang, iSoThangDangKy)
+    values (@iMaHoaDon, @iMaMang, @iSoThangDangKy);
 end;
 exec sp_ThemChiTietHoaDon @iMaHoaDon = 1, @iMaMang = 1, @iSoThangDangKy = 3;
 exec sp_ThemChiTietHoaDon @iMaHoaDon = 1, @iMaMang = 2, @iSoThangDangKy = 2;
