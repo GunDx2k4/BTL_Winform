@@ -19,6 +19,12 @@ namespace BTL
             _dataHoaDon = row;
         }
 
+        private float GetTotal()
+        {
+            var table = (dtThongTinCTHoaDon.DataSource as DataView).Table;
+            float total = 0;
+        }
+
         private void FormHoaDon_Load(object sender, EventArgs e)
         {
             grThongTinHoaDon.Text += $" {_dataHoaDon.Field<int>("iMaHoaDon")}";
@@ -87,6 +93,7 @@ namespace BTL
         private void FormHoaDon_FormClosing(object sender, FormClosingEventArgs e)
         {
             DBConnection.Instance.SelectDB("vHoaDon");
+            DBConnection.Instance.SelectDB("vChiTietHoaDon");
         }
     }
 }
