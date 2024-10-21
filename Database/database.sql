@@ -101,7 +101,6 @@ BEGIN
     IF @iMaChiTietHD IS NOT NULL
 	BEGIN
         UPDATE tblChiTietHoaDon SET bDeleted = 1 WHERE iMaChiTietHD = @iMaChiTietHD
-        ROLLBACK TRAN
 	END
 END
 
