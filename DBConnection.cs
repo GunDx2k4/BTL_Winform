@@ -57,7 +57,7 @@ namespace BTL
         /// <param name="sourceColumn">Tên cột trong DataBase VD: sHoTen</param>
         /// <param name="value">Giá trị cho cột</param>
         /// <returns><see cref="SqlParameter"/></returns>
-        public SqlParameter BuildParameter( string parameterName, SqlDbType dbType, int size, string sourceColumn, object value)
+        public SqlParameter BuildParameter(string parameterName, SqlDbType dbType, int size, string sourceColumn, object value)
         {
             return new SqlParameter(parameterName, dbType, size, sourceColumn) { Value = value };
         }
@@ -146,7 +146,7 @@ namespace BTL
         /// <param name="nameProc">Tên hàm sử dụng trong để thêm dữ liệu</param>
         /// <param name="sqlParameters">Các thuộc tính cần thêm vào bảng (sử dụng <see cref="BuildParameter)"/> để tạo ra parameter cho chuẩn dạng dữ liệu)</param>
         /// <returns><c>True</c> Nếu thêm thành công, ngược lại <c>False</c></returns>
-        public bool InsertDB(string table, string nameProc,params SqlParameter[] sqlParameters)
+        public bool InsertDB(string table, string nameProc, params SqlParameter[] sqlParameters)
         {
             if (_dataSet.Tables[table] == null) SelectDB(table);
 
@@ -246,6 +246,19 @@ namespace BTL
 
                 }
             }
+        }
+
+        /// <summary>
+        /// Hàm xóa dữ liệu
+        /// </summary>
+        /// <param name="table">Tên bảng cần xóa</param>
+        /// <param name="condition">Tên điều kiện để xóa thường là sử dụng ID (sử dụng <see cref="BuildParameter)"/> để tạo ra parameter cho chuẩn dạng dữ liệu)</param>
+        /// <returns></returns>
+        public bool DeleteDB(string table, SqlParameter condition)
+        {
+            return UpdateDB(table,
+                condition,
+                BuildParameter("@bDeleted", SqlDbType.Bit, 0, "bDeleted", true));
         }
     }
 }
