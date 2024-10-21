@@ -20,11 +20,7 @@ namespace BTL
 
         private void DangKy_Load(object sender, EventArgs e)
         {
-        }
 
-        private void DangKy_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
 
         private void txbDKTaiKhoan_TextChanged(object sender, EventArgs e)
@@ -88,8 +84,21 @@ namespace BTL
 
         private void btnDKDangNhap_Click(object sender, EventArgs e)
         {
-
+            var formDangNhap = Application.OpenForms["DangNhap"];
+            Close();
+            formDangNhap.Show();
         }
 
+        private void btnDKThoat_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void DangKy_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count <= 0) return;
+            var formDangNhap = Application.OpenForms["DangNhap"];
+            formDangNhap.Show();
+        }
     }
 }

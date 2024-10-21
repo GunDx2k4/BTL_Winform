@@ -43,11 +43,10 @@
             // 
             this.btnDNDangKy.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDNDangKy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDNDangKy.Location = new System.Drawing.Point(548, 350);
-            this.btnDNDangKy.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDNDangKy.Location = new System.Drawing.Point(411, 284);
             this.btnDNDangKy.Name = "btnDNDangKy";
-            this.btnDNDangKy.Size = new System.Drawing.Size(120, 34);
-            this.btnDNDangKy.TabIndex = 28;
+            this.btnDNDangKy.Size = new System.Drawing.Size(90, 28);
+            this.btnDNDangKy.TabIndex = 5;
             this.btnDNDangKy.Text = "Đăng Ký";
             this.btnDNDangKy.UseVisualStyleBackColor = false;
             this.btnDNDangKy.Click += new System.EventHandler(this.btnDNDangKy_Click);
@@ -55,20 +54,21 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(372, 359);
+            this.label3.Location = new System.Drawing.Point(279, 292);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 17);
+            this.label3.Size = new System.Drawing.Size(121, 13);
             this.label3.TabIndex = 27;
             this.label3.Text = "Bạn chưa có tài khoản?";
             // 
             // checkBoxHienMK
             // 
             this.checkBoxHienMK.AutoSize = true;
-            this.checkBoxHienMK.Location = new System.Drawing.Point(404, 225);
-            this.checkBoxHienMK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBoxHienMK.Location = new System.Drawing.Point(303, 183);
+            this.checkBoxHienMK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxHienMK.Name = "checkBoxHienMK";
-            this.checkBoxHienMK.Size = new System.Drawing.Size(121, 21);
-            this.checkBoxHienMK.TabIndex = 26;
+            this.checkBoxHienMK.Size = new System.Drawing.Size(95, 17);
+            this.checkBoxHienMK.TabIndex = 2;
             this.checkBoxHienMK.Text = "Hiện mật khẩu";
             this.checkBoxHienMK.UseVisualStyleBackColor = true;
             this.checkBoxHienMK.CheckedChanged += new System.EventHandler(this.checkBoxHienMK_CheckedChanged);
@@ -77,11 +77,10 @@
             // 
             this.btnDNThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnDNThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDNThoat.Location = new System.Drawing.Point(375, 265);
-            this.btnDNThoat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDNThoat.Location = new System.Drawing.Point(281, 215);
             this.btnDNThoat.Name = "btnDNThoat";
-            this.btnDNThoat.Size = new System.Drawing.Size(136, 34);
-            this.btnDNThoat.TabIndex = 25;
+            this.btnDNThoat.Size = new System.Drawing.Size(102, 28);
+            this.btnDNThoat.TabIndex = 4;
             this.btnDNThoat.Text = "Thoát";
             this.btnDNThoat.UseVisualStyleBackColor = false;
             this.btnDNThoat.Click += new System.EventHandler(this.btnDNThoat_Click);
@@ -90,22 +89,23 @@
             // 
             this.txbDNMatKhau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbDNMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbDNMatKhau.Location = new System.Drawing.Point(283, 161);
-            this.txbDNMatKhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txbDNMatKhau.Location = new System.Drawing.Point(212, 131);
+            this.txbDNMatKhau.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbDNMatKhau.Multiline = true;
             this.txbDNMatKhau.Name = "txbDNMatKhau";
             this.txbDNMatKhau.PasswordChar = '•';
-            this.txbDNMatKhau.Size = new System.Drawing.Size(207, 38);
-            this.txbDNMatKhau.TabIndex = 24;
+            this.txbDNMatKhau.Size = new System.Drawing.Size(156, 31);
+            this.txbDNMatKhau.TabIndex = 1;
             this.txbDNMatKhau.TextChanged += new System.EventHandler(this.txbDNMatKhau_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(133, 174);
+            this.label2.Location = new System.Drawing.Point(100, 141);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 25);
+            this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 23;
             this.label2.Text = "Mật Khẩu:";
             // 
@@ -113,11 +113,10 @@
             // 
             this.btnDNDangNhap.BackColor = System.Drawing.Color.DarkGray;
             this.btnDNDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDNDangNhap.Location = new System.Drawing.Point(165, 265);
-            this.btnDNDangNhap.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDNDangNhap.Location = new System.Drawing.Point(124, 215);
             this.btnDNDangNhap.Name = "btnDNDangNhap";
-            this.btnDNDangNhap.Size = new System.Drawing.Size(136, 34);
-            this.btnDNDangNhap.TabIndex = 22;
+            this.btnDNDangNhap.Size = new System.Drawing.Size(102, 28);
+            this.btnDNDangNhap.TabIndex = 3;
             this.btnDNDangNhap.Text = "Đăng Nhập";
             this.btnDNDangNhap.UseVisualStyleBackColor = false;
             this.btnDNDangNhap.Click += new System.EventHandler(this.btnDNDangNhap_Click);
@@ -126,9 +125,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(133, 81);
+            this.label1.Location = new System.Drawing.Point(100, 66);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 25);
+            this.label1.Size = new System.Drawing.Size(94, 20);
             this.label1.TabIndex = 21;
             this.label1.Text = "Tài Khoản:";
             // 
@@ -136,20 +136,21 @@
             // 
             this.txbDNTaiKhoan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbDNTaiKhoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbDNTaiKhoan.Location = new System.Drawing.Point(283, 68);
-            this.txbDNTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txbDNTaiKhoan.Location = new System.Drawing.Point(212, 55);
+            this.txbDNTaiKhoan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbDNTaiKhoan.Multiline = true;
             this.txbDNTaiKhoan.Name = "txbDNTaiKhoan";
-            this.txbDNTaiKhoan.Size = new System.Drawing.Size(207, 38);
-            this.txbDNTaiKhoan.TabIndex = 20;
+            this.txbDNTaiKhoan.Size = new System.Drawing.Size(156, 31);
+            this.txbDNTaiKhoan.TabIndex = 0;
             this.txbDNTaiKhoan.TextChanged += new System.EventHandler(this.txbDNTaiKhoan_TextChanged);
             // 
             // DangNhap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.btnDNDangKy);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBoxHienMK);
@@ -159,7 +160,6 @@
             this.Controls.Add(this.btnDNDangNhap);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbDNTaiKhoan);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DangNhap";
             this.Text = "DangNhap";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DangNhap_FormClosed);
