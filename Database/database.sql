@@ -77,31 +77,29 @@ ALTER TABLE tblChiTietHoaDon DROP iDonGia
 
 ------------------------------ VIEW -------------------------------
 GO
-CREATE OR ALTER VIEW vChiTietHoaDon AS
-SELECT iMaHoaDon, iMaChiTietHD, sTenMang, tblChiTietHoaDon.iMaMang, iDonGia, iSoThangDangKy
-FROM tblChiTietHoaDon INNER JOIN tblMang ON tblChiTietHoaDon.iMaMang = tblMang.iMaMang  WHERE tblChiTietHoaDon.bDeleted = 0
+---CREATE OR ALTER VIEW vChiTietHoaDonOld AS
+--SELECT iMaHoaDon, sTenMang, iDonGia, (CASE WHEN SUM(iSoThangDangKy) > 0 THEN SUM(iSoThangDangKy) ELSE 0 END) AS 'iSoThangDangKy', (CASE WHEN SUM(iDonGia * iSoThangDangKy) > 0 THEN SUM(iDonGia * iSoThangDangKy) ELSE 0 END) AS 'iTongTien'
+--FROM tblChiTietHoaDon INNER JOIN tblMang ON tblChiTietHoaDon.iMaMang = tblMang.iMaMang WHERE tblChiTietHoaDon.bDeleted = 0 GROUP BY tblChiTietHoaDon.iMaHoaDon, sTenMang, iDonGia
 
 GO
 CREATE OR ALTER VIEW vHoaDon AS
 SELECT tblHoaDon.iMaHoaDon, iMaKhachHang, iMaNhanVien, dNgayTao, (CASE WHEN SUM(iDonGia * iSoThangDangKy) > 0 THEN SUM(iDonGia * iSoThangDangKy) ELSE 0 END) AS 'iTongTien'
-FROM tblHoaDon LEFT JOIN vChiTietHoaDon  ON vChiTietHoaDon.iMaHoaDon = tblHoaDon.iMaHoaDon WHERE tblHoaDon.bDeleted = 0 GROUP BY tblHoaDon.iMaHoaDon , iMaKhachHang, iMaNhanVien, dNgayTao
+FROM tblHoaDon INNER JOIN vChiTietHoaDon  ON vChiTietHoaDon.iMaHoaDon = tblHoaDon.iMaHoaDon WHERE tblHoaDon.bDeleted = 0 GROUP BY tblHoaDon.iMaHoaDon , iMaKhachHang, iMaNhanVien, dNgayTao
+
+GO
+CREATE OR ALTER VIEW vChiTietHoaDon AS
+SELECT iMaChiTietHD, iMaHoaDon, sTenMang, iDonGia, iSoThangDangKy, (CASE WHEN SUM(iDonGia * iSoThangDangKy) > 0 THEN SUM(iDonGia * iSoThangDangKy) ELSE 0 END) AS 'iTongTien'
+FROM tblChiTietHoaDon INNER JOIN tblMang ON tblChiTietHoaDon.iMaMang = tblMang.iMaMang WHERE tblChiTietHoaDon.bDeleted = 0 GROUP BY iMaChiTietHD, iMaHoaDon, sTenMang, iDonGia, iSoThangDangKy
 
 ----------------------------- TRIGGER -----------------------------
 GO
-CREATE OR ALTER TRIGGER trg_CheckMangDK ON tblChiTietHoaDon
-AFTER INSERT
+CREATE OR ALTER TRIGGER trg_DeleteHoaDon ON tblHoaDon
+AFTER UPDATE
 AS
 BEGIN
 	DECLARE @iMaHoaDon int
-	DECLARE @iMaMang int
-    DECLARE @iIDINSERTED int
-    DECLARE @iMaChiTietHD int
-	SELECT @iMaHoaDon = iMaHoaDon, @iMaMang = iMaMang, @iIDINSERTED = iMaChiTietHD FROM INSERTED 
-    SELECT @iMaChiTietHD = iMaChiTietHD  FROM tblChiTietHoaDon WHERE iMaHoaDon = @iMaHoaDon AND iMaMang = @iMaMang AND iMaChiTietHD != @iIDINSERTED AND bDeleted = 0
-    IF @iMaChiTietHD IS NOT NULL
-	BEGIN
-        UPDATE tblChiTietHoaDon SET bDeleted = 1 WHERE iMaChiTietHD = @iMaChiTietHD
-	END
+	SELECT @iMaHoaDon = iMaHoaDon FROM INSERTED 
+    UPDATE tblChiTietHoaDon SET bDeleted = 1 WHERE iMaHoaDon = @iMaHoaDon
 END
 
 ------------------------- THAO TÁC INSERT -------------------------
