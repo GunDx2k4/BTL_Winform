@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks; 
+
 namespace BTL
 {
     public partial class FormMain : Form
@@ -134,8 +135,7 @@ namespace BTL
                 dtThongTinNhanVien.Columns[2].Width = 150;
                 dtThongTinNhanVien.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                // hóa đơn
-                dtThongTinHoaDon.LoadDataSource("tblHoaDon", "bDeleted=0");
+                dtThongTinHoaDon.LoadDataSource("vHoaDon");
                 dtThongTinHoaDon.Columns[0].HeaderText = "Mã HĐ";
                 dtThongTinHoaDon.Columns[1].HeaderText = "Mã KH";
                 dtThongTinHoaDon.Columns[2].HeaderText = "Mã NV";
@@ -155,11 +155,10 @@ namespace BTL
                 dtThongTinHoaDon.Columns[3].Width = 150;
                 dtThongTinHoaDon.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                // chi tiết hóa đơn 
-                dtThongTinCTHoaDon.LoadDataSource("tblChiTietHoaDon", "bDeleted=0");
-                dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã CT Hóa Đơn";
-                dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã Hóa Đơn";
-                dtThongTinCTHoaDon.Columns[2].HeaderText = "Mã Mạng";
+                dtThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon");
+                dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
+                dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
+                dtThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
                 dtThongTinCTHoaDon.Columns[3].HeaderText = "Đơn giá";
                 dtThongTinCTHoaDon.Columns[4].HeaderText = "Số tháng đăng ký";
 
@@ -557,7 +556,7 @@ namespace BTL
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
-
+        
         private void btnNVXoa_Click(object sender, EventArgs e)
         {
             try
@@ -582,6 +581,15 @@ namespace BTL
             catch (Exception ex)
             {
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+        #region Hóa Đơn [Dũng]
+        private void dtThongTinHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            if (e.ColumnIndex == dgv.Columns["btnCTHoaDon"].Index && e.RowIndex >= 0)
+            {
+                var table = dgv.DataSource as DataView;
+                new FormHoaDon(table.Table.Rows[e.RowIndex]).ShowDialog();
             }
         }
         private void XoaNhanVienTrongDatabase(string maNV)
@@ -601,8 +609,37 @@ namespace BTL
         }
         private void dtThongTinNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                DBConnection.Instance.InsertDB("tblHoaDon", "sp_ThemHoaDon",
+                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", txbHDMaKH.SelectedValue),
+                DBConnection.Instance.BuildParameter("@iMaNhanVien", SqlDbType.Int, 0, "iMaNhanVien", txbHDMaNV.SelectedValue),
+                DBConnection.Instance.BuildParameter("@dNgayTao", SqlDbType.Date, 255, "dNgayTao", txbHDNgayTao.Value));
 
+                var table = DBConnection.Instance.SelectDB("tblHoaDon", "bDeleted=0");
+
+                new FormHoaDon(table.Rows[table.Rows.Count - 1]).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+        private void dtThongTinHoaDon_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            var table = (dgv.DataSource as DataView).Table;
+            if (dgv.CurrentRow != null && dgv.CurrentRow.Index >= 0)
+            {
+                var row = table.Rows[dgv.CurrentRow.Index];
+                txbHDMaKH.SelectedValue = row.Field<int>("iMaKhachHang");
+                txbHDMaNV.SelectedValue = row.Field<int>("iMaNhanVien");
+                txbHDNgayTao.Value = row.Field<DateTime>("dNgayTao");
+            }
+        }
+
+        #endregion
 
         private void tpNhanVien_Click(object sender, EventArgs e)
         {
@@ -692,7 +729,9 @@ namespace BTL
 
         }
         #endregion
-
-
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
