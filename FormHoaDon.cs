@@ -12,35 +12,25 @@ namespace BTL
 {
     public partial class FormHoaDon : Form
     {
-        private DataRow _dataHoaDon;
-        public FormHoaDon(DataRow row)
+        private int _maHoaDon;
+        public FormHoaDon(int maHoaDon)
         {
             InitializeComponent();
-            _dataHoaDon = row;
-        }
-
-        private float GetTotal()
-        {
-            var table = (dtThongTinCTHoaDon.DataSource as DataView).Table;
-            float total = 0;
-            foreach (DataRow row in table.Rows)
-            {
-                total += row.Field<int>("iDonGia") * row.Field<int>("iSoThangDangKy");
-            }
-            return total;
-
+            _maHoaDon = maHoaDon;
         }
 
         private void FormHoaDon_Load(object sender, EventArgs e)
         {
-            grThongTinHoaDon.Text += $" {_dataHoaDon.Field<int>("iMaHoaDon")}";
-            var dataKH = DBConnection.Instance.GetRow("tblKhachHang", "iMaKhachHang", _dataHoaDon.Field<int>("iMaKhachHang"));
+            var row = DBConnection.Instance.GetRow("vHoaDon", "iMaHoaDon", _maHoaDon);
+
+            grThongTinHoaDon.Text += $" {row.Field<int>("iMaHoaDon")}";
+            var dataKH = DBConnection.Instance.GetRow("tblKhachHang", "iMaKhachHang", row.Field<int>("iMaKhachHang"));
             txtKhachHang.Text = $"{dataKH["sHoTen"]} [{dataKH["iMaKhachHang"]}]";
 
-            var dataNV = DBConnection.Instance.GetRow("tblNhanVien", "iMaNhanVien", _dataHoaDon.Field<int>("iMaNhanVien"));
+            var dataNV = DBConnection.Instance.GetRow("tblNhanVien", "iMaNhanVien", row.Field<int>("iMaNhanVien"));
             txtNhanVien.Text = $"{dataNV["sHoTen"]} [{dataNV["iMaNhanVien"]}]";
 
-            dtpHDNgayTao.Value = _dataHoaDon.Field<DateTime>("dNgayTao");
+            dtpHDNgayTao.Value = row.Field<DateTime>("dNgayTao");
 
 
             cboMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
@@ -51,7 +41,7 @@ namespace BTL
             };
 
 
-            dtThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon", $"iMaHoaDon={_dataHoaDon.Field<int>("iMaHoaDon")}");
+            dtThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon", $"iMaHoaDon={row.Field<int>("iMaHoaDon")}");
             dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
             dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
             dtThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
@@ -64,11 +54,13 @@ namespace BTL
             dtThongTinCTHoaDon.Columns[3].Visible = false;
             dtThongTinCTHoaDon.Columns[4].Width = 150;
             dtThongTinCTHoaDon.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            lblTotal.Text = $"Tổng tiền : {row.Field<int>("iTongTien")} đ";
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -77,11 +69,16 @@ namespace BTL
             try
             {
                 DBConnection.Instance.InsertDB("tblChiTietHoaDon", "sp_ThemChiTietHoaDon",
-                DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", _dataHoaDon.Field<int>("iMaHoaDon")),
+                DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", _maHoaDon),
                 DBConnection.Instance.BuildParameter("@iMaMang", SqlDbType.Int, 0, "iMaMang", cboMaMang.SelectedValue),
                 DBConnection.Instance.BuildParameter("@iSoThangDangKy", SqlDbType.Int, 0, "iSoThangDangKy", int.Parse(txtSoThangDK.Text)));
 
-                DBConnection.Instance.SelectDB("vChiTietHoaDon");
+                DBConnection.Instance.SelectDB("vChiTietHoaDon", $"iMaHoaDon={_maHoaDon}");
+
+                DBConnection.Instance.SelectDB("vHoaDon");
+                var row = DBConnection.Instance.GetRow("vHoaDon", "iMaHoaDon", _maHoaDon);
+
+                lblTotal.Text = $"Tổng tiền : {row.Field<int>("iTongTien")} đ";
             }
             catch (Exception ex)
             {
