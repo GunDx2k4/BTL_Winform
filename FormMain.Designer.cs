@@ -44,6 +44,8 @@ namespace BTL
             this.btnCTHDThem = new System.Windows.Forms.Button();
             this.txtCTHDSoThangDK = new System.Windows.Forms.TextBox();
             this.tpChiTietHoaDon = new System.Windows.Forms.TabPage();
+            this.lblTimCTHD = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.cboCTHDMaMang = new System.Windows.Forms.ComboBox();
             this.cboCTHDMaHD = new System.Windows.Forms.ComboBox();
             this.dgvThongTinCTHoaDon = new System.Windows.Forms.DataGridView();
@@ -100,20 +102,18 @@ namespace BTL
             this.btnKHXoa = new System.Windows.Forms.Button();
             this.btnKHSua = new System.Windows.Forms.Button();
             this.tpHoaDon = new System.Windows.Forms.TabPage();
+            this.lblTimHD = new System.Windows.Forms.Label();
+            this.dtpNgayTimHD = new System.Windows.Forms.DateTimePicker();
+            this.label24 = new System.Windows.Forms.Label();
             this.cboHDMaKH = new System.Windows.Forms.ComboBox();
             this.cboHDMaNV = new System.Windows.Forms.ComboBox();
             this.dgvThongTinHoaDon = new System.Windows.Forms.DataGridView();
             this.btnHDThoat = new System.Windows.Forms.Button();
+            this.btnHDIn = new System.Windows.Forms.Button();
             this.btnHDXoa = new System.Windows.Forms.Button();
             this.btnHDSua = new System.Windows.Forms.Button();
             this.btnHDThem = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnHDIn = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.dtpNgayTimHD = new System.Windows.Forms.DateTimePicker();
-            this.lblTimHD = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.lblTimCTHD = new System.Windows.Forms.Label();
             this.tpChiTietHoaDon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinCTHoaDon)).BeginInit();
             this.tpMang.SuspendLayout();
@@ -146,6 +146,7 @@ namespace BTL
             this.txbCTHDTim.Name = "txbCTHDTim";
             this.txbCTHDTim.Size = new System.Drawing.Size(126, 35);
             this.txbCTHDTim.TabIndex = 32;
+            this.txbCTHDTim.TextChanged += new System.EventHandler(this.txbCTHDTim_TextChanged);
             // 
             // label20
             // 
@@ -232,6 +233,7 @@ namespace BTL
             this.btnCTHDXoa.TabIndex = 25;
             this.btnCTHDXoa.Text = "Xóa";
             this.btnCTHDXoa.UseVisualStyleBackColor = false;
+            this.btnCTHDXoa.Click += new System.EventHandler(this.btnCTHDXoa_Click);
             // 
             // btnCTHDSua
             // 
@@ -243,6 +245,7 @@ namespace BTL
             this.btnCTHDSua.TabIndex = 24;
             this.btnCTHDSua.Text = "Sửa";
             this.btnCTHDSua.UseVisualStyleBackColor = false;
+            this.btnCTHDSua.Click += new System.EventHandler(this.btnCTHDSua_Click);
             // 
             // btnCTHDThem
             // 
@@ -254,6 +257,7 @@ namespace BTL
             this.btnCTHDThem.TabIndex = 23;
             this.btnCTHDThem.Text = "Thêm";
             this.btnCTHDThem.UseVisualStyleBackColor = false;
+            this.btnCTHDThem.Click += new System.EventHandler(this.btnCTHDThem_Click);
             // 
             // txtCTHDSoThangDK
             // 
@@ -264,6 +268,7 @@ namespace BTL
             this.txtCTHDSoThangDK.Name = "txtCTHDSoThangDK";
             this.txtCTHDSoThangDK.Size = new System.Drawing.Size(145, 29);
             this.txtCTHDSoThangDK.TabIndex = 21;
+            this.txtCTHDSoThangDK.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCTHDSoThangDK_KeyPress);
             // 
             // tpChiTietHoaDon
             // 
@@ -290,6 +295,28 @@ namespace BTL
             this.tpChiTietHoaDon.TabIndex = 3;
             this.tpChiTietHoaDon.Text = "Chi Tiết Hóa Đơn";
             this.tpChiTietHoaDon.UseVisualStyleBackColor = true;
+            // 
+            // lblTimCTHD
+            // 
+            this.lblTimCTHD.AutoSize = true;
+            this.lblTimCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimCTHD.Location = new System.Drawing.Point(534, 285);
+            this.lblTimCTHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTimCTHD.Name = "lblTimCTHD";
+            this.lblTimCTHD.Size = new System.Drawing.Size(74, 16);
+            this.lblTimCTHD.TabIndex = 39;
+            this.lblTimCTHD.Text = "Tìm thấy :";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(374, 254);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(158, 20);
+            this.label26.TabIndex = 37;
+            this.label26.Text = "Tìm theo tên mạng";
             // 
             // cboCTHDMaMang
             // 
@@ -965,6 +992,39 @@ namespace BTL
             this.tpHoaDon.Text = "Hóa Đơn";
             this.tpHoaDon.UseVisualStyleBackColor = true;
             // 
+            // lblTimHD
+            // 
+            this.lblTimHD.AutoSize = true;
+            this.lblTimHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimHD.Location = new System.Drawing.Point(499, 271);
+            this.lblTimHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTimHD.Name = "lblTimHD";
+            this.lblTimHD.Size = new System.Drawing.Size(74, 16);
+            this.lblTimHD.TabIndex = 38;
+            this.lblTimHD.Text = "Tìm thấy :";
+            // 
+            // dtpNgayTimHD
+            // 
+            this.dtpNgayTimHD.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgayTimHD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayTimHD.Location = new System.Drawing.Point(502, 243);
+            this.dtpNgayTimHD.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpNgayTimHD.Name = "dtpNgayTimHD";
+            this.dtpNgayTimHD.Size = new System.Drawing.Size(124, 26);
+            this.dtpNgayTimHD.TabIndex = 36;
+            this.dtpNgayTimHD.ValueChanged += new System.EventHandler(this.dtpNgayTim_ValueChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(377, 245);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(121, 20);
+            this.label24.TabIndex = 35;
+            this.label24.Text = "Tìm theo ngày";
+            // 
             // cboHDMaKH
             // 
             this.cboHDMaKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1012,6 +1072,18 @@ namespace BTL
             this.btnHDThoat.Text = "Thoát";
             this.btnHDThoat.UseVisualStyleBackColor = false;
             // 
+            // btnHDIn
+            // 
+            this.btnHDIn.BackColor = System.Drawing.Color.DarkGray;
+            this.btnHDIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHDIn.Location = new System.Drawing.Point(365, 159);
+            this.btnHDIn.Name = "btnHDIn";
+            this.btnHDIn.Size = new System.Drawing.Size(90, 28);
+            this.btnHDIn.TabIndex = 25;
+            this.btnHDIn.Text = "In";
+            this.btnHDIn.UseVisualStyleBackColor = false;
+            this.btnHDIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
             // btnHDXoa
             // 
             this.btnHDXoa.BackColor = System.Drawing.Color.DarkGray;
@@ -1058,73 +1130,6 @@ namespace BTL
             this.label12.Size = new System.Drawing.Size(199, 24);
             this.label12.TabIndex = 17;
             this.label12.Text = "Danh sách hóa đơn:";
-            // 
-            // btnHDIn
-            // 
-            this.btnHDIn.BackColor = System.Drawing.Color.DarkGray;
-            this.btnHDIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHDIn.Location = new System.Drawing.Point(365, 159);
-            this.btnHDIn.Name = "btnHDIn";
-            this.btnHDIn.Size = new System.Drawing.Size(90, 28);
-            this.btnHDIn.TabIndex = 25;
-            this.btnHDIn.Text = "In";
-            this.btnHDIn.UseVisualStyleBackColor = false;
-            this.btnHDIn.Click += new System.EventHandler(this.btnIn_Click);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(377, 245);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(121, 20);
-            this.label24.TabIndex = 35;
-            this.label24.Text = "Tìm theo ngày";
-            // 
-            // dtpNgayTimHD
-            // 
-            this.dtpNgayTimHD.CustomFormat = "dd/MM/yyyy";
-            this.dtpNgayTimHD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgayTimHD.Location = new System.Drawing.Point(502, 243);
-            this.dtpNgayTimHD.Margin = new System.Windows.Forms.Padding(2);
-            this.dtpNgayTimHD.Name = "dtpNgayTimHD";
-            this.dtpNgayTimHD.Size = new System.Drawing.Size(124, 26);
-            this.dtpNgayTimHD.TabIndex = 36;
-            this.dtpNgayTimHD.ValueChanged += new System.EventHandler(this.dtpNgayTim_ValueChanged);
-            // 
-            // lblTimHD
-            // 
-            this.lblTimHD.AutoSize = true;
-            this.lblTimHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimHD.Location = new System.Drawing.Point(499, 271);
-            this.lblTimHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTimHD.Name = "lblTimHD";
-            this.lblTimHD.Size = new System.Drawing.Size(74, 16);
-            this.lblTimHD.TabIndex = 38;
-            this.lblTimHD.Text = "Tìm thấy :";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(355, 254);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(177, 20);
-            this.label26.TabIndex = 37;
-            this.label26.Text = "Tìm theo mã hóa đơn";
-            // 
-            // lblTimCTHD
-            // 
-            this.lblTimCTHD.AutoSize = true;
-            this.lblTimCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimCTHD.Location = new System.Drawing.Point(534, 285);
-            this.lblTimCTHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTimCTHD.Name = "lblTimCTHD";
-            this.lblTimCTHD.Size = new System.Drawing.Size(74, 16);
-            this.lblTimCTHD.TabIndex = 39;
-            this.lblTimCTHD.Text = "Tìm thấy :";
             // 
             // FormMain
             // 

@@ -209,6 +209,7 @@ namespace BTL
                 };
 
                 lblTimHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
+                lblTimCTHD.Text = $"Tìm thấy : 0/{dgvThongTinCTHoaDon.Rows.Count}";
             }
             catch (Exception ex)
             {
@@ -728,6 +729,99 @@ namespace BTL
                 cboCTHDMaHD.SelectedValue = row.Field<int>("iMaHoaDon");
                 cboCTHDMaMang.SelectedValue = selectedMang["iMaMang"];
                 txtCTHDSoThangDK.Text = row.Field<int>("iSoThangDangKy").ToString();
+            }
+        }
+
+        private void btnCTHDThem_Click(object sender, EventArgs e)
+        {
+            if (this.TextIsNullOrEmpty(txtCTHDSoThangDK)) return;
+            if (int.TryParse(txtCTHDSoThangDK.Text, out int result))
+            {
+                var table = (dgvThongTinCTHoaDon.DataSource as DataView).Table;
+                try
+                {
+                    DBConnection.Instance.InsertDB("tblChiTietHoaDon", "sp_ThemChiTietHoaDon",
+                    DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", cboCTHDMaHD.SelectedValue),
+                    DBConnection.Instance.BuildParameter("@iMaMang", SqlDbType.Int, 0, "iMaMang", cboCTHDMaMang.SelectedValue),
+                    DBConnection.Instance.BuildParameter("@iSoThangDangKy", SqlDbType.Int, 0, "iSoThangDangKy", result));
+
+                    DBConnection.Instance.SelectDB("vChiTietHoaDon");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Điền vào là số");
+            }
+        }
+
+        private void btnCTHDSua_Click(object sender, EventArgs e)
+        {
+            if (this.TextIsNullOrEmpty(txtCTHDSoThangDK)) return;
+            if (int.TryParse(txtCTHDSoThangDK.Text, out int result))
+            {
+                var table = (dgvThongTinCTHoaDon.DataSource as DataView).Table;
+                try
+                {
+                    var row = table.Rows[dgvThongTinCTHoaDon.CurrentRow.Index];
+                    DBConnection.Instance.UpdateDB("tblChiTietHoaDon",
+                    DBConnection.Instance.BuildParameter("@iMaChiTietHD", SqlDbType.Int, 0, "iMaChiTietHD", row.Field<int>("iMaChiTietHD")),
+                    DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", cboCTHDMaHD.SelectedValue),
+                    DBConnection.Instance.BuildParameter("@iMaMang", SqlDbType.Int, 0, "iMaMang", cboCTHDMaMang.SelectedValue),
+                    DBConnection.Instance.BuildParameter("@iSoThangDangKy", SqlDbType.Int, 0, "iSoThangDangKy", result));
+
+                    DBConnection.Instance.SelectDB("vChiTietHoaDon");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Điền vào là số");
+            }
+        }
+
+        private void btnCTHDXoa_Click(object sender, EventArgs e)
+        {
+            var table = (dgvThongTinCTHoaDon.DataSource as DataView).Table;
+            try
+            {
+                var row = table.Rows[dgvThongTinCTHoaDon.CurrentRow.Index];
+                DBConnection.Instance.DeleteDB("tblChiTietHoaDon",
+                DBConnection.Instance.BuildParameter("@iMaChiTietHD", SqlDbType.Int, 0, "iMaChiTietHD", row.Field<int>("iMaChiTietHD")));
+
+                DBConnection.Instance.SelectDB("vChiTietHoaDon");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txbCTHDTim_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataView dataView = dgvThongTinCTHoaDon.DataSource as DataView;
+                dataView.AddRowFilter($"sTenMang LIKE '%{txbCTHDTim.Text}%'");
+
+                lblTimCTHD.Text = $"Tìm thấy : {dataView.Count}/{DBConnection.Instance.DataSet.Tables["vChiTietHoaDon"].Rows.Count}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void txtCTHDSoThangDK_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
         #endregion

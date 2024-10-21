@@ -109,6 +109,7 @@ namespace BTL
                     var row = table.Rows[dtThongTinCTHoaDon.CurrentRow.Index];
                     DBConnection.Instance.UpdateDB("tblChiTietHoaDon",
                     DBConnection.Instance.BuildParameter("@iMaChiTietHD", SqlDbType.Int, 0, "iMaChiTietHD", row.Field<int>("iMaChiTietHD")),
+                    DBConnection.Instance.BuildParameter("@iMaMang", SqlDbType.Int, 0, "iMaMang", cboMaMang.SelectedValue),
                     DBConnection.Instance.BuildParameter("@iSoThangDangKy", SqlDbType.Int, 0, "iSoThangDangKy", result));
 
                     DBConnection.Instance.SelectDB("vChiTietHoaDon", $"iMaHoaDon={_maHoaDon}");
@@ -122,6 +123,10 @@ namespace BTL
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Điền vào là số");
             }
         }
 
