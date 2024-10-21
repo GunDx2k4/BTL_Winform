@@ -68,14 +68,15 @@ namespace BTL
                 dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
                 dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
                 dtThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
-                dtThongTinCTHoaDon.Columns[3].HeaderText = "Đơn giá";
-                dtThongTinCTHoaDon.Columns[4].HeaderText = "Số tháng đăng ký";
+                dtThongTinCTHoaDon.Columns[4].HeaderText = "Đơn giá";
+                dtThongTinCTHoaDon.Columns[5].HeaderText = "Số tháng đăng ký";
 
                 dtThongTinCTHoaDon.Columns[0].Width = 150;
                 dtThongTinCTHoaDon.Columns[1].Width = 190;
                 dtThongTinCTHoaDon.Columns[2].Width = 150;
-                dtThongTinCTHoaDon.Columns[3].Width = 150;
-                dtThongTinCTHoaDon.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dtThongTinCTHoaDon.Columns[3].Visible = false;
+                dtThongTinCTHoaDon.Columns[4].Width = 150;
+                dtThongTinCTHoaDon.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
 
                 dtThongTinMang.LoadDataSource("tblMang", "bDeleted=0");

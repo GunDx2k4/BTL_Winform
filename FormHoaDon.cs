@@ -23,6 +23,12 @@ namespace BTL
         {
             var table = (dtThongTinCTHoaDon.DataSource as DataView).Table;
             float total = 0;
+            foreach (DataRow row in table.Rows)
+            {
+                total += row.Field<int>("iDonGia") * row.Field<int>("iSoThangDangKy");
+            }
+            return total;
+
         }
 
         private void FormHoaDon_Load(object sender, EventArgs e)
@@ -49,14 +55,15 @@ namespace BTL
             dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
             dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
             dtThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
-            dtThongTinCTHoaDon.Columns[3].HeaderText = "Đơn giá";
-            dtThongTinCTHoaDon.Columns[4].HeaderText = "Số tháng đăng ký";
+            dtThongTinCTHoaDon.Columns[4].HeaderText = "Đơn giá";
+            dtThongTinCTHoaDon.Columns[5].HeaderText = "Số tháng đăng ký";
 
             dtThongTinCTHoaDon.Columns[0].Visible = false;
             dtThongTinCTHoaDon.Columns[1].Width = 190;
             dtThongTinCTHoaDon.Columns[2].Width = 150;
-            dtThongTinCTHoaDon.Columns[3].Width = 150;
-            dtThongTinCTHoaDon.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dtThongTinCTHoaDon.Columns[3].Visible = false;
+            dtThongTinCTHoaDon.Columns[4].Width = 150;
+            dtThongTinCTHoaDon.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
