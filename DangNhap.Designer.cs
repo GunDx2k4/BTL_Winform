@@ -97,6 +97,7 @@
             this.txbDNMatKhau.PasswordChar = '•';
             this.txbDNMatKhau.Size = new System.Drawing.Size(207, 38);
             this.txbDNMatKhau.TabIndex = 24;
+            this.txbDNMatKhau.TextChanged += new System.EventHandler(this.txbDNMatKhau_TextChanged);
             // 
             // label2
             // 
@@ -141,6 +142,7 @@
             this.txbDNTaiKhoan.Name = "txbDNTaiKhoan";
             this.txbDNTaiKhoan.Size = new System.Drawing.Size(207, 38);
             this.txbDNTaiKhoan.TabIndex = 20;
+            this.txbDNTaiKhoan.TextChanged += new System.EventHandler(this.txbDNTaiKhoan_TextChanged);
             // 
             // DangNhap
             // 
@@ -160,6 +162,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DangNhap";
             this.Text = "DangNhap";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DangNhap_FormClosed);
             this.Load += new System.EventHandler(this.DangNhap_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

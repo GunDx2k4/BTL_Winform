@@ -454,6 +454,7 @@ namespace BTL
             this.btnMThem.TabIndex = 25;
             this.btnMThem.Text = "Thêm";
             this.btnMThem.UseVisualStyleBackColor = false;
+            this.btnMThem.Click += new System.EventHandler(this.btnMThem_Click);
             // 
             // label14
             // 
@@ -509,6 +510,7 @@ namespace BTL
             this.tpMang.TabIndex = 4;
             this.tpMang.Text = "Mạng";
             this.tpMang.UseVisualStyleBackColor = true;
+            this.tpMang.Click += new System.EventHandler(this.tpMang_Click);
             // 
             // dtThongTinMang
             // 
@@ -656,6 +658,7 @@ namespace BTL
             this.btnNVThem.TabIndex = 12;
             this.btnNVThem.Text = "Thêm";
             this.btnNVThem.UseVisualStyleBackColor = false;
+            this.btnNVThem.Click += new System.EventHandler(this.btnNVThem_Click);
             // 
             // txbNVDiaChi
             // 
@@ -719,6 +722,7 @@ namespace BTL
             this.tpNhanVien.Size = new System.Drawing.Size(1137, 719);
             this.tpNhanVien.TabIndex = 0;
             this.tpNhanVien.Text = "Nhân Viên";
+            this.tpNhanVien.Click += new System.EventHandler(this.tpNhanVien_Click);
             // 
             // txbNVHoTen
             // 
@@ -746,6 +750,7 @@ namespace BTL
             this.dtThongTinNhanVien.RowHeadersWidth = 51;
             this.dtThongTinNhanVien.Size = new System.Drawing.Size(1135, 319);
             this.dtThongTinNhanVien.TabIndex = 2;
+            this.dtThongTinNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinNhanVien_CellContentClick);
             // 
             // tpKhachHang
             // 
@@ -780,12 +785,12 @@ namespace BTL
             // 
             this.btnKHSuaLuu.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHSuaLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKHSuaLuu.Location = new System.Drawing.Point(492, 150);
+            this.btnKHSuaLuu.Location = new System.Drawing.Point(482, 289);
             this.btnKHSuaLuu.Margin = new System.Windows.Forms.Padding(4);
             this.btnKHSuaLuu.Name = "btnKHSuaLuu";
             this.btnKHSuaLuu.Size = new System.Drawing.Size(119, 34);
             this.btnKHSuaLuu.TabIndex = 18;
-            this.btnKHSuaLuu.Text = "Luu";
+            this.btnKHSuaLuu.Text = "Lưu";
             this.btnKHSuaLuu.UseVisualStyleBackColor = false;
             this.btnKHSuaLuu.Click += new System.EventHandler(this.btnKHSuaLuu_Click);
             // 
@@ -805,7 +810,7 @@ namespace BTL
             this.dtThongTinKhachHang.Size = new System.Drawing.Size(1135, 313);
             this.dtThongTinKhachHang.TabIndex = 17;
             this.dtThongTinKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinKhachHang_CellClick);
-            this.dtThongTinKhachHang.SelectionChanged += new System.EventHandler(this.dtThongTinKhachHang_SelectionChanged_1);
+            this.dtThongTinKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinKhachHang_CellContentClick);
             // 
             // label6
             // 
@@ -902,13 +907,14 @@ namespace BTL
             // 
             this.btnKHThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKHThoat.Location = new System.Drawing.Point(933, 286);
+            this.btnKHThoat.Location = new System.Drawing.Point(997, 286);
             this.btnKHThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnKHThoat.Name = "btnKHThoat";
             this.btnKHThoat.Size = new System.Drawing.Size(120, 36);
             this.btnKHThoat.TabIndex = 7;
             this.btnKHThoat.Text = "Thoát";
             this.btnKHThoat.UseVisualStyleBackColor = false;
+            this.btnKHThoat.Click += new System.EventHandler(this.btnKHThoat_Click);
             // 
             // btnKHThem
             // 
@@ -926,7 +932,7 @@ namespace BTL
             // txbKHTim
             // 
             this.txbKHTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbKHTim.Location = new System.Drawing.Point(720, 284);
+            this.txbKHTim.Location = new System.Drawing.Point(782, 282);
             this.txbKHTim.Margin = new System.Windows.Forms.Padding(4);
             this.txbKHTim.Multiline = true;
             this.txbKHTim.Name = "txbKHTim";
@@ -936,7 +942,7 @@ namespace BTL
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(593, 295);
+            this.label1.Location = new System.Drawing.Point(634, 289);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 25);
@@ -967,7 +973,6 @@ namespace BTL
             this.btnKHSua.TabIndex = 3;
             this.btnKHSua.Text = "Sửa";
             this.btnKHSua.UseVisualStyleBackColor = false;
-            this.btnKHSua.Click += new System.EventHandler(this.btnKHSua_Click);
             // 
             // tpHoaDon
             // 
@@ -1030,6 +1035,7 @@ namespace BTL
             this.dtThongTinHoaDon.Size = new System.Drawing.Size(1135, 311);
             this.dtThongTinHoaDon.TabIndex = 32;
             this.dtThongTinHoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinHoaDon_CellClick);
+            this.dtThongTinHoaDon.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinHoaDon_CellContentClick);
             // 
             // btnHDThoat
             // 
@@ -1112,6 +1118,7 @@ namespace BTL
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "Quản lý thu tiền mạng";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tpChiTietHoaDon.ResumeLayout(false);
             this.tpChiTietHoaDon.PerformLayout();
