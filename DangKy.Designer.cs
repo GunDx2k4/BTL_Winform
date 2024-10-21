@@ -52,7 +52,6 @@
             this.btnDKDangNhap.TabIndex = 35;
             this.btnDKDangNhap.Text = "Đăng Nhập";
             this.btnDKDangNhap.UseVisualStyleBackColor = false;
-            this.btnDKDangNhap.Click += new System.EventHandler(this.btnDKDangNhap_Click);
             // 
             // label5
             // 
@@ -115,7 +114,6 @@
             this.txbDKNhapLaiMK.Name = "txbDKNhapLaiMK";
             this.txbDKNhapLaiMK.Size = new System.Drawing.Size(207, 38);
             this.txbDKNhapLaiMK.TabIndex = 29;
-            this.txbDKNhapLaiMK.TextChanged += new System.EventHandler(this.txbDKNhapLaiMK_TextChanged);
             // 
             // txbDKMatKhau
             // 
@@ -127,7 +125,6 @@
             this.txbDKMatKhau.Name = "txbDKMatKhau";
             this.txbDKMatKhau.Size = new System.Drawing.Size(207, 38);
             this.txbDKMatKhau.TabIndex = 28;
-            this.txbDKMatKhau.TextChanged += new System.EventHandler(this.txbDKMatKhau_TextChanged);
             // 
             // btnDKDangKy
             // 
@@ -140,7 +137,6 @@
             this.btnDKDangKy.TabIndex = 27;
             this.btnDKDangKy.Text = "Đăng Ký";
             this.btnDKDangKy.UseVisualStyleBackColor = false;
-            this.btnDKDangKy.Click += new System.EventHandler(this.btnDKDangKy_Click);
             // 
             // label1
             // 
@@ -162,7 +158,6 @@
             this.txbDKTaiKhoan.Name = "txbDKTaiKhoan";
             this.txbDKTaiKhoan.Size = new System.Drawing.Size(207, 38);
             this.txbDKTaiKhoan.TabIndex = 25;
-            this.txbDKTaiKhoan.TextChanged += new System.EventHandler(this.txbDKTaiKhoan_TextChanged);
             // 
             // DangKy
             // 
@@ -184,7 +179,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DangKy";
             this.Text = "DangKy";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DangKy_FormClosed);
             this.Load += new System.EventHandler(this.DangKy_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
