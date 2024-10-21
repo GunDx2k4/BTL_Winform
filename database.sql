@@ -72,18 +72,19 @@ create table tblChiTietHoaDon (
 ALTER TABLE tblHoaDon ADD bDeleted BIT DEFAULT 0
 ALTER TABLE tblHoaDon DROP iTongTien
 
+ALTER TABLE tblChiTietHoaDon ADD bDeleted BIT DEFAULT 0
 ALTER TABLE tblChiTietHoaDon DROP iDonGia
 
 ------------------------------ VIEW -------------------------------
 GO
 CREATE OR ALTER VIEW vChiTietHoaDon AS
 SELECT iMaHoaDon, iMaChiTietHD, sTenMang, tblChiTietHoaDon.iMaMang, iDonGia, iSoThangDangKy
-FROM tblChiTietHoaDon INNER JOIN tblMang  ON tblChiTietHoaDon.iMaMang = tblMang.iMaMang
+FROM tblChiTietHoaDon INNER JOIN tblMang ON tblChiTietHoaDon.iMaMang = tblMang.iMaMang  WHERE tblChiTietHoaDon.bDeleted = 0
 
 GO
 CREATE OR ALTER VIEW vHoaDon AS
 SELECT tblHoaDon.iMaHoaDon, iMaKhachHang, iMaNhanVien, dNgayTao, (CASE WHEN SUM(iDonGia * iSoThangDangKy) > 0 THEN SUM(iDonGia * iSoThangDangKy) ELSE 0 END) AS 'iTongTien'
-FROM tblHoaDon LEFT JOIN vChiTietHoaDon  ON vChiTietHoaDon.iMaHoaDon = tblHoaDon.iMaHoaDon WHERE bDeleted = 0 GROUP BY tblHoaDon.iMaHoaDon , iMaKhachHang, iMaNhanVien, dNgayTao
+FROM tblHoaDon LEFT JOIN vChiTietHoaDon  ON vChiTietHoaDon.iMaHoaDon = tblHoaDon.iMaHoaDon WHERE tblHoaDon.bDeleted = 0 GROUP BY tblHoaDon.iMaHoaDon , iMaKhachHang, iMaNhanVien, dNgayTao
 
 ----------------------------- TRIGGER -----------------------------
 GO
@@ -93,13 +94,13 @@ AS
 BEGIN
 	DECLARE @iMaHoaDon int
 	DECLARE @iMaMang int
-    DECLARE @iSoThangDangKy int
+    DECLARE @iIDINSERTED int
     DECLARE @iMaChiTietHD int
-	SELECT @iMaHoaDon = iMaHoaDon, @iMaMang = iMaMang, @iSoThangDangKy = iSoThangDangKy FROM INSERTED 
-    SELECT @iMaChiTietHD = iMaChiTietHD  FROM tblChiTietHoaDon WHERE iMaHoaDon = @iMaHoaDon AND iMaMang = @iMaMang
-    IF @iMaChiTietHD != NULL
+	SELECT @iMaHoaDon = iMaHoaDon, @iMaMang = iMaMang, @iIDINSERTED = iMaChiTietHD FROM INSERTED 
+    SELECT @iMaChiTietHD = iMaChiTietHD  FROM tblChiTietHoaDon WHERE iMaHoaDon = @iMaHoaDon AND iMaMang = @iMaMang AND iMaChiTietHD != @iIDINSERTED AND bDeleted = 0
+    IF @iMaChiTietHD IS NOT NULL
 	BEGIN
-        UPDATE tblChiTietHoaDon SET iSoThangDangKy = @iSoThangDangKy WHERE iMaChiTietHD = @iMaChiTietHD
+        UPDATE tblChiTietHoaDon SET bDeleted = 1 WHERE iMaChiTietHD = @iMaChiTietHD
         ROLLBACK TRAN
 	END
 END
