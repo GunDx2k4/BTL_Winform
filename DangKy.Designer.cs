@@ -46,12 +46,13 @@
             this.btnDKDangNhap.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDKDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDKDangNhap.Location = new System.Drawing.Point(569, 388);
-            this.btnDKDangNhap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDKDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnDKDangNhap.Name = "btnDKDangNhap";
             this.btnDKDangNhap.Size = new System.Drawing.Size(133, 34);
             this.btnDKDangNhap.TabIndex = 35;
             this.btnDKDangNhap.Text = "Đăng Nhập";
             this.btnDKDangNhap.UseVisualStyleBackColor = false;
+            this.btnDKDangNhap.Click += new System.EventHandler(this.btnDKDangNhap_Click);
             // 
             // label5
             // 
@@ -88,7 +89,7 @@
             this.btnDKThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnDKThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDKThoat.Location = new System.Drawing.Point(399, 316);
-            this.btnDKThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDKThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnDKThoat.Name = "btnDKThoat";
             this.btnDKThoat.Size = new System.Drawing.Size(120, 34);
             this.btnDKThoat.TabIndex = 31;
@@ -114,6 +115,7 @@
             this.txbDKNhapLaiMK.Name = "txbDKNhapLaiMK";
             this.txbDKNhapLaiMK.Size = new System.Drawing.Size(207, 38);
             this.txbDKNhapLaiMK.TabIndex = 29;
+            this.txbDKNhapLaiMK.TextChanged += new System.EventHandler(this.txbDKNhapLaiMK_TextChanged);
             // 
             // txbDKMatKhau
             // 
@@ -125,18 +127,20 @@
             this.txbDKMatKhau.Name = "txbDKMatKhau";
             this.txbDKMatKhau.Size = new System.Drawing.Size(207, 38);
             this.txbDKMatKhau.TabIndex = 28;
+            this.txbDKMatKhau.TextChanged += new System.EventHandler(this.txbDKMatKhau_TextChanged);
             // 
             // btnDKDangKy
             // 
             this.btnDKDangKy.BackColor = System.Drawing.Color.DarkGray;
             this.btnDKDangKy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDKDangKy.Location = new System.Drawing.Point(191, 316);
-            this.btnDKDangKy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDKDangKy.Margin = new System.Windows.Forms.Padding(4);
             this.btnDKDangKy.Name = "btnDKDangKy";
             this.btnDKDangKy.Size = new System.Drawing.Size(120, 34);
             this.btnDKDangKy.TabIndex = 27;
             this.btnDKDangKy.Text = "Đăng Ký";
             this.btnDKDangKy.UseVisualStyleBackColor = false;
+            this.btnDKDangKy.Click += new System.EventHandler(this.btnDKDangKy_Click);
             // 
             // label1
             // 
@@ -158,11 +162,13 @@
             this.txbDKTaiKhoan.Name = "txbDKTaiKhoan";
             this.txbDKTaiKhoan.Size = new System.Drawing.Size(207, 38);
             this.txbDKTaiKhoan.TabIndex = 25;
+            this.txbDKTaiKhoan.TextChanged += new System.EventHandler(this.txbDKTaiKhoan_TextChanged);
             // 
             // DangKy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnDKDangNhap);
             this.Controls.Add(this.label5);
@@ -175,9 +181,10 @@
             this.Controls.Add(this.btnDKDangKy);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbDKTaiKhoan);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DangKy";
             this.Text = "DangKy";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DangKy_FormClosed);
             this.Load += new System.EventHandler(this.DangKy_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

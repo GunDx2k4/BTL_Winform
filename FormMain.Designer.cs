@@ -84,6 +84,7 @@ namespace BTL
             this.txbNVHoTen = new System.Windows.Forms.TextBox();
             this.dtThongTinNhanVien = new System.Windows.Forms.DataGridView();
             this.tpKhachHang = new System.Windows.Forms.TabPage();
+            this.btnKHSuaLuu = new System.Windows.Forms.Button();
             this.dtThongTinKhachHang = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -633,7 +634,6 @@ namespace BTL
             this.btnNVSua.TabIndex = 13;
             this.btnNVSua.Text = "Sửa";
             this.btnNVSua.UseVisualStyleBackColor = false;
-            this.btnNVSua.Click += new System.EventHandler(this.buttonNvUpdate_Click);
             // 
             // btnNVThem
             // 
@@ -645,7 +645,6 @@ namespace BTL
             this.btnNVThem.TabIndex = 12;
             this.btnNVThem.Text = "Thêm";
             this.btnNVThem.UseVisualStyleBackColor = false;
-            this.btnNVThem.Click += new System.EventHandler(this.buttonNvInsert_Click);
             // 
             // txbNVDiaChi
             // 
@@ -657,7 +656,6 @@ namespace BTL
             this.txbNVDiaChi.Name = "txbNVDiaChi";
             this.txbNVDiaChi.Size = new System.Drawing.Size(145, 29);
             this.txbNVDiaChi.TabIndex = 11;
-            this.txbNVDiaChi.TextChanged += new System.EventHandler(this.textBoxNvDiaChi_TextChanged);
             // 
             // txbNVSDT
             // 
@@ -710,7 +708,6 @@ namespace BTL
             this.tpNhanVien.Size = new System.Drawing.Size(851, 582);
             this.tpNhanVien.TabIndex = 0;
             this.tpNhanVien.Text = "Nhân Viên";
-            this.tpNhanVien.Click += new System.EventHandler(this.tpNhanVien_Click);
             // 
             // txbNVHoTen
             // 
@@ -737,10 +734,10 @@ namespace BTL
             this.dtThongTinNhanVien.RowHeadersWidth = 51;
             this.dtThongTinNhanVien.Size = new System.Drawing.Size(851, 259);
             this.dtThongTinNhanVien.TabIndex = 2;
-            this.dtThongTinNhanVien.CurrentCellChanged += new System.EventHandler(this.dtThongTinNhanVien_CurrentCellChanged);
             // 
             // tpKhachHang
             // 
+            this.tpKhachHang.Controls.Add(this.btnKHSuaLuu);
             this.tpKhachHang.Controls.Add(this.dtThongTinKhachHang);
             this.tpKhachHang.Controls.Add(this.label6);
             this.tpKhachHang.Controls.Add(this.label5);
@@ -766,6 +763,17 @@ namespace BTL
             this.tpKhachHang.TabIndex = 1;
             this.tpKhachHang.Text = "Khách Hàng";
             this.tpKhachHang.UseVisualStyleBackColor = true;
+            // 
+            // btnKHSuaLuu
+            // 
+            this.btnKHSuaLuu.BackColor = System.Drawing.Color.DarkGray;
+            this.btnKHSuaLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKHSuaLuu.Location = new System.Drawing.Point(369, 122);
+            this.btnKHSuaLuu.Name = "btnKHSuaLuu";
+            this.btnKHSuaLuu.Size = new System.Drawing.Size(89, 28);
+            this.btnKHSuaLuu.TabIndex = 18;
+            this.btnKHSuaLuu.Text = "Luu";
+            this.btnKHSuaLuu.UseVisualStyleBackColor = false;
             // 
             // dtThongTinKhachHang
             // 
@@ -909,12 +917,11 @@ namespace BTL
             this.txbKHTim.Name = "txbKHTim";
             this.txbKHTim.Size = new System.Drawing.Size(126, 30);
             this.txbKHTim.TabIndex = 4;
-            this.txbKHTim.TextChanged += new System.EventHandler(this.textBoxTim_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(441, 241);
+            this.label1.Location = new System.Drawing.Point(445, 240);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 20);
             this.label1.TabIndex = 5;
@@ -1012,7 +1019,6 @@ namespace BTL
             this.btnHDThoat.TabIndex = 26;
             this.btnHDThoat.Text = "Thoát";
             this.btnHDThoat.UseVisualStyleBackColor = false;
-            this.btnHDThoat.Click += new System.EventHandler(this.btnHDThoat_Click);
             // 
             // btnHDIn
             // 
@@ -1024,6 +1030,7 @@ namespace BTL
             this.btnHDIn.TabIndex = 25;
             this.btnHDIn.Text = "In";
             this.btnHDIn.UseVisualStyleBackColor = false;
+            this.btnHDIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // btnHDXoa
             // 
@@ -1183,6 +1190,6 @@ namespace BTL
         private DataGridView dtThongTinMang;
         private ComboBox txbCTHDMaMang;
         private ComboBox txbCTHDMaHD;
+        private Button btnKHSuaLuu;
     }
 }
-

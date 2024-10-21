@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BTL
@@ -17,12 +10,33 @@ namespace BTL
             InitializeComponent();
         }
 
+
         private void btnDNDangNhap_Click(object sender, EventArgs e)
         {
-            FormMain fm = new FormMain();
-            fm.Show();
-            this.Hide();
+            if (this.TextIsNullOrEmpty(txbDNMatKhau, txbDNTaiKhoan)) return;
+            // Lấy thông tin tài khoản và mật khẩu từ các TextBox
+            string username = txbDNTaiKhoan.Text;
+            string password = txbDNMatKhau.Text;
+
+            try
+            {
+                var table = DBConnection.Instance.SelectDB("tblTaiKhoan", $"sTaiKhoan = '{username}' AND sMatKhau = '{password}'");
+                if (table.Rows.Count <= 0)
+                {
+                    MessageBox.Show("Sai tên tài khoản hoặc mật khẩu.", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                FormMain fm = new FormMain();
+                fm.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+
 
         private void btnDNDangKy_Click(object sender, EventArgs e)
         {
@@ -57,6 +71,21 @@ namespace BTL
         }
 
         private void DangNhap_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DangNhap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void txbDNTaiKhoan_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbDNMatKhau_TextChanged(object sender, EventArgs e)
         {
 
         }

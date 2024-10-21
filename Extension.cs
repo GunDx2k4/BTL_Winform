@@ -26,6 +26,25 @@ namespace BTL
     public static class Extension
     {
         /// <summary>
+        /// Hàm kiểm tra <see cref="TextBox.Text"/> có rỗng hay không có gì không
+        /// </summary>
+        /// <param name="txts">Các <see cref="TextBox"/> cần kiểm tra</param>
+        /// <returns><c>True</c> Nếu có <see cref="TextBox"/> rỗng hoặc không có gì và sẽ hiện ra thông báo, ngược lại trả về <c>False</c> và không có thông báo</returns>
+        public static bool TextIsNullOrEmpty(this Form form, params TextBox[] txts)
+        {
+            foreach (var txt in txts)
+            {
+                txt.Text = txt.Text.Trim();
+                if (string.IsNullOrEmpty(txt.Text))
+                {
+                    MessageBox.Show("Không được để dữ liệu rỗng");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Hàm thêm <see cref="ComboBox.DataSource"/> cho <see cref="ComboBox"/>
         /// </summary>
         /// <param name="table">Tên bảng</param>
@@ -83,7 +102,7 @@ namespace BTL
         /// <param name="table">Tên bảng cần tạo</param>
         /// <param name="query">(Nếu có) Mã SQL sau WHERE VD: "bDeleted=0 AND sHoTen LIKE %N%"</param>
         /// <returns></returns>
-        public static SqlCommand BuildSelectCommand(this SqlConnection conn, string table, string query = "") 
+        public static SqlCommand BuildSelectCommand(this SqlConnection conn, string table, string query = "")
         {
             string sqlSelect = $"SELECT * FROM {table} " + (string.IsNullOrEmpty(query) ? "" : $"WHERE {query}");
             return new SqlCommand(sqlSelect, conn);
