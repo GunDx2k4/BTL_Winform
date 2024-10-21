@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace BTL
@@ -25,6 +26,20 @@ namespace BTL
     /// </summary>
     public static class Extension
     {
+        public static void SetFormatMoneys(this DataGridViewColumn column)
+        {
+            column.DefaultCellStyle.Format = "N0";
+            column.DefaultCellStyle.FormatProvider = new CultureInfo("vi-VN");
+        }
+        /// <summary>
+        /// Thêm . vào số VD : 1000 => 1.000
+        /// </summary>
+        /// <returns></returns>
+        public static string GetMoneys(this int m)
+        {
+            return m.ToString("N0", new CultureInfo("vi-VN"));
+        }
+
         /// <summary>
         /// Hàm kiểm tra <see cref="TextBox.Text"/> có rỗng hay không có gì không
         /// </summary>

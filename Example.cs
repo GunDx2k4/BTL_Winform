@@ -55,10 +55,8 @@ namespace BTL
         {
             try
             {
-                //Nên viết thứ tự parameter theo tứ tự trong DataBase
-                DBConnection.Instance.UpdateDB("tblKhachHang",
-                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", 123),
-                DBConnection.Instance.BuildParameter("@bDeleted", SqlDbType.Bit, 0, "bDeleted", true));
+                DBConnection.Instance.DeleteDB("tblKhachHang",
+                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", 123));
             }
             catch (Exception ex)
             {

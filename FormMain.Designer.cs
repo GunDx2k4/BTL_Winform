@@ -36,20 +36,18 @@ namespace BTL
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.txbMTenMang = new System.Windows.Forms.TextBox();
-            this.txbHDNgayTao = new System.Windows.Forms.DateTimePicker();
+            this.dtpNgayTaoHD = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.btnCTHDThoat = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.btnCTHDXoa = new System.Windows.Forms.Button();
             this.btnCTHDSua = new System.Windows.Forms.Button();
             this.btnCTHDThem = new System.Windows.Forms.Button();
-            this.txbCTHDSoThangDK = new System.Windows.Forms.TextBox();
+            this.txtCTHDSoThangDK = new System.Windows.Forms.TextBox();
             this.tpChiTietHoaDon = new System.Windows.Forms.TabPage();
-            this.txbCTHDMaMang = new System.Windows.Forms.ComboBox();
-            this.txbCTHDMaHD = new System.Windows.Forms.ComboBox();
-            this.dtThongTinCTHoaDon = new System.Windows.Forms.DataGridView();
+            this.cboCTHDMaMang = new System.Windows.Forms.ComboBox();
+            this.cboCTHDMaHD = new System.Windows.Forms.ComboBox();
+            this.dgvThongTinCTHoaDon = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
-            this.txbHDTim = new System.Windows.Forms.TextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.txbMtim = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -102,17 +100,22 @@ namespace BTL
             this.btnKHXoa = new System.Windows.Forms.Button();
             this.btnKHSua = new System.Windows.Forms.Button();
             this.tpHoaDon = new System.Windows.Forms.TabPage();
-            this.txbHDMaKH = new System.Windows.Forms.ComboBox();
-            this.txbHDMaNV = new System.Windows.Forms.ComboBox();
-            this.dtThongTinHoaDon = new System.Windows.Forms.DataGridView();
+            this.cboHDMaKH = new System.Windows.Forms.ComboBox();
+            this.cboHDMaNV = new System.Windows.Forms.ComboBox();
+            this.dgvThongTinHoaDon = new System.Windows.Forms.DataGridView();
             this.btnHDThoat = new System.Windows.Forms.Button();
-            this.btnHDIn = new System.Windows.Forms.Button();
             this.btnHDXoa = new System.Windows.Forms.Button();
             this.btnHDSua = new System.Windows.Forms.Button();
             this.btnHDThem = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnHDIn = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.dtpNgayTimHD = new System.Windows.Forms.DateTimePicker();
+            this.lblTimHD = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lblTimCTHD = new System.Windows.Forms.Label();
             this.tpChiTietHoaDon.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtThongTinCTHoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinCTHoaDon)).BeginInit();
             this.tpMang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtThongTinMang)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -121,7 +124,7 @@ namespace BTL
             this.tpKhachHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtThongTinKhachHang)).BeginInit();
             this.tpHoaDon.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtThongTinHoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinHoaDon)).BeginInit();
             this.SuspendLayout();
             // 
             // label17
@@ -138,7 +141,7 @@ namespace BTL
             // txbCTHDTim
             // 
             this.txbCTHDTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbCTHDTim.Location = new System.Drawing.Point(514, 245);
+            this.txbCTHDTim.Location = new System.Drawing.Point(537, 247);
             this.txbCTHDTim.Multiline = true;
             this.txbCTHDTim.Name = "txbCTHDTim";
             this.txbCTHDTim.Size = new System.Drawing.Size(126, 35);
@@ -148,7 +151,7 @@ namespace BTL
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(430, 80);
+            this.label20.Location = new System.Drawing.Point(432, 74);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(154, 20);
@@ -170,7 +173,7 @@ namespace BTL
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(58, 80);
+            this.label18.Location = new System.Drawing.Point(58, 74);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(69, 20);
@@ -181,21 +184,21 @@ namespace BTL
             // 
             this.txbMTenMang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbMTenMang.Location = new System.Drawing.Point(131, 88);
-            this.txbMTenMang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbMTenMang.Margin = new System.Windows.Forms.Padding(2);
             this.txbMTenMang.Multiline = true;
             this.txbMTenMang.Name = "txbMTenMang";
             this.txbMTenMang.Size = new System.Drawing.Size(145, 29);
             this.txbMTenMang.TabIndex = 19;
             // 
-            // txbHDNgayTao
+            // dtpNgayTaoHD
             // 
-            this.txbHDNgayTao.CustomFormat = "dd/MM/yyyy";
-            this.txbHDNgayTao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txbHDNgayTao.Location = new System.Drawing.Point(481, 81);
-            this.txbHDNgayTao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txbHDNgayTao.Name = "txbHDNgayTao";
-            this.txbHDNgayTao.Size = new System.Drawing.Size(124, 26);
-            this.txbHDNgayTao.TabIndex = 29;
+            this.dtpNgayTaoHD.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgayTaoHD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayTaoHD.Location = new System.Drawing.Point(481, 80);
+            this.dtpNgayTaoHD.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpNgayTaoHD.Name = "dtpNgayTaoHD";
+            this.dtpNgayTaoHD.Size = new System.Drawing.Size(124, 26);
+            this.dtpNgayTaoHD.TabIndex = 29;
             // 
             // label16
             // 
@@ -218,17 +221,6 @@ namespace BTL
             this.btnCTHDThoat.TabIndex = 27;
             this.btnCTHDThoat.Text = "Thoát";
             this.btnCTHDThoat.UseVisualStyleBackColor = false;
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.DarkGray;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(411, 252);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(90, 28);
-            this.button9.TabIndex = 26;
-            this.button9.Text = "Tìm";
-            this.button9.UseVisualStyleBackColor = false;
             // 
             // btnCTHDXoa
             // 
@@ -263,73 +255,76 @@ namespace BTL
             this.btnCTHDThem.Text = "Thêm";
             this.btnCTHDThem.UseVisualStyleBackColor = false;
             // 
-            // txbCTHDSoThangDK
+            // txtCTHDSoThangDK
             // 
-            this.txbCTHDSoThangDK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbCTHDSoThangDK.Location = new System.Drawing.Point(590, 72);
-            this.txbCTHDSoThangDK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txbCTHDSoThangDK.Multiline = true;
-            this.txbCTHDSoThangDK.Name = "txbCTHDSoThangDK";
-            this.txbCTHDSoThangDK.Size = new System.Drawing.Size(145, 29);
-            this.txbCTHDSoThangDK.TabIndex = 21;
+            this.txtCTHDSoThangDK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCTHDSoThangDK.Location = new System.Drawing.Point(590, 72);
+            this.txtCTHDSoThangDK.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCTHDSoThangDK.Multiline = true;
+            this.txtCTHDSoThangDK.Name = "txtCTHDSoThangDK";
+            this.txtCTHDSoThangDK.Size = new System.Drawing.Size(145, 29);
+            this.txtCTHDSoThangDK.TabIndex = 21;
             // 
             // tpChiTietHoaDon
             // 
-            this.tpChiTietHoaDon.Controls.Add(this.txbCTHDMaMang);
-            this.tpChiTietHoaDon.Controls.Add(this.txbCTHDMaHD);
-            this.tpChiTietHoaDon.Controls.Add(this.dtThongTinCTHoaDon);
+            this.tpChiTietHoaDon.Controls.Add(this.lblTimCTHD);
+            this.tpChiTietHoaDon.Controls.Add(this.label26);
+            this.tpChiTietHoaDon.Controls.Add(this.cboCTHDMaMang);
+            this.tpChiTietHoaDon.Controls.Add(this.cboCTHDMaHD);
+            this.tpChiTietHoaDon.Controls.Add(this.dgvThongTinCTHoaDon);
             this.tpChiTietHoaDon.Controls.Add(this.txbCTHDTim);
             this.tpChiTietHoaDon.Controls.Add(this.label20);
             this.tpChiTietHoaDon.Controls.Add(this.label19);
             this.tpChiTietHoaDon.Controls.Add(this.label18);
             this.tpChiTietHoaDon.Controls.Add(this.btnCTHDThoat);
-            this.tpChiTietHoaDon.Controls.Add(this.button9);
             this.tpChiTietHoaDon.Controls.Add(this.btnCTHDXoa);
             this.tpChiTietHoaDon.Controls.Add(this.btnCTHDSua);
             this.tpChiTietHoaDon.Controls.Add(this.btnCTHDThem);
-            this.tpChiTietHoaDon.Controls.Add(this.txbCTHDSoThangDK);
+            this.tpChiTietHoaDon.Controls.Add(this.txtCTHDSoThangDK);
             this.tpChiTietHoaDon.Controls.Add(this.label13);
             this.tpChiTietHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpChiTietHoaDon.Location = new System.Drawing.Point(4, 22);
-            this.tpChiTietHoaDon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpChiTietHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.tpChiTietHoaDon.Name = "tpChiTietHoaDon";
             this.tpChiTietHoaDon.Size = new System.Drawing.Size(851, 582);
             this.tpChiTietHoaDon.TabIndex = 3;
             this.tpChiTietHoaDon.Text = "Chi Tiết Hóa Đơn";
             this.tpChiTietHoaDon.UseVisualStyleBackColor = true;
             // 
-            // txbCTHDMaMang
+            // cboCTHDMaMang
             // 
-            this.txbCTHDMaMang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txbCTHDMaMang.FormattingEnabled = true;
-            this.txbCTHDMaMang.Location = new System.Drawing.Point(150, 159);
-            this.txbCTHDMaMang.Name = "txbCTHDMaMang";
-            this.txbCTHDMaMang.Size = new System.Drawing.Size(205, 28);
-            this.txbCTHDMaMang.TabIndex = 36;
+            this.cboCTHDMaMang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCTHDMaMang.FormattingEnabled = true;
+            this.cboCTHDMaMang.Location = new System.Drawing.Point(150, 159);
+            this.cboCTHDMaMang.Name = "cboCTHDMaMang";
+            this.cboCTHDMaMang.Size = new System.Drawing.Size(205, 28);
+            this.cboCTHDMaMang.TabIndex = 36;
             // 
-            // txbCTHDMaHD
+            // cboCTHDMaHD
             // 
-            this.txbCTHDMaHD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txbCTHDMaHD.FormattingEnabled = true;
-            this.txbCTHDMaHD.Location = new System.Drawing.Point(152, 71);
-            this.txbCTHDMaHD.Name = "txbCTHDMaHD";
-            this.txbCTHDMaHD.Size = new System.Drawing.Size(205, 28);
-            this.txbCTHDMaHD.TabIndex = 35;
+            this.cboCTHDMaHD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCTHDMaHD.FormattingEnabled = true;
+            this.cboCTHDMaHD.Location = new System.Drawing.Point(152, 71);
+            this.cboCTHDMaHD.Name = "cboCTHDMaHD";
+            this.cboCTHDMaHD.Size = new System.Drawing.Size(205, 28);
+            this.cboCTHDMaHD.TabIndex = 35;
             // 
-            // dtThongTinCTHoaDon
+            // dgvThongTinCTHoaDon
             // 
-            this.dtThongTinCTHoaDon.AllowUserToAddRows = false;
-            this.dtThongTinCTHoaDon.AllowUserToDeleteRows = false;
-            this.dtThongTinCTHoaDon.AllowUserToResizeColumns = false;
-            this.dtThongTinCTHoaDon.AllowUserToResizeRows = false;
-            this.dtThongTinCTHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dtThongTinCTHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtThongTinCTHoaDon.Location = new System.Drawing.Point(0, 324);
-            this.dtThongTinCTHoaDon.Name = "dtThongTinCTHoaDon";
-            this.dtThongTinCTHoaDon.RowHeadersVisible = false;
-            this.dtThongTinCTHoaDon.RowHeadersWidth = 51;
-            this.dtThongTinCTHoaDon.Size = new System.Drawing.Size(851, 258);
-            this.dtThongTinCTHoaDon.TabIndex = 34;
+            this.dgvThongTinCTHoaDon.AllowUserToAddRows = false;
+            this.dgvThongTinCTHoaDon.AllowUserToDeleteRows = false;
+            this.dgvThongTinCTHoaDon.AllowUserToResizeColumns = false;
+            this.dgvThongTinCTHoaDon.AllowUserToResizeRows = false;
+            this.dgvThongTinCTHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvThongTinCTHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvThongTinCTHoaDon.Location = new System.Drawing.Point(0, 324);
+            this.dgvThongTinCTHoaDon.Name = "dgvThongTinCTHoaDon";
+            this.dgvThongTinCTHoaDon.ReadOnly = true;
+            this.dgvThongTinCTHoaDon.RowHeadersVisible = false;
+            this.dgvThongTinCTHoaDon.RowHeadersWidth = 51;
+            this.dgvThongTinCTHoaDon.Size = new System.Drawing.Size(851, 258);
+            this.dgvThongTinCTHoaDon.TabIndex = 34;
+            this.dgvThongTinCTHoaDon.CurrentCellChanged += new System.EventHandler(this.dgvThongTinCTHoaDon_CurrentCellChanged);
             // 
             // label13
             // 
@@ -341,15 +336,6 @@ namespace BTL
             this.label13.Size = new System.Drawing.Size(266, 24);
             this.label13.TabIndex = 18;
             this.label13.Text = "Danh sách chi tiết háo đơn:";
-            // 
-            // txbHDTim
-            // 
-            this.txbHDTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbHDTim.Location = new System.Drawing.Point(492, 239);
-            this.txbHDTim.Multiline = true;
-            this.txbHDTim.Name = "txbHDTim";
-            this.txbHDTim.Size = new System.Drawing.Size(126, 29);
-            this.txbHDTim.TabIndex = 31;
             // 
             // txbMtim
             // 
@@ -463,7 +449,7 @@ namespace BTL
             // 
             this.txbMMota.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbMMota.Location = new System.Drawing.Point(525, 115);
-            this.txbMMota.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbMMota.Margin = new System.Windows.Forms.Padding(2);
             this.txbMMota.Multiline = true;
             this.txbMMota.Name = "txbMMota";
             this.txbMMota.Size = new System.Drawing.Size(177, 70);
@@ -473,7 +459,7 @@ namespace BTL
             // 
             this.txbMDonGia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbMDonGia.Location = new System.Drawing.Point(131, 175);
-            this.txbMDonGia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbMDonGia.Margin = new System.Windows.Forms.Padding(2);
             this.txbMDonGia.Multiline = true;
             this.txbMDonGia.Name = "txbMDonGia";
             this.txbMDonGia.Size = new System.Drawing.Size(145, 29);
@@ -497,7 +483,7 @@ namespace BTL
             this.tpMang.Controls.Add(this.txbMTenMang);
             this.tpMang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpMang.Location = new System.Drawing.Point(4, 22);
-            this.tpMang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpMang.Margin = new System.Windows.Forms.Padding(2);
             this.tpMang.Name = "tpMang";
             this.tpMang.Size = new System.Drawing.Size(851, 582);
             this.tpMang.TabIndex = 4;
@@ -514,6 +500,7 @@ namespace BTL
             this.dtThongTinMang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinMang.Location = new System.Drawing.Point(0, 329);
             this.dtThongTinMang.Name = "dtThongTinMang";
+            this.dtThongTinMang.ReadOnly = true;
             this.dtThongTinMang.RowHeadersVisible = false;
             this.dtThongTinMang.RowHeadersWidth = 51;
             this.dtThongTinMang.Size = new System.Drawing.Size(851, 253);
@@ -651,7 +638,7 @@ namespace BTL
             this.txbNVDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbNVDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNVDiaChi.Location = new System.Drawing.Point(521, 70);
-            this.txbNVDiaChi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNVDiaChi.Margin = new System.Windows.Forms.Padding(2);
             this.txbNVDiaChi.Multiline = true;
             this.txbNVDiaChi.Name = "txbNVDiaChi";
             this.txbNVDiaChi.Size = new System.Drawing.Size(145, 29);
@@ -662,7 +649,7 @@ namespace BTL
             this.txbNVSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbNVSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNVSDT.Location = new System.Drawing.Point(152, 142);
-            this.txbNVSDT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNVSDT.Margin = new System.Windows.Forms.Padding(2);
             this.txbNVSDT.Multiline = true;
             this.txbNVSDT.Name = "txbNVSDT";
             this.txbNVSDT.Size = new System.Drawing.Size(145, 29);
@@ -676,7 +663,7 @@ namespace BTL
             this.tabControl1.Controls.Add(this.tpChiTietHoaDon);
             this.tabControl1.Controls.Add(this.tpMang);
             this.tabControl1.Location = new System.Drawing.Point(11, 11);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(859, 608);
@@ -702,9 +689,9 @@ namespace BTL
             this.tpNhanVien.Controls.Add(this.dtThongTinNhanVien);
             this.tpNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpNhanVien.Location = new System.Drawing.Point(4, 22);
-            this.tpNhanVien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpNhanVien.Margin = new System.Windows.Forms.Padding(2);
             this.tpNhanVien.Name = "tpNhanVien";
-            this.tpNhanVien.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpNhanVien.Padding = new System.Windows.Forms.Padding(2);
             this.tpNhanVien.Size = new System.Drawing.Size(851, 582);
             this.tpNhanVien.TabIndex = 0;
             this.tpNhanVien.Text = "Nhân Viên";
@@ -714,7 +701,7 @@ namespace BTL
             this.txbNVHoTen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbNVHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNVHoTen.Location = new System.Drawing.Point(152, 65);
-            this.txbNVHoTen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNVHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.txbNVHoTen.Multiline = true;
             this.txbNVHoTen.Name = "txbNVHoTen";
             this.txbNVHoTen.Size = new System.Drawing.Size(145, 29);
@@ -730,6 +717,7 @@ namespace BTL
             this.dtThongTinNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinNhanVien.Location = new System.Drawing.Point(0, 323);
             this.dtThongTinNhanVien.Name = "dtThongTinNhanVien";
+            this.dtThongTinNhanVien.ReadOnly = true;
             this.dtThongTinNhanVien.RowHeadersVisible = false;
             this.dtThongTinNhanVien.RowHeadersWidth = 51;
             this.dtThongTinNhanVien.Size = new System.Drawing.Size(851, 259);
@@ -756,9 +744,9 @@ namespace BTL
             this.tpKhachHang.Controls.Add(this.btnKHSua);
             this.tpKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpKhachHang.Location = new System.Drawing.Point(4, 22);
-            this.tpKhachHang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpKhachHang.Margin = new System.Windows.Forms.Padding(2);
             this.tpKhachHang.Name = "tpKhachHang";
-            this.tpKhachHang.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpKhachHang.Padding = new System.Windows.Forms.Padding(2);
             this.tpKhachHang.Size = new System.Drawing.Size(851, 582);
             this.tpKhachHang.TabIndex = 1;
             this.tpKhachHang.Text = "Khách Hàng";
@@ -785,6 +773,7 @@ namespace BTL
             this.dtThongTinKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtThongTinKhachHang.Location = new System.Drawing.Point(0, 328);
             this.dtThongTinKhachHang.Name = "dtThongTinKhachHang";
+            this.dtThongTinKhachHang.ReadOnly = true;
             this.dtThongTinKhachHang.RowHeadersVisible = false;
             this.dtThongTinKhachHang.RowHeadersWidth = 51;
             this.dtThongTinKhachHang.Size = new System.Drawing.Size(851, 254);
@@ -849,7 +838,7 @@ namespace BTL
             // 
             this.txbKHEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbKHEmail.Location = new System.Drawing.Point(580, 124);
-            this.txbKHEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbKHEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txbKHEmail.Multiline = true;
             this.txbKHEmail.Name = "txbKHEmail";
             this.txbKHEmail.Size = new System.Drawing.Size(145, 29);
@@ -859,7 +848,7 @@ namespace BTL
             // 
             this.txbKHDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbKHDiaChi.Location = new System.Drawing.Point(580, 60);
-            this.txbKHDiaChi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbKHDiaChi.Margin = new System.Windows.Forms.Padding(2);
             this.txbKHDiaChi.Multiline = true;
             this.txbKHDiaChi.Name = "txbKHDiaChi";
             this.txbKHDiaChi.Size = new System.Drawing.Size(145, 29);
@@ -869,7 +858,7 @@ namespace BTL
             // 
             this.txbKHSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbKHSDT.Location = new System.Drawing.Point(175, 124);
-            this.txbKHSDT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbKHSDT.Margin = new System.Windows.Forms.Padding(2);
             this.txbKHSDT.Multiline = true;
             this.txbKHSDT.Name = "txbKHSDT";
             this.txbKHSDT.Size = new System.Drawing.Size(145, 29);
@@ -880,7 +869,7 @@ namespace BTL
             this.txbKHHoTen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbKHHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbKHHoTen.Location = new System.Drawing.Point(175, 60);
-            this.txbKHHoTen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbKHHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.txbKHHoTen.Multiline = true;
             this.txbKHHoTen.Name = "txbKHHoTen";
             this.txbKHHoTen.Size = new System.Drawing.Size(145, 29);
@@ -891,7 +880,7 @@ namespace BTL
             this.btnKHThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKHThoat.Location = new System.Drawing.Point(700, 232);
-            this.btnKHThoat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnKHThoat.Margin = new System.Windows.Forms.Padding(2);
             this.btnKHThoat.Name = "btnKHThoat";
             this.btnKHThoat.Size = new System.Drawing.Size(90, 29);
             this.btnKHThoat.TabIndex = 7;
@@ -951,12 +940,14 @@ namespace BTL
             // 
             // tpHoaDon
             // 
-            this.tpHoaDon.Controls.Add(this.txbHDMaKH);
-            this.tpHoaDon.Controls.Add(this.txbHDMaNV);
-            this.tpHoaDon.Controls.Add(this.dtThongTinHoaDon);
-            this.tpHoaDon.Controls.Add(this.txbHDTim);
+            this.tpHoaDon.Controls.Add(this.lblTimHD);
+            this.tpHoaDon.Controls.Add(this.dtpNgayTimHD);
+            this.tpHoaDon.Controls.Add(this.label24);
+            this.tpHoaDon.Controls.Add(this.cboHDMaKH);
+            this.tpHoaDon.Controls.Add(this.cboHDMaNV);
+            this.tpHoaDon.Controls.Add(this.dgvThongTinHoaDon);
             this.tpHoaDon.Controls.Add(this.label17);
-            this.tpHoaDon.Controls.Add(this.txbHDNgayTao);
+            this.tpHoaDon.Controls.Add(this.dtpNgayTaoHD);
             this.tpHoaDon.Controls.Add(this.label16);
             this.tpHoaDon.Controls.Add(this.label15);
             this.tpHoaDon.Controls.Add(this.btnHDThoat);
@@ -967,47 +958,48 @@ namespace BTL
             this.tpHoaDon.Controls.Add(this.label12);
             this.tpHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpHoaDon.Location = new System.Drawing.Point(4, 22);
-            this.tpHoaDon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.tpHoaDon.Name = "tpHoaDon";
             this.tpHoaDon.Size = new System.Drawing.Size(851, 582);
             this.tpHoaDon.TabIndex = 2;
             this.tpHoaDon.Text = "Hóa Đơn";
             this.tpHoaDon.UseVisualStyleBackColor = true;
             // 
-            // txbHDMaKH
+            // cboHDMaKH
             // 
-            this.txbHDMaKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txbHDMaKH.FormattingEnabled = true;
-            this.txbHDMaKH.Location = new System.Drawing.Point(133, 78);
-            this.txbHDMaKH.Name = "txbHDMaKH";
-            this.txbHDMaKH.Size = new System.Drawing.Size(205, 28);
-            this.txbHDMaKH.TabIndex = 34;
+            this.cboHDMaKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHDMaKH.FormattingEnabled = true;
+            this.cboHDMaKH.Location = new System.Drawing.Point(133, 78);
+            this.cboHDMaKH.Name = "cboHDMaKH";
+            this.cboHDMaKH.Size = new System.Drawing.Size(205, 28);
+            this.cboHDMaKH.TabIndex = 34;
             // 
-            // txbHDMaNV
+            // cboHDMaNV
             // 
-            this.txbHDMaNV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txbHDMaNV.FormattingEnabled = true;
-            this.txbHDMaNV.Location = new System.Drawing.Point(133, 159);
-            this.txbHDMaNV.Name = "txbHDMaNV";
-            this.txbHDMaNV.Size = new System.Drawing.Size(205, 28);
-            this.txbHDMaNV.TabIndex = 33;
+            this.cboHDMaNV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHDMaNV.FormattingEnabled = true;
+            this.cboHDMaNV.Location = new System.Drawing.Point(133, 159);
+            this.cboHDMaNV.Name = "cboHDMaNV";
+            this.cboHDMaNV.Size = new System.Drawing.Size(205, 28);
+            this.cboHDMaNV.TabIndex = 33;
             // 
-            // dtThongTinHoaDon
+            // dgvThongTinHoaDon
             // 
-            this.dtThongTinHoaDon.AllowUserToAddRows = false;
-            this.dtThongTinHoaDon.AllowUserToDeleteRows = false;
-            this.dtThongTinHoaDon.AllowUserToResizeColumns = false;
-            this.dtThongTinHoaDon.AllowUserToResizeRows = false;
-            this.dtThongTinHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dtThongTinHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtThongTinHoaDon.Location = new System.Drawing.Point(0, 329);
-            this.dtThongTinHoaDon.Name = "dtThongTinHoaDon";
-            this.dtThongTinHoaDon.RowHeadersVisible = false;
-            this.dtThongTinHoaDon.RowHeadersWidth = 51;
-            this.dtThongTinHoaDon.Size = new System.Drawing.Size(851, 253);
-            this.dtThongTinHoaDon.TabIndex = 32;
-            this.dtThongTinHoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinHoaDon_CellClick);
-            this.dtThongTinHoaDon.CurrentCellChanged += new System.EventHandler(this.dtThongTinHoaDon_CurrentCellChanged);
+            this.dgvThongTinHoaDon.AllowUserToAddRows = false;
+            this.dgvThongTinHoaDon.AllowUserToDeleteRows = false;
+            this.dgvThongTinHoaDon.AllowUserToResizeColumns = false;
+            this.dgvThongTinHoaDon.AllowUserToResizeRows = false;
+            this.dgvThongTinHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvThongTinHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvThongTinHoaDon.Location = new System.Drawing.Point(0, 329);
+            this.dgvThongTinHoaDon.Name = "dgvThongTinHoaDon";
+            this.dgvThongTinHoaDon.ReadOnly = true;
+            this.dgvThongTinHoaDon.RowHeadersVisible = false;
+            this.dgvThongTinHoaDon.RowHeadersWidth = 51;
+            this.dgvThongTinHoaDon.Size = new System.Drawing.Size(851, 253);
+            this.dgvThongTinHoaDon.TabIndex = 32;
+            this.dgvThongTinHoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinHoaDon_CellClick);
+            this.dgvThongTinHoaDon.CurrentCellChanged += new System.EventHandler(this.dtThongTinHoaDon_CurrentCellChanged);
             // 
             // btnHDThoat
             // 
@@ -1020,18 +1012,6 @@ namespace BTL
             this.btnHDThoat.Text = "Thoát";
             this.btnHDThoat.UseVisualStyleBackColor = false;
             // 
-            // btnHDIn
-            // 
-            this.btnHDIn.BackColor = System.Drawing.Color.DarkGray;
-            this.btnHDIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHDIn.Location = new System.Drawing.Point(378, 241);
-            this.btnHDIn.Name = "btnHDIn";
-            this.btnHDIn.Size = new System.Drawing.Size(90, 28);
-            this.btnHDIn.TabIndex = 25;
-            this.btnHDIn.Text = "In";
-            this.btnHDIn.UseVisualStyleBackColor = false;
-            this.btnHDIn.Click += new System.EventHandler(this.btnIn_Click);
-            // 
             // btnHDXoa
             // 
             this.btnHDXoa.BackColor = System.Drawing.Color.DarkGray;
@@ -1042,6 +1022,7 @@ namespace BTL
             this.btnHDXoa.TabIndex = 24;
             this.btnHDXoa.Text = "Xóa";
             this.btnHDXoa.UseVisualStyleBackColor = false;
+            this.btnHDXoa.Click += new System.EventHandler(this.btnHDXoa_Click);
             // 
             // btnHDSua
             // 
@@ -1053,6 +1034,7 @@ namespace BTL
             this.btnHDSua.TabIndex = 23;
             this.btnHDSua.Text = "Sửa";
             this.btnHDSua.UseVisualStyleBackColor = false;
+            this.btnHDSua.Click += new System.EventHandler(this.btnHDSua_Click);
             // 
             // btnHDThem
             // 
@@ -1077,6 +1059,73 @@ namespace BTL
             this.label12.TabIndex = 17;
             this.label12.Text = "Danh sách hóa đơn:";
             // 
+            // btnHDIn
+            // 
+            this.btnHDIn.BackColor = System.Drawing.Color.DarkGray;
+            this.btnHDIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHDIn.Location = new System.Drawing.Point(365, 159);
+            this.btnHDIn.Name = "btnHDIn";
+            this.btnHDIn.Size = new System.Drawing.Size(90, 28);
+            this.btnHDIn.TabIndex = 25;
+            this.btnHDIn.Text = "In";
+            this.btnHDIn.UseVisualStyleBackColor = false;
+            this.btnHDIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(377, 245);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(121, 20);
+            this.label24.TabIndex = 35;
+            this.label24.Text = "Tìm theo ngày";
+            // 
+            // dtpNgayTimHD
+            // 
+            this.dtpNgayTimHD.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgayTimHD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayTimHD.Location = new System.Drawing.Point(502, 243);
+            this.dtpNgayTimHD.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpNgayTimHD.Name = "dtpNgayTimHD";
+            this.dtpNgayTimHD.Size = new System.Drawing.Size(124, 26);
+            this.dtpNgayTimHD.TabIndex = 36;
+            this.dtpNgayTimHD.ValueChanged += new System.EventHandler(this.dtpNgayTim_ValueChanged);
+            // 
+            // lblTimHD
+            // 
+            this.lblTimHD.AutoSize = true;
+            this.lblTimHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimHD.Location = new System.Drawing.Point(499, 271);
+            this.lblTimHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTimHD.Name = "lblTimHD";
+            this.lblTimHD.Size = new System.Drawing.Size(74, 16);
+            this.lblTimHD.TabIndex = 38;
+            this.lblTimHD.Text = "Tìm thấy :";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(355, 254);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(177, 20);
+            this.label26.TabIndex = 37;
+            this.label26.Text = "Tìm theo mã hóa đơn";
+            // 
+            // lblTimCTHD
+            // 
+            this.lblTimCTHD.AutoSize = true;
+            this.lblTimCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimCTHD.Location = new System.Drawing.Point(534, 285);
+            this.lblTimCTHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTimCTHD.Name = "lblTimCTHD";
+            this.lblTimCTHD.Size = new System.Drawing.Size(74, 16);
+            this.lblTimCTHD.TabIndex = 39;
+            this.lblTimCTHD.Text = "Tìm thấy :";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1090,7 +1139,7 @@ namespace BTL
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tpChiTietHoaDon.ResumeLayout(false);
             this.tpChiTietHoaDon.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtThongTinCTHoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinCTHoaDon)).EndInit();
             this.tpMang.ResumeLayout(false);
             this.tpMang.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtThongTinMang)).EndInit();
@@ -1103,7 +1152,7 @@ namespace BTL
             ((System.ComponentModel.ISupportInitialize)(this.dtThongTinKhachHang)).EndInit();
             this.tpHoaDon.ResumeLayout(false);
             this.tpHoaDon.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtThongTinHoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinHoaDon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1116,17 +1165,15 @@ namespace BTL
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txbMTenMang;
-        private System.Windows.Forms.DateTimePicker txbHDNgayTao;
+        private System.Windows.Forms.DateTimePicker dtpNgayTaoHD;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btnCTHDThoat;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnCTHDXoa;
         private System.Windows.Forms.Button btnCTHDSua;
         private System.Windows.Forms.Button btnCTHDThem;
-        private System.Windows.Forms.TextBox txbCTHDSoThangDK;
+        private System.Windows.Forms.TextBox txtCTHDSoThangDK;
         private System.Windows.Forms.TabPage tpChiTietHoaDon;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txbHDTim;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TextBox txbMtim;
         private System.Windows.Forms.Label label23;
@@ -1177,19 +1224,24 @@ namespace BTL
         private System.Windows.Forms.Button btnKHSua;
         private System.Windows.Forms.TabPage tpHoaDon;
         private System.Windows.Forms.Button btnHDThoat;
-        private System.Windows.Forms.Button btnHDIn;
         private System.Windows.Forms.Button btnHDXoa;
         private System.Windows.Forms.Button btnHDSua;
         private System.Windows.Forms.Button btnHDThem;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dtThongTinKhachHang;
-        private System.Windows.Forms.DataGridView dtThongTinHoaDon;
-        private ComboBox txbHDMaNV;
-        private ComboBox txbHDMaKH;
-        private DataGridView dtThongTinCTHoaDon;
+        private System.Windows.Forms.DataGridView dgvThongTinHoaDon;
+        private ComboBox cboHDMaNV;
+        private ComboBox cboHDMaKH;
+        private DataGridView dgvThongTinCTHoaDon;
         private DataGridView dtThongTinMang;
-        private ComboBox txbCTHDMaMang;
-        private ComboBox txbCTHDMaHD;
+        private ComboBox cboCTHDMaMang;
+        private ComboBox cboCTHDMaHD;
         private Button btnKHSuaLuu;
+        private Button btnHDIn;
+        private DateTimePicker dtpNgayTimHD;
+        private Label label24;
+        private Label lblTimHD;
+        private Label label26;
+        private Label lblTimCTHD;
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BTL
@@ -129,40 +130,45 @@ namespace BTL
                 dtThongTinNhanVien.Columns[2].Width = 150;
                 dtThongTinNhanVien.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                dtThongTinHoaDon.LoadDataSource("vHoaDon");
-                dtThongTinHoaDon.Columns[0].HeaderText = "Mã HĐ";
-                dtThongTinHoaDon.Columns[1].HeaderText = "Mã KH";
-                dtThongTinHoaDon.Columns[2].HeaderText = "Mã NV";
-                dtThongTinHoaDon.Columns[3].HeaderText = "Ngày Tạo";
-                dtThongTinHoaDon.Columns[4].HeaderText = "Tổng tiền";
+                dgvThongTinHoaDon.LoadDataSource("vHoaDon");
+                dgvThongTinHoaDon.Columns[0].HeaderText = "Mã HĐ";
+                dgvThongTinHoaDon.Columns[1].HeaderText = "Mã KH";
+                dgvThongTinHoaDon.Columns[2].HeaderText = "Mã NV";
+                dgvThongTinHoaDon.Columns[3].HeaderText = "Ngày Tạo";
+                dgvThongTinHoaDon.Columns[4].HeaderText = "Tổng tiền";
 
                 DataGridViewButtonColumn btnColumn = new DataGridViewButtonColumn();
                 btnColumn.Name = "btnCTHoaDon";
                 btnColumn.HeaderText = "CT Hóa Đơn";
                 btnColumn.Text = "Xem";
                 btnColumn.UseColumnTextForButtonValue = true;
-                dtThongTinHoaDon.Columns.Add(btnColumn);
+                dgvThongTinHoaDon.Columns.Add(btnColumn);
 
-                dtThongTinHoaDon.Columns[0].Width = 120;
-                dtThongTinHoaDon.Columns[1].Width = 120;
-                dtThongTinHoaDon.Columns[2].Width = 120;
-                dtThongTinHoaDon.Columns[3].Width = 150;
-                dtThongTinHoaDon.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvThongTinHoaDon.Columns[0].Width = 120;
+                dgvThongTinHoaDon.Columns[1].Width = 120;
+                dgvThongTinHoaDon.Columns[2].Width = 120;
+                dgvThongTinHoaDon.Columns[3].Width = 150;
+                dgvThongTinHoaDon.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                dtThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon");
-                dtThongTinCTHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
-                dtThongTinCTHoaDon.Columns[1].HeaderText = "Mã CT Hóa Đơn";
-                dtThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
-                dtThongTinCTHoaDon.Columns[4].HeaderText = "Đơn giá";
-                dtThongTinCTHoaDon.Columns[5].HeaderText = "Số tháng đăng ký";
+                dgvThongTinHoaDon.Columns[4].SetFormatMoneys();
 
-                dtThongTinCTHoaDon.Columns[0].Width = 150;
-                dtThongTinCTHoaDon.Columns[1].Width = 190;
-                dtThongTinCTHoaDon.Columns[2].Width = 150;
-                dtThongTinCTHoaDon.Columns[3].Visible = false;
-                dtThongTinCTHoaDon.Columns[4].Width = 150;
-                dtThongTinCTHoaDon.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvThongTinCTHoaDon.LoadDataSource("vChiTietHoaDon");
+                dgvThongTinCTHoaDon.Columns[0].HeaderText = "Mã CT Hóa Đơn";
+                dgvThongTinCTHoaDon.Columns[1].HeaderText = "Mã Hóa Đơn";
+                dgvThongTinCTHoaDon.Columns[2].HeaderText = "Tên Mạng";
+                dgvThongTinCTHoaDon.Columns[3].HeaderText = "Đơn giá";
+                dgvThongTinCTHoaDon.Columns[4].HeaderText = "Số tháng đăng ký";
+                dgvThongTinCTHoaDon.Columns[5].HeaderText = "Thành tiền";
 
+                dgvThongTinCTHoaDon.Columns[0].Width = 100;
+                dgvThongTinCTHoaDon.Columns[1].Width = 100;
+                dgvThongTinCTHoaDon.Columns[2].Width = 100;
+                dgvThongTinCTHoaDon.Columns[3].Width = 150;
+                dgvThongTinCTHoaDon.Columns[4].Width = 150;
+                dgvThongTinCTHoaDon.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                dgvThongTinCTHoaDon.Columns[3].SetFormatMoneys();
+                dgvThongTinCTHoaDon.Columns[5].SetFormatMoneys();
 
                 dtThongTinMang.LoadDataSource("tblMang", "bDeleted=0");
                 dtThongTinMang.Columns[0].HeaderText = "Mã Mạng";
@@ -175,30 +181,34 @@ namespace BTL
                 dtThongTinMang.Columns[2].Width = 190;
                 dtThongTinMang.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                txbHDMaNV.LoadDataSource("tblNhanVien", "sHoTen", "iMaNhanVien");
+                dtThongTinMang.Columns[3].SetFormatMoneys();
 
-                txbHDMaNV.Format += (s, e) =>
+                cboHDMaNV.LoadDataSource("tblNhanVien", "sHoTen", "iMaNhanVien");
+
+                cboHDMaNV.Format += (s, e) =>
                 {
                     DataRowView row = (DataRowView)e.ListItem;
                     e.Value = $"{row["sHoTen"]} [{row["iMaNhanVien"]}]";
                 };
 
-                txbHDMaKH.LoadDataSource("tblKhachHang", "sHoTen", "iMaKhachHang");
-                txbHDMaKH.Format += (s, e) =>
+                cboHDMaKH.LoadDataSource("tblKhachHang", "sHoTen", "iMaKhachHang");
+                cboHDMaKH.Format += (s, e) =>
                 {
                     DataRowView row = (DataRowView)e.ListItem;
                     e.Value = $"{row["sHoTen"]} [{row["iMaKhachHang"]}]";
                 };
 
 
-                txbCTHDMaHD.LoadDataSource("tblHoaDon", "iMaHoaDon", "iMaHoaDon");
+                cboCTHDMaHD.LoadDataSource("tblHoaDon", "iMaHoaDon", "iMaHoaDon");
 
-                txbCTHDMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
-                txbCTHDMaMang.Format += (s, e) =>
+                cboCTHDMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
+                cboCTHDMaMang.Format += (s, e) =>
                 {
                     DataRowView row = (DataRowView)e.ListItem;
                     e.Value = $"{row["sTenMang"]} [{row["iMaMang"]}]";
                 };
+
+                lblTimHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
             }
             catch (Exception ex)
             {
@@ -591,7 +601,7 @@ namespace BTL
         {
             try
             {
-                BindingSource bindingSource = (BindingSource)dtThongTinCTHoaDon.DataSource;
+                BindingSource bindingSource = (BindingSource)dgvThongTinCTHoaDon.DataSource;
                 bindingSource.Filter = $"sHoTen LIKE '%{txbNVTim.Text}%'";
             }
             catch (Exception ex)
@@ -602,7 +612,7 @@ namespace BTL
         #endregion
 
 
-        #region Hóa Đơn [Dũng]
+        #region Hóa Đơn và Chi Tiết Hóa Đơn [Dũng]
 
         private void btnIn_Click(object sender, EventArgs e)
         {
@@ -626,13 +636,50 @@ namespace BTL
             try
             {
                 DBConnection.Instance.InsertDB("tblHoaDon", "sp_ThemHoaDon",
-                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", txbHDMaKH.SelectedValue),
-                DBConnection.Instance.BuildParameter("@iMaNhanVien", SqlDbType.Int, 0, "iMaNhanVien", txbHDMaNV.SelectedValue),
-                DBConnection.Instance.BuildParameter("@dNgayTao", SqlDbType.Date, 255, "dNgayTao", txbHDNgayTao.Value));
+                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", cboHDMaKH.SelectedValue),
+                DBConnection.Instance.BuildParameter("@iMaNhanVien", SqlDbType.Int, 0, "iMaNhanVien", cboHDMaNV.SelectedValue),
+                DBConnection.Instance.BuildParameter("@dNgayTao", SqlDbType.Date, 0, "dNgayTao", dtpNgayTaoHD.Value));
 
                 var table = DBConnection.Instance.SelectDB("tblHoaDon", "bDeleted=0");
 
                 new FormHoaDon(table.Rows[table.Rows.Count - 1].Field<int>("iMaHoaDon")).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnHDSua_Click(object sender, EventArgs e)
+        {
+            var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
+            try
+            {
+                var row = table.Rows[dgvThongTinHoaDon.CurrentRow.Index];
+                DBConnection.Instance.UpdateDB("tblHoaDon",
+                DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", row.Field<int>("iMaHoaDon")),
+                DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", cboHDMaKH.SelectedValue),
+                DBConnection.Instance.BuildParameter("@iMaNhanVien", SqlDbType.Int, 0, "iMaNhanVien", cboHDMaNV.SelectedValue),
+                DBConnection.Instance.BuildParameter("@dNgayTao", SqlDbType.Date, 0, "dNgayTao", dtpNgayTaoHD.Value));
+
+                DBConnection.Instance.SelectDB("vHoaDon");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnHDXoa_Click(object sender, EventArgs e)
+        {
+            var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
+            try
+            {
+                var row = table.Rows[dgvThongTinHoaDon.CurrentRow.Index];
+                DBConnection.Instance.DeleteDB("tblHoaDon",
+                DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", row.Field<int>("iMaHoaDon")));
+                DBConnection.Instance.SelectDB("vHoaDon");
+                DBConnection.Instance.SelectDB("vChiTietHoaDon");
             }
             catch (Exception ex)
             {
@@ -647,9 +694,40 @@ namespace BTL
             if (dgv.CurrentRow != null && dgv.CurrentRow.Index >= 0)
             {
                 var row = table.Rows[dgv.CurrentRow.Index];
-                txbHDMaKH.SelectedValue = row.Field<int>("iMaKhachHang");
-                txbHDMaNV.SelectedValue = row.Field<int>("iMaNhanVien");
-                txbHDNgayTao.Value = row.Field<DateTime>("dNgayTao");
+                cboHDMaKH.SelectedValue = row.Field<int>("iMaKhachHang");
+                cboHDMaNV.SelectedValue = row.Field<int>("iMaNhanVien");
+                dtpNgayTaoHD.Value = row.Field<DateTime>("dNgayTao");
+            }
+        }
+
+
+        private void dtpNgayTim_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataView dataView = dgvThongTinHoaDon.DataSource as DataView;
+                dataView.AddRowFilter($"dNgayTao < '{dtpNgayTimHD.Value.ToString("dd/MM/yyyy")}'");
+
+                lblTimHD.Text = $"Tìm thấy : {dataView.Count}/{DBConnection.Instance.DataSet.Tables["vHoaDon"].Rows.Count}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void dgvThongTinCTHoaDon_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            var table = (dgv.DataSource as DataView).Table;
+            if (dgv.CurrentRow != null && dgv.CurrentRow.Index >= 0)
+            {
+                var row = table.Rows[dgv.CurrentRow.Index];
+                var selectedMang = cboCTHDMaMang.Items.Cast<DataRowView>().FirstOrDefault(item => item["sTenMang"].ToString() == row.Field<string>("sTenMang"));
+                cboCTHDMaHD.SelectedValue = row.Field<int>("iMaHoaDon");
+                cboCTHDMaMang.SelectedValue = selectedMang["iMaMang"];
+                txtCTHDSoThangDK.Text = row.Field<int>("iSoThangDangKy").ToString();
             }
         }
         #endregion
