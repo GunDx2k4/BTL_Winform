@@ -152,7 +152,7 @@ namespace BTL
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(432, 74);
+            this.label20.Location = new System.Drawing.Point(430, 80);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(154, 20);
@@ -174,7 +174,7 @@ namespace BTL
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(58, 74);
+            this.label18.Location = new System.Drawing.Point(58, 80);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(69, 20);
@@ -195,7 +195,7 @@ namespace BTL
             // 
             this.dtpNgayTaoHD.CustomFormat = "dd/MM/yyyy";
             this.dtpNgayTaoHD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgayTaoHD.Location = new System.Drawing.Point(481, 80);
+            this.dtpNgayTaoHD.Location = new System.Drawing.Point(481, 81);
             this.dtpNgayTaoHD.Margin = new System.Windows.Forms.Padding(2);
             this.dtpNgayTaoHD.Name = "dtpNgayTaoHD";
             this.dtpNgayTaoHD.Size = new System.Drawing.Size(124, 26);
@@ -460,6 +460,7 @@ namespace BTL
             this.btnMThem.TabIndex = 25;
             this.btnMThem.Text = "Thêm";
             this.btnMThem.UseVisualStyleBackColor = false;
+            this.btnMThem.Click += new System.EventHandler(this.btnMThem_Click);
             // 
             // label14
             // 
@@ -516,6 +517,7 @@ namespace BTL
             this.tpMang.TabIndex = 4;
             this.tpMang.Text = "Mạng";
             this.tpMang.UseVisualStyleBackColor = true;
+            this.tpMang.Click += new System.EventHandler(this.tpMang_Click);
             // 
             // dtThongTinMang
             // 
@@ -532,6 +534,7 @@ namespace BTL
             this.dtThongTinMang.RowHeadersWidth = 51;
             this.dtThongTinMang.Size = new System.Drawing.Size(851, 253);
             this.dtThongTinMang.TabIndex = 35;
+            this.dtThongTinMang.CurrentCellChanged += new System.EventHandler(this.dtThongTinMang_CurrentCellChanged);
             // 
             // label15
             // 
@@ -571,6 +574,7 @@ namespace BTL
             this.txbNVTim.Name = "txbNVTim";
             this.txbNVTim.Size = new System.Drawing.Size(126, 26);
             this.txbNVTim.TabIndex = 21;
+            this.txbNVTim.TextChanged += new System.EventHandler(this.txbNVTim_TextChanged);
             // 
             // label10
             // 
@@ -637,6 +641,7 @@ namespace BTL
             this.btnNVXoa.TabIndex = 14;
             this.btnNVXoa.Text = "Xóa";
             this.btnNVXoa.UseVisualStyleBackColor = false;
+            this.btnNVXoa.Click += new System.EventHandler(this.btnNVXoa_Click);
             // 
             // btnNVSua
             // 
@@ -659,6 +664,7 @@ namespace BTL
             this.btnNVThem.TabIndex = 12;
             this.btnNVThem.Text = "Thêm";
             this.btnNVThem.UseVisualStyleBackColor = false;
+            this.btnNVThem.Click += new System.EventHandler(this.btnNVThem_Click);
             // 
             // txbNVDiaChi
             // 
@@ -722,6 +728,7 @@ namespace BTL
             this.tpNhanVien.Size = new System.Drawing.Size(851, 582);
             this.tpNhanVien.TabIndex = 0;
             this.tpNhanVien.Text = "Nhân Viên";
+            this.tpNhanVien.Click += new System.EventHandler(this.tpNhanVien_Click);
             // 
             // txbNVHoTen
             // 
@@ -749,6 +756,7 @@ namespace BTL
             this.dtThongTinNhanVien.RowHeadersWidth = 51;
             this.dtThongTinNhanVien.Size = new System.Drawing.Size(851, 259);
             this.dtThongTinNhanVien.TabIndex = 2;
+            this.dtThongTinNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinNhanVien_CellContentClick);
             // 
             // tpKhachHang
             // 
@@ -783,12 +791,13 @@ namespace BTL
             // 
             this.btnKHSuaLuu.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHSuaLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKHSuaLuu.Location = new System.Drawing.Point(369, 122);
+            this.btnKHSuaLuu.Location = new System.Drawing.Point(362, 235);
             this.btnKHSuaLuu.Name = "btnKHSuaLuu";
             this.btnKHSuaLuu.Size = new System.Drawing.Size(89, 28);
             this.btnKHSuaLuu.TabIndex = 18;
-            this.btnKHSuaLuu.Text = "Luu";
+            this.btnKHSuaLuu.Text = "Lưu";
             this.btnKHSuaLuu.UseVisualStyleBackColor = false;
+            this.btnKHSuaLuu.Click += new System.EventHandler(this.btnKHSuaLuu_Click);
             // 
             // dtThongTinKhachHang
             // 
@@ -805,6 +814,8 @@ namespace BTL
             this.dtThongTinKhachHang.RowHeadersWidth = 51;
             this.dtThongTinKhachHang.Size = new System.Drawing.Size(851, 254);
             this.dtThongTinKhachHang.TabIndex = 17;
+            this.dtThongTinKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinKhachHang_CellClick);
+            this.dtThongTinKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinKhachHang_CellContentClick);
             // 
             // label6
             // 
@@ -894,7 +905,7 @@ namespace BTL
             // txbKHHoTen
             // 
             this.txbKHHoTen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbKHHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbKHHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txbKHHoTen.Location = new System.Drawing.Point(175, 60);
             this.txbKHHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.txbKHHoTen.Multiline = true;
@@ -906,13 +917,14 @@ namespace BTL
             // 
             this.btnKHThoat.BackColor = System.Drawing.Color.DarkGray;
             this.btnKHThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKHThoat.Location = new System.Drawing.Point(700, 232);
+            this.btnKHThoat.Location = new System.Drawing.Point(748, 232);
             this.btnKHThoat.Margin = new System.Windows.Forms.Padding(2);
             this.btnKHThoat.Name = "btnKHThoat";
             this.btnKHThoat.Size = new System.Drawing.Size(90, 29);
             this.btnKHThoat.TabIndex = 7;
             this.btnKHThoat.Text = "Thoát";
             this.btnKHThoat.UseVisualStyleBackColor = false;
+            this.btnKHThoat.Click += new System.EventHandler(this.btnKHThoat_Click);
             // 
             // btnKHThem
             // 
@@ -924,11 +936,12 @@ namespace BTL
             this.btnKHThem.TabIndex = 2;
             this.btnKHThem.Text = "Thêm";
             this.btnKHThem.UseVisualStyleBackColor = false;
+            this.btnKHThem.Click += new System.EventHandler(this.btnKHThem_Click);
             // 
             // txbKHTim
             // 
             this.txbKHTim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbKHTim.Location = new System.Drawing.Point(540, 231);
+            this.txbKHTim.Location = new System.Drawing.Point(586, 229);
             this.txbKHTim.Multiline = true;
             this.txbKHTim.Name = "txbKHTim";
             this.txbKHTim.Size = new System.Drawing.Size(126, 30);
@@ -937,7 +950,7 @@ namespace BTL
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(445, 240);
+            this.label1.Location = new System.Drawing.Point(476, 235);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 20);
             this.label1.TabIndex = 5;
@@ -953,6 +966,7 @@ namespace BTL
             this.btnKHXoa.TabIndex = 6;
             this.btnKHXoa.Text = "Xóa";
             this.btnKHXoa.UseVisualStyleBackColor = false;
+            this.btnKHXoa.Click += new System.EventHandler(this.btnKHXoa_Click);
             // 
             // btnKHSua
             // 

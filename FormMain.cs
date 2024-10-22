@@ -209,7 +209,7 @@ namespace BTL
                 };
 
                 lblTimHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
-                lblTimCTHD.Text = $"Tìm thấy : 0/{dgvThongTinCTHoaDon.Rows.Count}";
+                lblTimCTHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
             }
             catch (Exception ex)
             {
@@ -229,106 +229,57 @@ namespace BTL
 
         private void btnKHThem_Click(object sender, EventArgs e)
         {
+            if (this.TextIsNullOrEmpty(txbKHHoTen, txbKHDiaChi, txbKHSDT, txbKHEmail, txbKHSDT, txbKHEmail)) return;
 
+            // Kiểm tra định dạng họ tên và địa chỉ
+            if (!txbKHHoTen.Text.IsValidName())
+            {
+                MessageBox.Show("Họ tên không hợp lệ!");
+                txbKHHoTen.Focus();
+                return;
+            }
+            if (!txbKHDiaChi.Text.IsValidAddress())
+            {
+                MessageBox.Show("Địa chỉ không hợp lệ!");
+                txbKHDiaChi.Focus();
+                return;
+            }
+
+            // Kiểm tra định dạng email và số điện thoại
+            if (!txbKHEmail.Text.IsValidEmail())
+            {
+                MessageBox.Show("Email không hợp lệ!");
+                txbKHEmail.Focus();
+                return;
+            }
+            if (!txbKHSDT.Text.IsValidPhoneNumber())
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ!");
+                txbKHSDT.Focus();
+                return;
+            }
             try
             {
-                // Kiểm tra các trường nhập
-                if (string.IsNullOrWhiteSpace(txbKHHoTen.Text))
-                {
-                    MessageBox.Show("Họ tên khách hàng không được để trống!");
-                    txbKHHoTen.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbKHDiaChi.Text))
-                {
-                    MessageBox.Show("Địa chỉ của khách hàng không được để trống!");
-                    txbKHDiaChi.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbKHSDT.Text))
-                {
-                    MessageBox.Show("SDT khách hàng không được để trống!");
-                    txbKHSDT.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbKHEmail.Text))
-                {
-                    MessageBox.Show("Email khách hàng không được để trống!");
-                    txbKHEmail.Focus();
-                    return;
-                }
-                // Kiểm tra định dạng họ tên và địa chỉ
-                if (!IsValidName(txbKHHoTen.Text))
-                {
-                    MessageBox.Show("Họ tên không hợp lệ!");
-                    txbKHHoTen.Focus();
-                    return;
-                }
-                if (!IsValidAddress(txbKHDiaChi.Text))
-                {
-                    MessageBox.Show("Địa chỉ không hợp lệ!");
-                    txbKHDiaChi.Focus();
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txbKHSDT.Text))
-                {
-                    MessageBox.Show("SDT khách hàng không được để trống!");
-                    txbKHSDT.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbKHEmail.Text))
-                {
-                    MessageBox.Show("Email khách hàng không được để trống!");
-                    txbKHEmail.Focus();
-                    return;
-                }
-                // Kiểm tra định dạng email và số điện thoại
-                if (!IsValidEmail(txbKHEmail.Text))
-                {
-                    MessageBox.Show("Email không hợp lệ!");
-                    txbKHEmail.Focus();
-                    return;
-                }
-                if (!IsValidPhoneNumber(txbKHSDT.Text))
-                {
-                    MessageBox.Show("Số điện thoại không hợp lệ!");
-                    txbKHSDT.Focus();
-                    return;
-                }
                 // Thêm dữ liệu vào cơ sở dữ liệu
-                DBConnection.Instance.InsertDB("tblKhachHang", "sp_ThemKhachHang",
+                if (DBConnection.Instance.InsertDB("tblKhachHang", "sp_ThemKhachHang",
                     DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", txbKHHoTen.Text),
                     DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", txbKHSDT.Text),
                     DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", txbKHDiaChi.Text),
-                    DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", txbKHEmail.Text));
+                    DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", txbKHEmail.Text)))
+                {
+                    // Làm mới dữ liệu trong DataGridView
+                    dtThongTinKhachHang.LoadDataSource("tblKhachHang", "bDeleted=0");
 
-                // Làm mới dữ liệu trong DataGridView
-                dtThongTinKhachHang.LoadDataSource("tblKhachHang", "bDeleted=0");
+                    // Làm rỗng các TextBox sau khi thêm thành công
+                    ClearTextBoxes();
 
-                // Làm rỗng các TextBox sau khi thêm thành công
-                ClearTextBoxes();
+                    MessageBox.Show("Thêm khách hàng thành công!");
+                }
 
-                MessageBox.Show("Thêm khách hàng thành công!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
-            }
-        }
-        private void XoaKhachHangTrongDatabase(string maKH)
-        {
-            string connectionString = "Data Source=LAPTOP-Q30JB24O\\SQLEXPRESS;Initial Catalog= QuanLyThuTienMang;Integrated Security=True";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = "DELETE FROM tblKhachHang WHERE iMaKhachHang = @MaKH"; // Sửa lại theo đúng tên cột
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaKH", maKH);
-                    cmd.ExecuteNonQuery();
-                }
             }
         }
 
@@ -370,10 +321,12 @@ namespace BTL
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    XoaKhachHangTrongDatabase(maKH);
-                    dtThongTinKhachHang.LoadDataSource("tblKhachHang", "bDeleted=0");
-                    index = -1;
-                    MessageBox.Show("Khách hàng đã được xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (DBConnection.Instance.DeleteDB("tblKhachHang", DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", maKH)))
+                    {
+                        dtThongTinKhachHang.LoadDataSource("tblKhachHang", "bDeleted=0");
+                        index = -1;
+                        MessageBox.Show("Khách hàng đã được xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
@@ -381,6 +334,7 @@ namespace BTL
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void btnKHSuaLuu_Click(object sender, EventArgs e)
         {
             try
@@ -461,7 +415,6 @@ namespace BTL
 
                 index = e.RowIndex; // Cập nhật chỉ số hàng
             }
-
         }
         private void LoadDataSource(string tableName, string filter)
         {
@@ -487,60 +440,28 @@ namespace BTL
         #region NhanVien
         private void btnNVThem_Click(object sender, EventArgs e)
         {
+            if (this.TextIsNullOrEmpty(txbNVHoTen, txbNVDiaChi, txbNVSDT, txbNVHoTen, txbNVDiaChi, txbNVSDT)) return;
             try
             {
-                // Kiểm tra các trường nhập
-                if (string.IsNullOrWhiteSpace(txbNVHoTen.Text))
-                {
-                    MessageBox.Show("Họ tên nhân viên không được để trống!");
-                    txbNVHoTen.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbNVDiaChi.Text))
-                {
-                    MessageBox.Show("Địa chỉ của nhân viên không được để trống!");
-                    txbNVDiaChi.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbNVSDT.Text))
-                {
-                    MessageBox.Show("SDT nhân viên không được để trống!");
-                    txbNVSDT.Focus();
-                    return;
-                }
-
-                // Kiểm tra định dạng họ tên và địa chỉ
-                if (!IsValidName(txbNVHoTen.Text))
-                {
-                    MessageBox.Show("Họ tên không hợp lệ!");
-                    txbNVHoTen.Focus();
-                    return;
-                }
-                if (!IsValidAddress(txbNVDiaChi.Text))
-                {
-                    MessageBox.Show("Địa chỉ không hợp lệ!");
-                    txbNVDiaChi.Focus();
-                    return;
-                }
-                if (!IsValidPhoneNumber(txbNVSDT.Text))
-                {
-                    MessageBox.Show("Số điện thoại không hợp lệ!");
-                    txbNVSDT.Focus();
-                    return;
-                }
                 // Thêm dữ liệu vào cơ sở dữ liệu
-                DBConnection.Instance.InsertDB("tblNhanVien",
+                if (DBConnection.Instance.InsertDB("tblNhanVien",
                 DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", txbNVHoTen.Text),
                 DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", txbNVSDT.Text),
-                DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", txbNVDiaChi.Text));
+                DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", txbNVDiaChi.Text)))
+                {
+                    // Làm mới dữ liệu trong DataGridView
+                    dtThongTinNhanVien.LoadDataSource("tblNhanVien", "bDeleted=0");
 
-                // Làm mới dữ liệu trong DataGridView
-                dtThongTinNhanVien.LoadDataSource("tblNhanVien", "bDeleted=0");
+                    // Làm rỗng các TextBox sau khi thêm thành công
+                    ClearTextBoxesNV();
 
-                // Làm rỗng các TextBox sau khi thêm thành công
-                ClearTextBoxesNV();
+                    MessageBox.Show("Thêm nhân viên thành công!");
+                }
+                else
+                {
+                    MessageBox.Show("Thêm nhân viên không thành công!");
+                }
 
-                MessageBox.Show("Thêm nhân viên thành công!");
             }
             catch (Exception ex)
             {
@@ -563,10 +484,12 @@ namespace BTL
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    XoaNhanVienTrongDatabase(maNV);
-                    dtThongTinNhanVien.LoadDataSource("tblNhanVien", "bDeleted=0");
-                    index = -1;
-                    MessageBox.Show("Khách hàng đã được xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (DBConnection.Instance.DeleteDB("tblNhanVien", DBConnection.Instance.BuildParameter("@iMaNhanVien", SqlDbType.Int, 0, "iMaNhanVien", maNV)))
+                    {
+                        dtThongTinNhanVien.LoadDataSource("tblNhanVien", "bDeleted=0");
+                        index = -1;
+                        MessageBox.Show("Khách hàng đã được xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
@@ -574,21 +497,7 @@ namespace BTL
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void XoaNhanVienTrongDatabase(string maNV)
-        {
-            string connectionString = "Data Source=LAPTOP-Q30JB24O\\SQLEXPRESS;Initial Catalog= QuanLyThuTienMang;Integrated Security=True";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = "DELETE FROM tblNhanVien WHERE iMaNhanVien = @MaNV"; // Sửa lại theo đúng tên cột
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaNV", maNV);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
         private void dtThongTinNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -602,7 +511,7 @@ namespace BTL
         {
             try
             {
-                BindingSource bindingSource = (BindingSource)dgvThongTinCTHoaDon.DataSource;
+                BindingSource bindingSource = (BindingSource)dgvThongTinHoaDon.DataSource;
                 bindingSource.Filter = $"sHoTen LIKE '%{txbNVTim.Text}%'";
             }
             catch (Exception ex)
@@ -737,7 +646,7 @@ namespace BTL
             if (this.TextIsNullOrEmpty(txtCTHDSoThangDK)) return;
             if (int.TryParse(txtCTHDSoThangDK.Text, out int result))
             {
-                var table = (dgvThongTinCTHoaDon.DataSource as DataView).Table;
+                var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
                 try
                 {
                     DBConnection.Instance.InsertDB("tblChiTietHoaDon", "sp_ThemChiTietHoaDon",
@@ -763,10 +672,10 @@ namespace BTL
             if (this.TextIsNullOrEmpty(txtCTHDSoThangDK)) return;
             if (int.TryParse(txtCTHDSoThangDK.Text, out int result))
             {
-                var table = (dgvThongTinCTHoaDon.DataSource as DataView).Table;
+                var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
                 try
                 {
-                    var row = table.Rows[dgvThongTinCTHoaDon.CurrentRow.Index];
+                    var row = table.Rows[dgvThongTinHoaDon.CurrentRow.Index];
                     DBConnection.Instance.UpdateDB("tblChiTietHoaDon",
                     DBConnection.Instance.BuildParameter("@iMaChiTietHD", SqlDbType.Int, 0, "iMaChiTietHD", row.Field<int>("iMaChiTietHD")),
                     DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", cboCTHDMaHD.SelectedValue),
@@ -788,10 +697,10 @@ namespace BTL
 
         private void btnCTHDXoa_Click(object sender, EventArgs e)
         {
-            var table = (dgvThongTinCTHoaDon.DataSource as DataView).Table;
+            var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
             try
             {
-                var row = table.Rows[dgvThongTinCTHoaDon.CurrentRow.Index];
+                var row = table.Rows[dgvThongTinHoaDon.CurrentRow.Index];
                 DBConnection.Instance.DeleteDB("tblChiTietHoaDon",
                 DBConnection.Instance.BuildParameter("@iMaChiTietHD", SqlDbType.Int, 0, "iMaChiTietHD", row.Field<int>("iMaChiTietHD")));
 
@@ -807,7 +716,7 @@ namespace BTL
         {
             try
             {
-                DataView dataView = dgvThongTinCTHoaDon.DataSource as DataView;
+                DataView dataView = dgvThongTinHoaDon.DataSource as DataView;
                 dataView.AddRowFilter($"sTenMang LIKE '%{txbCTHDTim.Text}%'");
 
                 lblTimCTHD.Text = $"Tìm thấy : {dataView.Count}/{DBConnection.Instance.DataSet.Tables["vChiTietHoaDon"].Rows.Count}";
@@ -829,43 +738,32 @@ namespace BTL
         #region Mang
         private void btnMThem_Click(object sender, EventArgs e)
         {
+            if (this.TextIsNullOrEmpty(txbMTenMang, txbMDonGia, txbMMota)) return;
+
             try
             {
-                // Kiểm tra các trường nhập
-                if (string.IsNullOrWhiteSpace(txbMTenMang.Text))
-                {
-                    MessageBox.Show("Tên mạng không được để trống!");
-                    txbMTenMang.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbMDonGia.Text))
-                {
-                    MessageBox.Show("Đơn giá không được để trống!");
-                    txbMDonGia.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbMMota.Text))
-                {
-                    MessageBox.Show("Mô tả không được để trống!");
-                    txbMMota.Focus();
-                    return;
-                }
-
                 // Kiểm tra định dạng họ tên và địa chỉ
 
                 // Thêm dữ liệu vào cơ sở dữ liệu
-                DBConnection.Instance.InsertDB("tblMang",
+                if (DBConnection.Instance.InsertDB("tblMang",
                 DBConnection.Instance.BuildParameter("@sTenMang", SqlDbType.NVarChar, 100, "sTenMang", txbMTenMang.Text),
                 DBConnection.Instance.BuildParameter("@sMoTa", SqlDbType.NVarChar, 15, "sMoTa", txbMMota.Text),
-                DBConnection.Instance.BuildParameter("@iDonGia", SqlDbType.NVarChar, 255, "iDonGia", txbMDonGia.Text));
+                DBConnection.Instance.BuildParameter("@iDonGia", SqlDbType.NVarChar, 255, "iDonGia", txbMDonGia.Text)))
+                {
+                    MessageBox.Show("Thêm thông tin mạng thành công!");
 
-                // Làm mới dữ liệu trong DataGridView
-                dtThongTinNhanVien.LoadDataSource("tblMang", "bDeleted=0");
+                    // Làm mới dữ liệu trong DataGridView
+                    dtThongTinNhanVien.LoadDataSource("tblMang", "bDeleted=0");
 
-                // Làm rỗng các TextBox sau khi thêm thành công
-                ClearTextBoxesNV();
+                    // Làm rỗng các TextBox sau khi thêm thành công
+                    ClearTextBoxesNV();
+                }
+                else
+                {
+                    MessageBox.Show("Thêm thông tin mạng không thành công!");
+                }
 
-                MessageBox.Show("Thêm thông tin mạng thành công!");
+
             }
             catch (Exception ex)
             {
@@ -875,6 +773,20 @@ namespace BTL
         private void tpMang_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void dtThongTinMang_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            var table = (dgv.DataSource as DataView).Table;
+            if (dgv.CurrentRow != null && dgv.CurrentRow.Index >= 0)
+            {
+                var row = table.Rows[dgv.CurrentRow.Index];
+                txbMTenMang.Text = row.Field<string>("sTenMang");
+                txbMDonGia.Text = row.Field<int>("iDonGia").GetMoneys();
+                txbMMota.Text = row.Field<string>("sMoTa");
+            }
         }
         #endregion
 

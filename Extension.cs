@@ -26,6 +26,48 @@ namespace BTL
     /// </summary>
     public static class Extension
     {
+        public static bool IsValidEmail(this string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            // Biểu thức chính quy để kiểm tra email
+            var emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return System.Text.RegularExpressions.Regex.IsMatch(email, emailPattern);
+        }
+        public static bool IsValidPhoneNumber(this string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                return false;
+
+            // Biểu thức chính quy để kiểm tra số điện thoại (ví dụ cho số điện thoại Việt Nam)
+            var phonePattern = @"^(\+84|0)\d{9}$";
+            return System.Text.RegularExpressions.Regex.IsMatch(phoneNumber, phonePattern);
+        }
+
+        public static bool IsValidAddress(this string address)
+        {
+            if (string.IsNullOrWhiteSpace(address))
+                return false;
+
+            // Bạn có thể thêm các quy tắc khác nếu cần
+            return true;
+        }
+
+        public static bool IsValidName(this string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return false;
+
+            // Biểu thức chính quy để kiểm tra họ tên
+            var namePattern = @"^[\p{L} .'-]+$"; // Chấp nhận chữ, khoảng trắng, dấu chấm, dấu gạch nối
+            return System.Text.RegularExpressions.Regex.IsMatch(name, namePattern);
+        }
+
+        /// <summary>
+        /// Thêm . vào số VD : 1000 => 1.000
+        /// </summary>
+        /// <param name="column"></param>
         public static void SetFormatMoneys(this DataGridViewColumn column)
         {
             column.DefaultCellStyle.Format = "N0";
@@ -50,9 +92,10 @@ namespace BTL
             foreach (var txt in txts)
             {
                 txt.Text = txt.Text.Trim();
-                if (string.IsNullOrEmpty(txt.Text))
+                if (string.IsNullOrEmpty(txt.Text) || string.IsNullOrWhiteSpace(txt.Text))
                 {
                     MessageBox.Show("Không được để dữ liệu rỗng");
+                    txt.Focus();
                     return true;
                 }
             }
