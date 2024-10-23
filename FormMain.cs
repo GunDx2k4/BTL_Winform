@@ -185,28 +185,11 @@ namespace BTL
 
                 cboHDMaNV.LoadDataSource("tblNhanVien", "sHoTen", "iMaNhanVien");
 
-                cboHDMaNV.Format += (s, e) =>
-                {
-                    DataRowView row = (DataRowView)e.ListItem;
-                    e.Value = $"{row["sHoTen"]} [{row["iMaNhanVien"]}]";
-                };
-
                 cboHDMaKH.LoadDataSource("tblKhachHang", "sHoTen", "iMaKhachHang");
-                cboHDMaKH.Format += (s, e) =>
-                {
-                    DataRowView row = (DataRowView)e.ListItem;
-                    e.Value = $"{row["sHoTen"]} [{row["iMaKhachHang"]}]";
-                };
-
 
                 cboCTHDMaHD.LoadDataSource("tblHoaDon", "iMaHoaDon", "iMaHoaDon");
 
                 cboCTHDMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
-                cboCTHDMaMang.Format += (s, e) =>
-                {
-                    DataRowView row = (DataRowView)e.ListItem;
-                    e.Value = $"{row["sTenMang"]} [{row["iMaMang"]}]";
-                };
 
                 lblTimHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
                 lblTimCTHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
@@ -526,8 +509,10 @@ namespace BTL
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            ReportDocument report = new ReportDocument();
-            report.Load("D:\\Code\\Project\\NAM 3\\HSK\\BTL\\CrystalReport1.rpt");
+            var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
+            var row = table.Rows[dgvThongTinHoaDon.CurrentRow.Index];
+            CrystalReport1 report = new CrystalReport1();
+            report.SetDataSource(DBConnection.Instance.SelectDB("vChiTietHoaDon", $"iMaHoaDon = {row.Field<int>("iMaHoaDon")}"));
             new FormReport(report).ShowDialog();
         }
 
@@ -626,6 +611,17 @@ namespace BTL
             }
         }
 
+        private void cboHDMaKH_Format(object sender, ListControlConvertEventArgs e)
+        {
+            DataRowView row = (DataRowView)e.ListItem;
+            e.Value = $"{row["sHoTen"]} [{row["iMaKhachHang"]}]";
+        }
+
+        private void cboHDMaNV_Format(object sender, ListControlConvertEventArgs e)
+        {
+            DataRowView row = (DataRowView)e.ListItem;
+            e.Value = $"{row["sHoTen"]} [{row["iMaNhanVien"]}]";
+        }
 
         private void dgvThongTinCTHoaDon_CurrentCellChanged(object sender, EventArgs e)
         {
@@ -716,7 +712,7 @@ namespace BTL
         {
             try
             {
-                DataView dataView = dgvThongTinHoaDon.DataSource as DataView;
+                DataView dataView = dgvThongTinCTHoaDon.DataSource as DataView;
                 dataView.AddRowFilter($"sTenMang LIKE '%{txbCTHDTim.Text}%'");
 
                 lblTimCTHD.Text = $"Tìm thấy : {dataView.Count}/{DBConnection.Instance.DataSet.Tables["vChiTietHoaDon"].Rows.Count}";
@@ -732,6 +728,12 @@ namespace BTL
             {
                 e.Handled = true;
             }
+        }
+
+        private void cboCTHDMaMang_Format(object sender, ListControlConvertEventArgs e)
+        {
+            DataRowView row = (DataRowView)e.ListItem;
+            e.Value = $"{row["sTenMang"]} [{row["iMaMang"]}]";
         }
         #endregion
 
@@ -789,6 +791,5 @@ namespace BTL
             }
         }
         #endregion
-
     }
 }

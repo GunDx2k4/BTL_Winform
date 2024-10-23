@@ -205,12 +205,12 @@ namespace BTL
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(36, 162);
+            this.label16.Location = new System.Drawing.Point(35, 163);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(67, 20);
+            this.label16.Size = new System.Drawing.Size(93, 20);
             this.label16.TabIndex = 28;
-            this.label16.Text = "Mã NV:";
+            this.label16.Text = "Nhân viên:";
             // 
             // btnCTHDThoat
             // 
@@ -326,6 +326,7 @@ namespace BTL
             this.cboCTHDMaMang.Name = "cboCTHDMaMang";
             this.cboCTHDMaMang.Size = new System.Drawing.Size(205, 28);
             this.cboCTHDMaMang.TabIndex = 36;
+            this.cboCTHDMaMang.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.cboCTHDMaMang_Format);
             // 
             // cboCTHDMaHD
             // 
@@ -540,12 +541,12 @@ namespace BTL
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(36, 81);
+            this.label15.Location = new System.Drawing.Point(19, 81);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(67, 20);
+            this.label15.Size = new System.Drawing.Size(109, 20);
             this.label15.TabIndex = 27;
-            this.label15.Text = "Mã KH:";
+            this.label15.Text = "Khách hàng:";
             // 
             // btnNVMo
             // 
@@ -1047,6 +1048,7 @@ namespace BTL
             this.cboHDMaKH.Name = "cboHDMaKH";
             this.cboHDMaKH.Size = new System.Drawing.Size(205, 28);
             this.cboHDMaKH.TabIndex = 34;
+            this.cboHDMaKH.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.cboHDMaKH_Format);
             // 
             // cboHDMaNV
             // 
@@ -1056,6 +1058,7 @@ namespace BTL
             this.cboHDMaNV.Name = "cboHDMaNV";
             this.cboHDMaNV.Size = new System.Drawing.Size(205, 28);
             this.cboHDMaNV.TabIndex = 33;
+            this.cboHDMaNV.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.cboHDMaNV_Format);
             // 
             // dgvThongTinHoaDon
             // 
