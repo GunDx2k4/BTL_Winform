@@ -193,7 +193,7 @@ namespace BTL
 
             foreach (DataRow row in _dataSet.Tables[table].Rows)
             {
-                if (row[sourceColumn].Equals(value))
+                if (row[sourceColumn].ToString().Equals(value.ToString()))
                     return row;
             }
             return null;

@@ -428,6 +428,7 @@ namespace BTL
             this.btnMTim.TabIndex = 28;
             this.btnMTim.Text = "Tìm";
             this.btnMTim.UseVisualStyleBackColor = false;
+            this.btnMTim.Click += new System.EventHandler(this.btnMTim_Click);
             // 
             // btnMXoa
             // 
@@ -439,6 +440,7 @@ namespace BTL
             this.btnMXoa.TabIndex = 27;
             this.btnMXoa.Text = "Xóa";
             this.btnMXoa.UseVisualStyleBackColor = false;
+            this.btnMXoa.Click += new System.EventHandler(this.btnMXoa_Click);
             // 
             // btnMSua
             // 
@@ -450,6 +452,7 @@ namespace BTL
             this.btnMSua.TabIndex = 26;
             this.btnMSua.Text = "Sửa";
             this.btnMSua.UseVisualStyleBackColor = false;
+            this.btnMSua.Click += new System.EventHandler(this.btnMSua_Click);
             // 
             // btnMThem
             // 
@@ -654,6 +657,7 @@ namespace BTL
             this.btnNVSua.TabIndex = 13;
             this.btnNVSua.Text = "Sửa";
             this.btnNVSua.UseVisualStyleBackColor = false;
+            this.btnNVSua.Click += new System.EventHandler(this.btnNVSua_Click);
             // 
             // btnNVThem
             // 
@@ -670,7 +674,7 @@ namespace BTL
             // txbNVDiaChi
             // 
             this.txbNVDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbNVDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNVDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txbNVDiaChi.Location = new System.Drawing.Point(521, 70);
             this.txbNVDiaChi.Margin = new System.Windows.Forms.Padding(2);
             this.txbNVDiaChi.Multiline = true;
@@ -681,7 +685,7 @@ namespace BTL
             // txbNVSDT
             // 
             this.txbNVSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbNVSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNVSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txbNVSDT.Location = new System.Drawing.Point(152, 142);
             this.txbNVSDT.Margin = new System.Windows.Forms.Padding(2);
             this.txbNVSDT.Multiline = true;
@@ -734,7 +738,7 @@ namespace BTL
             // txbNVHoTen
             // 
             this.txbNVHoTen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbNVHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNVHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txbNVHoTen.Location = new System.Drawing.Point(152, 65);
             this.txbNVHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.txbNVHoTen.Multiline = true;
@@ -758,6 +762,7 @@ namespace BTL
             this.dtThongTinNhanVien.Size = new System.Drawing.Size(851, 259);
             this.dtThongTinNhanVien.TabIndex = 2;
             this.dtThongTinNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinNhanVien_CellContentClick);
+            this.dtThongTinNhanVien.CurrentCellChanged += new System.EventHandler(this.dtThongTinNhanVien_CurrentCellChanged);
             // 
             // tpKhachHang
             // 
@@ -817,6 +822,7 @@ namespace BTL
             this.dtThongTinKhachHang.TabIndex = 17;
             this.dtThongTinKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinKhachHang_CellClick);
             this.dtThongTinKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtThongTinKhachHang_CellContentClick);
+            this.dtThongTinKhachHang.CurrentCellChanged += new System.EventHandler(this.dtThongTinKhachHang_CurrentCellChanged);
             // 
             // label6
             // 
@@ -979,6 +985,7 @@ namespace BTL
             this.btnKHSua.TabIndex = 3;
             this.btnKHSua.Text = "Sửa";
             this.btnKHSua.UseVisualStyleBackColor = false;
+            this.btnKHSua.Click += new System.EventHandler(this.btnKHSua_Click);
             // 
             // tpHoaDon
             // 

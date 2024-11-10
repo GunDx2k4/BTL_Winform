@@ -65,9 +65,10 @@ namespace BTL
             lblTotal.Text = $"Tổng tiền : {row.Field<int>("iTongTien").GetMoneys()} đ";
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
+
+        private void btnIn_Click(object sender, EventArgs e)
         {
-            Close();
+
         }
 
         private void btnThem_Click(object sender, EventArgs e)

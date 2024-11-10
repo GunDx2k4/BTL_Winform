@@ -1,28 +1,44 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace BTL
 {
     public partial class FormReport : Form
     {
-        public FormReport(ReportDocument report)
+        private int _idHoaDon = -1;
+        public FormReport()
         {
             InitializeComponent();
-            crystalReportViewer1.ReportSource = report;
-            crystalReportViewer1.Refresh();
+        }
+
+        public FormReport(int idHoaDon) : this()
+        {
+            _idHoaDon = idHoaDon;
         }
 
         private void FormReport_Load(object sender, EventArgs e)
         {
+            CrystalReport1 report = new CrystalReport1();
+            report.SetDataSource(_idHoaDon < 0 ? DBConnection.Instance.SelectDB("vChiTietHoaDon") : DBConnection.Instance.SelectDB("vChiTietHoaDon", $"iMaHoaDon={_idHoaDon}"));
+            crystalReportViewer1.ReportSource = report;
+            crystalReportViewer1.Refresh();
+            cboMaMang.LoadDataSource("tblMang", "sTenMang", "sTenMang");
+        }
 
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            CrystalReport1 report = new CrystalReport1();
+            report.SetDataSource(DBConnection.Instance.SelectDB("vChiTietHoaDon", $"iMaHoaDon={_idHoaDon} AND sTenMang='{cboMaMang.SelectedValue}'"));
+            crystalReportViewer1.ReportSource = report;
+            crystalReportViewer1.Refresh();
+        }
+
+        private void btnInAll_Click(object sender, EventArgs e)
+        {
+            CrystalReport1 report = new CrystalReport1();
+            report.SetDataSource(DBConnection.Instance.SelectDB("vChiTietHoaDon", $"iMaHoaDon={_idHoaDon}"));
+            crystalReportViewer1.ReportSource = report;
+            crystalReportViewer1.Refresh();
         }
     }
 }

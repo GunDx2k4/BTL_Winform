@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.grThongTinHoaDon = new System.Windows.Forms.GroupBox();
-            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnIn = new System.Windows.Forms.Button();
             this.dtpHDNgayTao = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNhanVien = new System.Windows.Forms.TextBox();
@@ -37,6 +37,7 @@
             this.txtKhachHang = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.grThongTinGoiMang = new System.Windows.Forms.GroupBox();
+            this.btnSua = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.dtThongTinCTHoaDon = new System.Windows.Forms.DataGridView();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.btnSua = new System.Windows.Forms.Button();
             this.grThongTinHoaDon.SuspendLayout();
             this.grThongTinGoiMang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtThongTinCTHoaDon)).BeginInit();
@@ -53,7 +53,7 @@
             // 
             // grThongTinHoaDon
             // 
-            this.grThongTinHoaDon.Controls.Add(this.btnLuu);
+            this.grThongTinHoaDon.Controls.Add(this.btnIn);
             this.grThongTinHoaDon.Controls.Add(this.dtpHDNgayTao);
             this.grThongTinHoaDon.Controls.Add(this.label2);
             this.grThongTinHoaDon.Controls.Add(this.txtNhanVien);
@@ -69,17 +69,17 @@
             this.grThongTinHoaDon.TabStop = false;
             this.grThongTinHoaDon.Text = "Thông tin hóa đơn";
             // 
-            // btnLuu
+            // btnIn
             // 
-            this.btnLuu.BackColor = System.Drawing.Color.DarkGray;
-            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuu.Location = new System.Drawing.Point(271, 111);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(90, 28);
-            this.btnLuu.TabIndex = 42;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = false;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            this.btnIn.BackColor = System.Drawing.Color.DarkGray;
+            this.btnIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIn.Location = new System.Drawing.Point(271, 111);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(90, 28);
+            this.btnIn.TabIndex = 42;
+            this.btnIn.Text = "In";
+            this.btnIn.UseVisualStyleBackColor = false;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // dtpHDNgayTao
             // 
@@ -158,6 +158,18 @@
             this.grThongTinGoiMang.TabIndex = 1;
             this.grThongTinGoiMang.TabStop = false;
             this.grThongTinGoiMang.Text = "Gói mạng đăng ký";
+            // 
+            // btnSua
+            // 
+            this.btnSua.BackColor = System.Drawing.Color.DarkGray;
+            this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSua.Location = new System.Drawing.Point(139, 111);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(90, 28);
+            this.btnSua.TabIndex = 44;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
@@ -251,18 +263,6 @@
             this.lblTotal.TabIndex = 36;
             this.lblTotal.Text = "Tổng tiền :";
             // 
-            // btnSua
-            // 
-            this.btnSua.BackColor = System.Drawing.Color.DarkGray;
-            this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSua.Location = new System.Drawing.Point(139, 111);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(90, 28);
-            this.btnSua.TabIndex = 44;
-            this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = false;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
             // FormHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -303,7 +303,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtSoThangDK;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button btnLuu;
+        private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.DataGridView dtThongTinCTHoaDon;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnXoa;

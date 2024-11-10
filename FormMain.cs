@@ -192,7 +192,7 @@ namespace BTL
                 cboCTHDMaMang.LoadDataSource("tblMang", "sTenMang", "iMaMang");
 
                 lblTimHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
-                lblTimCTHD.Text = $"Tìm thấy : 0/{dgvThongTinHoaDon.Rows.Count}";
+                lblTimCTHD.Text = $"Tìm thấy : 0/{dgvThongTinCTHoaDon.Rows.Count}";
             }
             catch (Exception ex)
             {
@@ -289,6 +289,37 @@ namespace BTL
 
         }
 
+        private void btnKHSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtThongTinKhachHang.CurrentRow == null)
+                {
+                    MessageBox.Show("Hãy chọn một hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var selectedRow = dtThongTinKhachHang.CurrentRow;
+                string maKH = selectedRow.Cells["iMaKhachHang"].Value.ToString();
+                var result = MessageBox.Show("Bạn có  muốn sửa nhân viên này không?", "Xác nhận",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DBConnection.Instance.UpdateDB("tblKhachHang",
+                    DBConnection.Instance.BuildParameter("@iMaKhachHang", SqlDbType.Int, 0, "iMaKhachHang", maKH),
+                    DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", txbKHHoTen.Text),
+                    DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", txbKHSDT.Text),
+                    DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", txbKHDiaChi.Text),
+                    DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", txbKHEmail.Text));
+
+                    DBConnection.Instance.SelectDB("tblKhachHang");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnKHXoa_Click(object sender, EventArgs e)
         {
             try
@@ -356,7 +387,7 @@ namespace BTL
                 DBConnection.Instance.BuildParameter("@sEmail", SqlDbType.NVarChar, 100, "sEmail", txbKHEmail.Text);
 
                 // Làm mới lại dữ liệu trong DataGridView
-                dtThongTinKhachHang.LoadDataSource("tblKhachHang", "bDeleted=0");
+                dtThongTinKhachHang.LoadDataSource("tblKhachHang");
 
                 // Hiển thị thông báo
                 MessageBox.Show("Cập nhật thông tin khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -452,6 +483,36 @@ namespace BTL
             }
         }
 
+        private void btnNVSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtThongTinNhanVien.CurrentRow == null)
+                {
+                    MessageBox.Show("Hãy chọn một hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var selectedRow = dtThongTinNhanVien.CurrentRow;
+                string maNV = selectedRow.Cells["iMaNhanVien"].Value.ToString(); // Đảm bảo rằng cột này tồn tại và có tên chính xác
+                var result = MessageBox.Show("Bạn có  muốn sửa nhân viên này không?", "Xác nhận",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DBConnection.Instance.UpdateDB("tblNhanVien",
+                    DBConnection.Instance.BuildParameter("@iMaNhanVien", SqlDbType.Int, 0, "iMaNhanVien", maNV),
+                    DBConnection.Instance.BuildParameter("@sHoTen", SqlDbType.NVarChar, 100, "sHoTen", txbNVHoTen.Text),
+                    DBConnection.Instance.BuildParameter("@sSoDienThoai", SqlDbType.NVarChar, 15, "sSoDienThoai", txbNVSDT.Text),
+                    DBConnection.Instance.BuildParameter("@sDiaChi", SqlDbType.NVarChar, 255, "sDiaChi", txbNVDiaChi.Text));
+
+                    DBConnection.Instance.SelectDB("tblNhanVien");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnNVXoa_Click(object sender, EventArgs e)
         {
             try
@@ -511,9 +572,7 @@ namespace BTL
         {
             var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
             var row = table.Rows[dgvThongTinHoaDon.CurrentRow.Index];
-            CrystalReport1 report = new CrystalReport1();
-            report.SetDataSource(DBConnection.Instance.SelectDB("vChiTietHoaDon", $"iMaHoaDon = {row.Field<int>("iMaHoaDon")}"));
-            new FormReport(report).ShowDialog();
+            new FormReport(row.Field<int>("iMaHoaDon")).ShowDialog();
         }
 
         private void dtThongTinHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -668,10 +727,10 @@ namespace BTL
             if (this.TextIsNullOrEmpty(txtCTHDSoThangDK)) return;
             if (int.TryParse(txtCTHDSoThangDK.Text, out int result))
             {
-                var table = (dgvThongTinHoaDon.DataSource as DataView).Table;
+                var table = (dgvThongTinCTHoaDon.DataSource as DataView).Table;
                 try
                 {
-                    var row = table.Rows[dgvThongTinHoaDon.CurrentRow.Index];
+                    var row = table.Rows[dgvThongTinCTHoaDon.CurrentRow.Index];
                     DBConnection.Instance.UpdateDB("tblChiTietHoaDon",
                     DBConnection.Instance.BuildParameter("@iMaChiTietHD", SqlDbType.Int, 0, "iMaChiTietHD", row.Field<int>("iMaChiTietHD")),
                     DBConnection.Instance.BuildParameter("@iMaHoaDon", SqlDbType.Int, 0, "iMaHoaDon", cboCTHDMaHD.SelectedValue),
@@ -755,10 +814,8 @@ namespace BTL
                     MessageBox.Show("Thêm thông tin mạng thành công!");
 
                     // Làm mới dữ liệu trong DataGridView
-                    dtThongTinNhanVien.LoadDataSource("tblMang", "bDeleted=0");
+                    DBConnection.Instance.SelectDB("tblMang", "bDeleted=0");
 
-                    // Làm rỗng các TextBox sau khi thêm thành công
-                    ClearTextBoxesNV();
                 }
                 else
                 {
@@ -772,6 +829,79 @@ namespace BTL
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
+
+        private void btnMSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtThongTinMang.CurrentRow == null)
+                {
+                    MessageBox.Show("Hãy chọn một hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var selectedRow = dtThongTinMang.CurrentRow;
+                string maKH = selectedRow.Cells["iMaMang"].Value.ToString();
+                var result = MessageBox.Show("Bạn có  muốn sửa nhân viên này không?", "Xác nhận",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DBConnection.Instance.UpdateDB("tblMang",
+                    DBConnection.Instance.BuildParameter("@iMaMang", SqlDbType.Int, 0, "iMaMang", maKH),
+                    DBConnection.Instance.BuildParameter("@sTenMang", SqlDbType.NVarChar, 100, "sTenMang", txbMTenMang.Text),
+                    DBConnection.Instance.BuildParameter("@sMoTa", SqlDbType.NVarChar, 255, "sMoTa", txbMMota.Text),
+                    DBConnection.Instance.BuildParameter("@iDonGia", SqlDbType.Int, 0, "iDonGia", txbMDonGia.Text));
+
+                    DBConnection.Instance.SelectDB("tblMang", "bDeleted=0");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnMXoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtThongTinMang.CurrentRow == null)
+                {
+                    MessageBox.Show("Hãy chọn một hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var selectedRow = dtThongTinMang.CurrentRow;
+                string maMang = selectedRow.Cells["iMaMang"].Value.ToString(); // Đảm bảo rằng cột này tồn tại và có tên chính xác
+                var result = MessageBox.Show("Bạn có  muốn xóa nhân viên này không?", "Xác nhận",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (DBConnection.Instance.DeleteDB("tblMang", DBConnection.Instance.BuildParameter("@iMaMang", SqlDbType.Int, 0, "iMaMang", maMang)))
+                    {
+                        DBConnection.Instance.SelectDB("tblMang", "bDeleted=0");
+                        index = -1;
+                        MessageBox.Show("Khách hàng đã được xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnMTim_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BindingSource bindingSource = (BindingSource)dtThongTinMang.DataSource;
+                bindingSource.Filter = $"sTenMang LIKE '%{txbMtim.Text}%'";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void tpMang_Click(object sender, EventArgs e)
         {
 
@@ -786,10 +916,28 @@ namespace BTL
             {
                 var row = table.Rows[dgv.CurrentRow.Index];
                 txbMTenMang.Text = row.Field<string>("sTenMang");
-                txbMDonGia.Text = row.Field<int>("iDonGia").GetMoneys();
+                txbMDonGia.Text = row.Field<int>("iDonGia").ToString();
                 txbMMota.Text = row.Field<string>("sMoTa");
             }
         }
         #endregion
+
+        private void dtThongTinKhachHang_CurrentCellChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtThongTinNhanVien_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            var table = (dgv.DataSource as DataView).Table;
+            if (dgv.CurrentRow != null && dgv.CurrentRow.Index >= 0)
+            {
+                var row = table.Rows[dgv.CurrentRow.Index];
+                txbNVHoTen.Text = row.Field<string>("sHoTen");
+                txbNVDiaChi.Text = row.Field<string>("sDiaChi");
+                txbNVSDT.Text = row.Field<string>("sSoDienThoai");
+            }
+        }
     }
 }
